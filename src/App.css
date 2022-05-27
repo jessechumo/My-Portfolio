@@ -1,9 +1,8 @@
-* {
-    box-sizing: border-box;
-  }
   
 body {
 	background-color:#E4E9E1; 
+    box-sizing: border-box;
+    margin:0px; 
 }
 
 /* General*/
@@ -14,34 +13,45 @@ body {
     font-weight: 700;
     font-size: 27px;
     line-height: 48px;
+    padding-top: 3%;
  }
 
 
 /*Top Page*/
-#leftHalf {
+
+.float-container {  /* Div for page 1 */
+    margin-top:0px;
     display: flex;
-    padding:5px;
-    background: url(potrait.jpg);
+    flex-direction: row;
+    flex-flow: wrap;
+    column-span: all;
+ } 
+
+ .float-child { /* Class encapsules leftHalf and RightHalf */
+    width:48.85vw;
+    /* width: 49.446vw; */
+    height:100vh;
+    float:left;
+}
+
+
+#leftHalf {
+    margin:0.7861635220125787vh 0.2vw 0.7861635220125787vh 0.7861635220125787vh;
+    background:url(potrait.jpg) center/cover;
     background-repeat: no-repeat;
-    background-size: contain;
-    width: 50%;
-    height: 100%;
-    position: absolute;
  }
 
 
  #RightHalf {
-     padding:5px;
      background-color:#445D54;
      opacity:0.85;
-     width: 49.8%;
-     height: 100%;
-     position:absolute;
-     right: 6px;
+     margin:0.7861635220125787vh 0.7861635220125787vh 0.7861635220125787vh 0.2vw;
+     overflow: visible;
  }
 
  #intro{
      padding-left: 5%;
+     padding-right: 2%;
      margin-top: 7%;
 
  }
@@ -55,7 +65,7 @@ body {
     font-size: 16px;
     line-height: 29px;
     color: #E4E9E1;
-    padding: 1px;
+    padding: 5px;
     margin-left: 5%;
     margin-right: 10%;
     
@@ -69,20 +79,42 @@ body {
     font-size: 18px;
     line-height: 26px;
     color: #E4E9E1;
-    width: 377px;
-    height: 157px;
-    margin-left: 5%;
-   
-    
+    margin-left: 5%;  
+    padding: auto;
 }
 
 
 /* Page 2  - projects */
 
-#intropage{ 
-    border-bottom: 4px solid black;
-    margin-bottom: 10px; 
-    opacity: 0.84;
-    /* border: 4px solid rgba(0, 0, 0, 0.85);
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); */
+ #IntroPage{ 
+    border-bottom: 4px solid black 0.84;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); 
+}  
+
+
+
+/* Adding responsiveness*/
+
+@media screen and (max-width:950px){
+    .float-container{
+        width:100%;
+    }
+    .float-child{
+        width: 100vw;
+        height:100vh;
+        
+    }
+
+    #leftHalf{
+        margin: 0.8vh 0.8vh 0.4vh 0.8vh;
+    }
+
+    #RightHalf {
+        height: auto;
+        margin: 0.4vh 0.8vh 0.8vh 0.8vh;
+        padding: auto;
+        background-size: contain;
+        word-wrap:inherit;
+    }
+
 }

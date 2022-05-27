@@ -7,9 +7,9 @@ function App() {
      <header className ="App-header"></header>
      
       <section>
-        <div  id ="IntroPage" >
-        <div id = 'leftHalf'></div>
-        <div id = 'RightHalf'>
+        <div  class="float-container" id ="IntroPage" >
+        <div class="float-child" id = 'leftHalf'></div>
+        <div class="float-child" id = 'RightHalf'>
   
           <h1 className='Headings' id = 'intro' > Hello there, Welcome to my Portfolio ! </h1>
           
