@@ -1,185 +1,304 @@
  /* General*/
 
-body {
-	background-color:#E4E9E1; 
-    box-sizing: border-box;
-    margin:0px; 
-    font-family: 'Poppins', sans-serif;
-    display: flex;
-    flex-direction: row;
-    flex-flow: wrap;
-    column-span: all;
-}
-
-
-h1{
-    color:#E4E9E1;
-    font-style: normal;
-    font-weight: 700;
-    font-size: 27px;
-    line-height: 48px;
-    
+ body {
+     background-color: #E4E9E1;
+     box-sizing: border-box;
+     margin: 0px;
+     font-family: 'Poppins', sans-serif;
+     display: flex;
+     flex-direction: row;
+     flex-flow: wrap;
+     column-span: all;
  }
 
- hr{
+
+ h1 {
+     color: #E4E9E1;
+     font-style: normal;
+     font-weight: 700;
+     font-size: 27px;
+     line-height: 48px;
+
+ }
+
+ hr {
      height: 5px;
-     background-color: black ;
+     background-color: black;
      opacity: 0.84;
-     border:none;
-     box-shadow: 0 15px 15px 0  #000000;
-     margin:1vh;
+     border: none;
+     box-shadow: 0 15px 15px 0 #000000;
+     margin: 1vh;
      width: 90vw;
      margin-left: 5vw;
  }
 
- .pageTitle{
+ .pageTitle {
      color: rgba(0, 0, 0, 0.85);
      opacity: 0.84;
      text-align: center;
      font-size: 40px;
-    }
+ }
 
 
 
 
  /*************************************************************************************************/
 
-/*Top Page*/
+ /*Top Page*/
 
-.float-container {  /* Div for page 1 */
-    margin-top:0px;
- } 
+ .float-container {
+     /* Div for page 1 */
+     margin-top: 0px;
+ }
 
- .float-child { /* Class encapsules leftHalf and RightHalf */
-    width:48.85vw;
-    /* width: 49.446vw; */
-    height:100vh;
-    float:left;
-}
+ .float-child {
+     /* Class encapsules leftHalf and RightHalf */
+     width: 48.85vw;
+     /* width: 49.446vw; */
+     height: 100vh;
+     float: left;
+ }
 
 
-#leftHalf {
-    margin:0.7861635220125787vh 0.2vw 0.7861635220125787vh 0.7861635220125787vh;
-    background:url(../public/potrait.jpg) center/cover;
-    background-repeat: no-repeat;
+ #leftHalf {
+     margin: 0.7861635220125787vh 0.2vw 0.7861635220125787vh 0.7861635220125787vh;
+     background: url(../public/potrait.jpg) center/cover;
+     background-repeat: no-repeat;
  }
 
 
  #RightHalf {
-     background-color:#445D54;
-     opacity:0.85;
-     margin:0.7861635220125787vh 0.7861635220125787vh 0.7861635220125787vh 0.2vw;
+     background-color: #445D54;
+     opacity: 0.85;
+     margin: 0.7861635220125787vh 0.7861635220125787vh 0.7861635220125787vh 0.2vw;
      overflow: visible;
  }
 
- #intro{
+ #intro {
      padding-left: 5%;
      padding-right: 2%;
      margin-top: 7%;
-     color:#E4E9E1;
+     color: #E4E9E1;
 
  }
 
 
- 
-#paragraph{
-    font-style: normal;
-    font-weight: 600;
-    font-size: 16px;
-    line-height: 29px;
-    color: #E4E9E1;
-    padding: 5px;
-    margin-left: 5%;
-    margin-right: 10%;
-    
-}
+
+ #paragraph {
+     font-style: normal;
+     font-weight: 600;
+     font-size: 16px;
+     line-height: 29px;
+     color: #E4E9E1;
+     padding: 5px;
+     margin-left: 5%;
+     margin-right: 10%;
+
+ }
 
 
-#Regards{
-    font-style: normal;
-    font-weight: 700;
-    font-size: 18px;
-    line-height: 26px;
-    color: #E4E9E1;
-    margin-left: 5%;  
-    padding: auto;
-}
-
-
-
+ #Regards {
+     font-style: normal;
+     font-weight: 700;
+     font-size: 18px;
+     line-height: 26px;
+     color: #E4E9E1;
+     margin-left: 5%;
+     padding: auto;
+ }
 
 
 
 
- /*************************************************************************************************/
-
-/* Page 2  - projects */
-.project-div-container{
-    width:100vw;
-}
-
-
-.project-div{
-    width: 40vw;
-    height: 40vh;
-    background-color: #000000;
-    margin: 4%;
-    float:left;
-}
 
 
 
  /*************************************************************************************************/
-/* Adding responsiveness*/
 
-@media screen and (max-width:950px){  /* Tablets and smaller devices*/
-    .float-container{
-        width:100%;
-    }
-    .float-child{
-        width: 100vw;
-        height:100vh;
-        
-    }
-
-    #leftHalf{
-        margin: 0.8vh 0.8vh 0.4vh 0.8vh;
-    }
-
-    #RightHalf {
-        height: auto;
-        margin: 0.4vh 0.8vh 0.8vh 0.8vh;
-        padding: auto;
-        background-size: contain;
-        word-wrap:inherit;
-    }
-
-    .project-div-container{
-        width: 100%;
-    }
-
-    .project-div{
-        width: 100vw;
-        height:100vh;
-    }
-
-    #Treep{
-        margin: 0.8vh 0.8vh 0.4vh 0.8vh;
-    }
-
-    #Todo-App{
-        margin: 0.4vh 0.8vh 0.4vh 0.8vh;
-    }
-
-    #Mountaineer{
-        margin: 0.4vh 0.8vh 0.8vh 0.8vh;
-    }
-
-}
+ /* Page 2  - projects */
+ .project-div-container {
+     width: 100vw;
+ }
 
 
-@media screen and (max-width:450px){ /* Phones */
-    .pageTitle{
-        font-size: 27px;
-    }
-}
+ .project-div {
+     width: 40vw;
+     height: 40vh;
+     background-color: #E4E9E1;
+     border: 2px dashed #445D54;
+     margin: 4%;
+     float: left;
+ }
+
+ /* .screenshot.project-details{
+    width: 18vw;
+    height: 18vh;
+    float: left;
+} */
+
+ .screenshot {
+     width: 18vw;
+     height: 38vh;
+     margin: 1vh 1vw 1vh 1vw;
+     float: left;
+ }
+
+ .project-details {
+     width: 18vw;
+     height: 38vh;
+     margin: 1vh 1vw 1vh 1vw;
+     float: left;
+     text-align: center;
+
+ }
+
+ #Treep>.screenshot {
+     background: url(../public/Treep.png)center/cover;
+     background-size: contain;
+     background-repeat: no-repeat;
+ }
+
+ /* #Treep>.project-details {
+     background-color: #8b8040;
+ } */
+
+
+ #Todo-App>.screenshot {
+     background: url(../public/Todo-App.png)center/cover;
+     background-size: contain;
+     background-repeat: no-repeat;
+ }
+
+ #Mountaineer>.screenshot {
+     background: url(../public/under-design.svg)center/cover;
+     background-size: contain;
+     background-repeat: no-repeat;
+ }
+
+ h2 {
+     color: #000000 85%;
+     font-family: 'Poppins';
+     font-style: normal;
+     font-weight: 600;
+     font-size: 25px;
+     line-height: 38px;
+     opacity: 0.85;
+
+ }
+
+ .project-div>p{
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 21px;
+    line-height: 32px;
+    color: rgba(0, 0, 0, 0.85);
+    opacity: 0.85;
+ }
+
+ button{
+    width: 74px;
+    height: 36px; 
+    background: rgba(68, 93, 84, 0.85);
+    border-radius: 20px;
+    border: none;
+    margin: 6%;
+ }
+
+
+
+ /*************************************************************************************************/
+ /* Adding responsiveness*/
+
+ @media screen and (max-width:950px) {
+
+     /* Tablets and smaller devices*/
+     .float-container {
+         /* Page 1 elements */
+         width: 100%;
+     }
+
+     .float-child {
+         width: 100vw;
+         height: 100vh;
+
+     }
+
+     #leftHalf {
+         margin: 0.8vh 0.8vh 0.4vh 0.8vh;
+     }
+
+     #RightHalf {
+         height: auto;
+         margin: 0.4vh 0.8vh 0.8vh 0.8vh;
+         padding: auto;
+         background-size: contain;
+         word-wrap: inherit;
+     }
+
+     hr {
+         height: 5px;
+         background-color: black;
+         opacity: 0.84;
+         border: none;
+         box-shadow: 0 15px 15px 0 #000000;
+         margin: 1vh 0vw 1vh 0vw;
+         width: 90%;
+         margin-left: 5%;
+     }
+
+     .project-div-container {
+         /* Page 2 elements */
+         width: 100%;
+     }
+
+     .project-div {
+         width: 100vw;
+         height: 100vh;
+
+     }
+
+     #Treep {
+         margin: 0.8vh 0.8vh 0.4vh 0.8vh;
+     }
+
+     #Todo-App {
+         margin: 0.4vh 0.8vh 0.4vh 0.8vh;
+     }
+
+     #Mountaineer {
+         margin: 0.4vh 0.8vh 0.8vh 0.8vh;
+     }
+
+     .screenshot {
+         width: 96vw;
+         height: 45vh;
+         margin: 2%;
+
+     }
+
+     .project-details {
+         width: 96vw;
+         height:auto;
+         margin: 2%;
+     }
+
+ }
+
+
+ @media screen and (max-width:450px) {
+
+     /* Phones */
+     .pageTitle {
+         font-size: 27px;
+     }
+     .project-div>p{
+        font-size: 16px;
+        line-height: 26px;
+     }
+     h2{
+        font-size: 20px;
+        line-height: 30px;
+     }
+
+ }

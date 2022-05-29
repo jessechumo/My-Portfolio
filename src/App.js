@@ -29,18 +29,33 @@ function App() {
            <div className='project-div-container'>
 
              <div className='project-div' id ="Treep">
-             <div className='screenshot'></div>
-             <div className='project-details'></div>
+             <div className='screenshot' ></div>
+             <div className='project-details'>
+               <h2> Treep </h2>
+               <p> A social media web app.</p>
+               <button>Home</button>
+               <button>Code</button>
+             </div>
              </div>
 
              <div className='project-div' id="Todo-App">
              <div className='screenshot'></div>
-             <div className='project-details'></div>
+             <div className='project-details'>
+             <h2> To-Do App </h2>
+             <p>Basic javaScript to-do app.</p>
+             <button>Home</button>
+             <button>Code</button>
+             </div>
              </div>
 
              <div className='project-div' id ="Mountaineer">
              <div className='screenshot'></div>
-             <div className='project-details'></div>
+             <div className='project-details'>
+             <h2> Mountaineer </h2>
+             <p> An e-commerce web app on hiking and the hiking community.</p>
+             <button>Home</button>
+             <button>Code</button>
+             </div>
              </div>
            
            </div>
