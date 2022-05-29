@@ -125,8 +125,8 @@
      width: 40vw;
      height: 40vh;
      background-color: #E4E9E1;
-     border: 2px dashed #445D54;
-     margin: 4%;
+     /* border: 2px dashed #445D54; */
+     margin: 5%;
      float: left;
  }
 
@@ -139,21 +139,21 @@
  .screenshot {
      width: 18vw;
      height: 38vh;
-     margin: 1vh 1vw 1vh 1vw;
+     margin: 1vh 0vw 1vh 1vw;
      float: left;
  }
 
  .project-details {
      width: 18vw;
      height: 38vh;
-     margin: 1vh 1vw 1vh 1vw;
+     margin: 1vh 1vw 1vh 0vw;
      float: left;
      text-align: center;
 
  }
 
  #Treep>.screenshot {
-     background: url(../public/Treep.png)center/cover;
+     background: url(../public/treep.android.chrome.jpg)center/cover;
      background-size: contain;
      background-repeat: no-repeat;
  }
@@ -170,7 +170,7 @@
  }
 
  #Mountaineer>.screenshot {
-     background: url(../public/under-design.svg)center/cover;
+     background: url(../public/under-construction.svg)center/cover;
      background-size: contain;
      background-repeat: no-repeat;
  }
@@ -203,7 +203,23 @@
     border-radius: 20px;
     border: none;
     margin: 6%;
+    font-weight: 600;
+    font-size: 15px;
  }
+
+ button:hover{
+     background:rgba(68, 93, 84);
+ }
+
+ a{
+    color: white;
+    text-decoration: none;  
+}
+
+a:hover{
+    color: #E4E9E1;
+}
+
 
 
 
@@ -283,6 +299,7 @@
          margin: 2%;
      }
 
+     
  }
 
 

@@ -33,8 +33,8 @@ function App() {
              <div className='project-details'>
                <h2> Treep </h2>
                <p> A social media web app.</p>
-               <button>Home</button>
-               <button>Code</button>
+                <button> <a href='http://treep-inc.herokuapp.com/' alt='website link' target="_blank" rel="noreferrer" >Home</a></button>
+               <button><a href='https://github.com/Jesse-Bett/Treep' alt='website link' target="_blank" rel="noreferrer" >Code</a></button>
              </div>
              </div>
 
@@ -42,9 +42,9 @@ function App() {
              <div className='screenshot'></div>
              <div className='project-details'>
              <h2> To-Do App </h2>
-             <p>Basic javaScript to-do app.</p>
-             <button>Home</button>
-             <button>Code</button>
+             <p>Basic javaScript to-do app.<br/> username : todoapp <br/> password : javascript</p>
+             <button><a href='https://remote-to-do-app.herokuapp.com/' alt='website link' target="_blank" rel="noreferrer" >Home</a></button>
+             <button><a href='https://github.com/Jesse-Bett/Simple-todo-app' alt='website link' target="_blank" rel="noreferrer" >Code</a></button>
              </div>
              </div>
 
@@ -52,9 +52,9 @@ function App() {
              <div className='screenshot'></div>
              <div className='project-details'>
              <h2> Mountaineer </h2>
-             <p> An e-commerce web app on hiking and the hiking community.</p>
-             <button>Home</button>
-             <button>Code</button>
+             <p> An e-commerce web app on hiking and the hiking community. This project is in it's design phase.</p>
+             <button><a href='https://www.figma.com/' alt='website link' target="_blank" rel="noreferrer" >Design</a></button>
+             <button><a href='https://github.com/Jesse-Bett/Mountaineer' alt='website link' target="_blank" rel="noreferrer" >Code</a></button>
              </div>
              </div>
            
