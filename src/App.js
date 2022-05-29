@@ -62,7 +62,21 @@ function App() {
         </section>
 
         <hr/>
-  
+
+        <section id="Education-Skills">
+          <div className='float-page3-container'>
+          <div className="float-Education" id = 'Education'></div>
+        <div className="float-Skills" id = 'Skills'></div>
+          </div>
+        </section>
+
+        <hr/>
+
+        <section id="Experience">
+          <h1 className="pageTitle">Experience</h1>
+        </section>
+        <div id = "footer" ></div>
+
     </div> 
     
   );
