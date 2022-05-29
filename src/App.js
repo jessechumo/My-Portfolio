@@ -74,6 +74,7 @@ function App() {
 
         <section id="Experience">
           <h1 className="pageTitle">Experience</h1>
+          <div id = "Experience-Text"></div>
         </section>
         <div id = "footer" ></div>
 
