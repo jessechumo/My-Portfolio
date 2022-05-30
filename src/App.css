@@ -10,7 +10,7 @@
      flex-direction: row;
      flex-flow: wrap;
      column-span: all;
-     max-width:100vw;
+     max-width: 100vw;
      max-height: 100vh;
  }
 
@@ -187,68 +187,87 @@
      font-size: 25px;
      line-height: 38px;
      opacity: 0.85;
+     text-align: center;
 
  }
 
- .project-div>p{
-    font-family: 'Poppins';
-    font-style: normal;
-    font-weight: 500;
-    font-size: 21px;
-    line-height: 32px;
-    color: rgba(0, 0, 0, 0.85);
-    opacity: 0.85;
+ .project-div>p {
+     font-family: 'Poppins';
+     font-style: normal;
+     font-weight: 500;
+     font-size: 21px;
+     line-height: 32px;
+     color: rgba(0, 0, 0, 0.85);
+     opacity: 0.85;
  }
 
- button{
-    width: 74px;
-    height: 36px; 
-    background: rgba(68, 93, 84, 0.85);
-    border-radius: 20px;
-    border: none;
-    margin: 6%;
-    font-weight: 600;
-    font-size: 15px;
+ button {
+     width: 74px;
+     height: 36px;
+     background: rgba(68, 93, 84, 0.85);
+     border-radius: 20px;
+     border: none;
+     margin: 6%;
+     font-weight: 600;
+     font-size: 15px;
  }
 
- button:hover{
-     background:rgba(68, 93, 84);
+ button:hover {
+     background: rgba(68, 93, 84);
  }
 
- a{
-    color: white;
-    text-decoration: none;  
-}
+ a {
+     color: white;
+     text-decoration: none;
+ }
 
-a:hover{
-    color: #E4E9E1;
-}
+ a:hover {
+     color: #E4E9E1;
+ }
 
 
 
  /*************************************************************************************************/
  /*Page 3 - Education and skills */
- #Education-Skills{
-    width:100%;
-    height: 100vh;
-    background: rgba(68, 93, 84, 0.85);
-    border:none
-  
+ #Education-Skills {
+     width: 100%;
+     height: 100vh;
+     background: rgba(68, 93, 84, 0.85);
+     border: none;
+     color:#E4E9E1;
  }
 
 
+ #Education {
+     width: 40%;
+     height: 100%;
+     margin: 0% 3% 0% 3%;
+     float:left;
+ }
+
+ #Skills{
+        width: 40%;
+        height: 100%;
+        margin:0% 3% 0% 3%;
+        float:left
+    }
+
+  
  
+
+
+
  /*************************************************************************************************/
  /*Page 4 - Experience & Footer*/
- #Experience{
-    width: 100vw;
-    height: 70vh;
+ #Experience {
+     width: 100vw;
+     height: 70vh;
  }
 
- #footer{
-    width: 100%;
-    height: 30vh;
-    background-color:rgba(68, 93, 84, 0.85)
+ #footer {
+     width: 100%;
+     height: 30vh;
+     background-color: rgba(68, 93, 84, 0.85)
  }
 
 
@@ -271,12 +290,12 @@ a:hover{
      }
 
      #leftHalf {
-         margin: 0.8vh 0.8vh 0.4vh 0.8vh;
+         margin: 0.8vh 0.8vw 0.4vh 0.8vw;
      }
 
      #RightHalf {
          height: auto;
-         margin: 0.4vh 0.8vh 0.8vh 0.8vh;
+         margin: 0.4vh 0.8vw 0.8vh 0.8vh;
          padding: auto;
          background-size: contain;
          word-wrap: inherit;
@@ -325,12 +344,31 @@ a:hover{
 
      .project-details {
          width: 96vw;
-         height:auto;
+         height: auto;
          margin: 2%;
      }
-     
+
+     .float-page3-container{
+         /* page 3 elements */
+         width: 100%;
+     }
+
 
      
+ #Education {
+    width: 100vw;
+    height: 100vh;
+    float:left;
+}
+
+#Skills{
+       width:  100vw;
+       height: 100vh;
+       float:left
+   }
+
+
+
  }
 
 
@@ -340,15 +378,17 @@ a:hover{
      .pageTitle {
          font-size: 27px;
      }
-     .project-div>p{
-        font-size: 16px;
-        line-height: 26px;
-     }
-     h2{
-        font-size: 20px;
-        line-height: 30px;
+
+     .project-div>p {
+         font-size: 16px;
+         line-height: 26px;
      }
 
-    
+     h2 {
+         font-size: 20px;
+         line-height: 30px;
+     }
+
+
 
  }

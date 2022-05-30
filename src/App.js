@@ -65,8 +65,10 @@ function App() {
 
         <section id="Education-Skills">
           <div className='float-page3-container'>
-          <div className="float-Education" id = 'Education'></div>
-        <div className="float-Skills" id = 'Skills'></div>
+          <div id = 'Education'>
+            <h2>Education</h2>
+          </div>
+        <div id = 'Skills'><h2>Skills</h2></div>
           </div>
         </section>
 
