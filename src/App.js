@@ -67,8 +67,22 @@ function App() {
           <div className='float-page3-container'>
           <div id = 'Education'>
             <h2>Education</h2>
+            <h3>BSc Information Technology </h3>
+            <h4>Kabarak University</h4> <p>Nakuru, Kenya </p> <p>  May 2018 - Dec 2021</p>
           </div>
-        <div id = 'Skills'><h2>Skills</h2></div>
+        <div id = 'Skills'>
+          <h2>Skills</h2>
+          <h3>javaScript</h3>
+          <h3>HTML5 & CSS3</h3>
+          <h3>Reactjs</h3>
+          <h3>Nodejs</h3>
+          <h3>Expressjs</h3>
+          <h3>Ejs</h3>
+          <h3>SQL</h3>
+          <h3>Mongo DB</h3>
+          <h3>Heroku</h3>
+          <h3>Git & GitHub</h3>
+          </div>
           </div>
         </section>
 
@@ -76,9 +90,35 @@ function App() {
 
         <section id="Experience">
           <h1 className="pageTitle">Experience</h1>
-          <div id = "Experience-Text"></div>
+          <div id = "Experience-Text">
+          <div className='company'>
+          <h2>NHIF</h2>
+          </div>
+          <div className='duties'>
+          <h2>Duties/Responsibilities.</h2>
+          </div>
+          </div>
+          
         </section>
-        <div id = "footer" ></div>
+        <div id = "footer" >
+          <hr/>
+          <div id = "contacts">
+          <h1>Contact Me :</h1>
+          <h4>
+            jessekip21@gmail.com <br/>
+            +254798790147 <br/>
+            Nairobi, Kenya <br/>
+          </h4>
+          </div>
+          <div id = "links">
+          <h1>Links</h1>
+            <h4>
+              LinkedIn <br/>
+              GitHub <br/>
+              Twitter <br/>
+            </h4>
+          </div>
+        </div>
 
     </div> 
     
