@@ -109,29 +109,31 @@ function App() {
           </p>
           </div>
           </div>
-          
         </section>
+        
         <div id = "footer" >
           <hr id = "footer-hr1"/>
           <div id = "contacts">
           <h2>Contact Me</h2>
           <p>
-            jessekip21@gmail.com <br/>
-            +254798790147 <br/>
-            Nairobi, Kenya <br/>
+          <a href='mailto:jessekip21@gmail.com' alt='website link' target="_blank" rel="noreferrer">jessekip21@gmail.com </a> <br/>
+          <a rel="noreferrer" >+254798790147 </a>  <br/>
+          <a href='https://www.google.com/maps/place/Nairobi/@-1.3031934,36.5672003,10z/data=!3m1!4b1!4m5!3m4!1s0x182f1172d84d49a7:0xf7cf0254b297924c!8m2!3d-1.2920659!4d36.8219462' alt='website link' target="_blank" rel="noreferrer" > Nairobi, Kenya </a> <br/>
           </p>
           </div>
           <div id = "links">
           <h2>Links</h2>
             <p>
-              LinkedIn <br/>
-              GitHub <br/>
-              Twitter <br/>
+            <a href='https://www.linkedin.com/in/jesse-bett-74b3411a7/' alt='website link' target="_blank" rel="noreferrer" >LinkedIn</a> <br/>
+            <a href='https://github.com/Jesse-Bett' alt='website link' target="_blank" rel="noreferrer" > GitHub</a> <br/>
+            <a href='https://twitter.com/@BettJesse' alt='website link' target="_blank" rel="noreferrer" > Twitter</a> <br/>
             </p>
           </div>
 
           <div id = "cv">
+          <a href ="https://drive.google.com/file/d/1KJu_fsjqY3AkbJuglQhzExPJMOpGc0Pk/view?usp=sharing" target="_blank" download>
           <h2>Download CV</h2>
+          </a>
           </div>
           <hr id ="footer-hr"/>
           <p id="bottom-text"> JesseBett © 2022</p>
