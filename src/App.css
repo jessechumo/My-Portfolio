@@ -262,12 +262,11 @@
      display: inline;
      vertical-align: top;
      margin: 1%;
-     
-
  }
-
+ 
  #Skills h3{
      text-align: center;
+     font-size: medium;
  }
 
 
@@ -294,22 +293,24 @@
  #Experience {
      width: 100vw;
      height: 70vh;
+     
  }
-/* 
- #Experience-Text{
-     float:left;
- } */
+
+ #Experience h3{
+     margin-bottom: 0%;
+ }
 
  .company {
     width: 50vw;
-    height:20vh;
+    height:auto;
     float:left;
     color: rgba(0, 0, 0, 0.85);
+    text-align: center;
 }
  
  .duties{
      width: 50vw;
-     height:20vh;
+     height:auto;
      float:left;
      color: rgba(0, 0, 0, 0.85);
  }
@@ -322,41 +323,59 @@
      text-align: center;
  }   
 
- #footer h1{
+ #footer h2{
      margin:2% 10% 0% 10%;
      color: #C9CCC7;
+     font-size: medium;
 
  }
 
- #contacts h1{
-    text-align: left;
-
-}
-
- #footer hr{
+ #footer-hr1{
     background-color: #202020;  
     backdrop-filter: blur(5px);
     box-shadow: none;
 }
 
 #contacts{
-    width:40%;
+    width:27%;
     height: 30vh;
     float: left;
-    margin: 0% 5% 0% 5%;
+    margin: 0% 3% 0% 3%;
 }
 #links{
-    width:40%;
+    width:27%;
     height: 30vh;
     float: left;
-    margin: 0% 5% 0% 5%;
+    margin: 0% 0% 0% 0%;
+}
+#cv{
+    width:27%;
+    height: 30vh;
+    float: left;
+    margin: 0% 3% 0% 3%;
 }
 
 
-#footer h4{
-    color: #C9CCC7;
+#footer p{
+    color:   #C9CCC7; 
     line-height: 28px;
+    font-size: small;
 }
+#footer-hr{
+    background-color: #b3b3b4;  
+    width: 80%;
+    margin-left: 10%;
+    box-shadow: none;
+    height:1px;
+}
+
+#bottom-text{
+    color: #b3b3b4;
+    font-weight: 10;
+    font-size: small;
+}
+
+
 
 
  /*************************************************************************************************/
@@ -444,17 +463,28 @@
 
      #Education {
          width: 100vw;
-         height: 100vh;
+         height: 30vh;
          float: left;
+         margin: 0% 3% 0% 3%;
+         text-align: center;
+         border-bottom: 2px dashed#E4E9E1;
      }
 
      #Skills {
-         width: 100vw;
-         height: 100vh;
-         float: left
+         width: 90vw;
+         height: 50vh;
+         float: left;
+         margin: 0% 3% 0% 3%;
+         padding-bottom: 1%;
      }
 
+     .experience-paragraph{
+        font-size: small;
+     }
 
+    
+
+     
 
  }
 
@@ -475,6 +505,21 @@
          font-size: 20px;
          line-height: 30px;
      }
+
+     #footer h2{
+        margin:2% 10% 0% 10%;
+        font-size: small;
+    }
+
+    #footer p{
+        font-size: x-small;
+        line-height: 22px;
+    }
+
+    .experience-paragraph{
+        font-size: x-small;
+     }
+
 
 
 

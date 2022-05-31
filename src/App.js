@@ -68,8 +68,9 @@ function App() {
           <div id = 'Education'>
             <h2>Education</h2>
             <h3>BSc Information Technology </h3>
-            <h4>Kabarak University</h4> <p>Nakuru, Kenya </p> <p>  May 2018 - Dec 2021</p>
+            <h4>Kabarak University</h4> <p>  May 2018 - Dec 2021</p>
           </div>
+          
         <div id = 'Skills'>
           <h2>Skills</h2>
           <h3>javaScript</h3>
@@ -92,32 +93,48 @@ function App() {
           <h1 className="pageTitle">Experience</h1>
           <div id = "Experience-Text">
           <div className='company'>
-          <h2>NHIF</h2>
+          <h2>Company</h2>
+          <h3 className='experience-paragraph'>NHIF</h3>
+          <p className='experience-paragraph'>September - October 2021</p>
           </div>
           <div className='duties'>
-          <h2>Duties/Responsibilities.</h2>
+          <h2>Duties</h2>
+          <p className='experience-paragraph'>
+          - Network connectivity of client computers both to the LocalAreaNetwork and the Internet.  <br/>
+          - Configuration of new PCs and Servers on an acquisition. <br/>
+          - Performing updates on current system requirements for the institution. <br/>
+          - Setting up of ad-hoc networks during conferences and Multimedia set up and support. <br/>
+          - Hardware repairs, maintenance and peripheral devices installation. <br/>
+          - Data recovery, User assistance, User Support. <br/>
+          </p>
           </div>
           </div>
           
         </section>
         <div id = "footer" >
-          <hr/>
+          <hr id = "footer-hr1"/>
           <div id = "contacts">
-          <h1>Contact Me :</h1>
-          <h4>
+          <h2>Contact Me</h2>
+          <p>
             jessekip21@gmail.com <br/>
             +254798790147 <br/>
             Nairobi, Kenya <br/>
-          </h4>
+          </p>
           </div>
           <div id = "links">
-          <h1>Links</h1>
-            <h4>
+          <h2>Links</h2>
+            <p>
               LinkedIn <br/>
               GitHub <br/>
               Twitter <br/>
-            </h4>
+            </p>
           </div>
+
+          <div id = "cv">
+          <h2>Download CV</h2>
+          </div>
+          <hr id ="footer-hr"/>
+          <p id="bottom-text"> JesseBett © 2022</p>
         </div>
 
     </div> 
