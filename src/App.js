@@ -92,23 +92,58 @@ function App() {
         <section id="Experience">
           <h1 className="pageTitle">Experience</h1>
           <div id = "Experience-Text">
+          <div className='company'> <h2>Company</h2> </div>
+          <div className='duties'> <h2>Duties</h2> </div> 
+          
+
           <div className='company'>
-          <h2>Company</h2>
           <h3 className='experience-paragraph'>NHIF</h3>
-          <p className='experience-paragraph'>September - October 2021</p>
+          <h4 className='experience-paragraph' >ICT Support Attache</h4>
+          <p className='experience-paragraph'>September - December 2021</p>
+          </div>
+          
+          <div className='duties'>
+          <p className='experience-paragraph'>
+           - Network connectivity of client computers both to the LocalAreaNetwork and the Internet. <br/>
+           - Configuration of new PCs and Servers on an acquisition.<br/>
+           - Performing updates on current system requirements for the institution.<br/>
+           - Setting up of ad-hoc networks during conferences and Multimedia set up and support.<br/>
+           - Hardware repairs, maintenance and peripheral devices installation.<br/>
+           - Data recovery, User assistance, User Support.<br/>
+          </p>
+          </div>
+
+          <div className='company'>
+          <h3 className='experience-paragraph'>NSSF</h3>
+          <h4 className='experience-paragraph' >ICT Support Atache</h4>
+          <p className='experience-paragraph'>November - December 2021 </p>
           </div>
           <div className='duties'>
-          <h2>Duties</h2>
           <p className='experience-paragraph'>
           - Network connectivity of client computers both to the LocalAreaNetwork and the Internet.  <br/>
           - Configuration of new PCs and Servers on an acquisition. <br/>
-          - Performing updates on current system requirements for the institution. <br/>
           - Setting up of ad-hoc networks during conferences and Multimedia set up and support. <br/>
           - Hardware repairs, maintenance and peripheral devices installation. <br/>
           - Data recovery, User assistance, User Support. <br/>
           </p>
           </div>
+
+          <div className='company'>
+          <h3 className='experience-paragraph'>JamboPay</h3>
+          <h4 className='experience-paragraph' >ICT Support Intern</h4>
+          <p className='experience-paragraph'>May 2022 - </p>
           </div>
+          <div className='duties'>
+          <p className='experience-paragraph'>
+          - Perfoming web intergrations between customer website and JamboPay checkout.<br/>
+          - Developing e-commerce web apps to assist in testing intergration plugins and writting API documentation.<br/>
+          - Monitoring Jambopay systems to reduce downtime.<br/>
+          - Supporting internall staff in network, hardware and software issues.<br/>
+          </p>
+          </div>
+
+          </div>
+
         </section>
         
         <div id = "footer" >
@@ -146,3 +181,4 @@ function App() {
 
 export default App;
   
+
