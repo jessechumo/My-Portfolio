@@ -1,5 +1,8 @@
  /* General*/
-
+ html{
+    overflow-x: hidden;
+  }
+ 
  body {
      background-color: #E4E9E1;
      box-sizing: border-box;
@@ -10,6 +13,8 @@
      flex-direction: row;
      flex-flow: wrap;
      column-span: all;
+     overflow-x: hidden; /* Hide horizontal scrollbar */
+     width:100%;
     
  }
 
@@ -35,8 +40,8 @@
      border: none;
      box-shadow: 0 15px 15px 0 #000000;
      margin: 1vh;
-     width: 90vw;
-     margin-left: 5vw;
+     width: 90%;
+     margin-left: 5%;
  }
 
  .pageTitle {
@@ -56,11 +61,12 @@
  .float-container {
      /* Div for page 1 */
      margin-top: 0px;
+     max-width: 100vw;
  }
 
  .float-child {
      /* Class encapsules leftHalf and RightHalf */
-     width: 49.5%;
+     width: 48.8vw;
      /* width: 49%; */
      /* width: 49.3vw; */
      height: 100vh;
@@ -69,14 +75,14 @@
 
 
  #leftHalf {
-     margin: 0.33% 0.167% 0.33% 0.33%;
+     margin: 0.33% 0.2% 0.33% 0.45%;
      background: url(../public/min.potrait.jpg) center/cover;
      background-repeat: no-repeat;
  }
 
 
  #RightHalf {
-     margin: 0.33% 0.33% 0.33% 0.167% ;
+     margin: 0.33% 0.33% 0.33% 0.2% ;
      background-color: #445D54;
      opacity: 0.85;
      overflow: visible;
@@ -397,22 +403,22 @@
      }
 
      .float-child {
-         width: 98%;
+         width: 97%;
          height: 100vh;
 
      }
 
      #leftHalf {
-         margin-left:1%;
-         margin-top: 1%;
+         margin-left:1.5%;
+         margin-top: 1.5%;
      }
 
      #RightHalf {
          height: auto;
          /* margin: 0.2% 0.4%  0.4%  0.4% ; */
-         margin-left: 1%;
-         margin-top: 0.52%;
-         margin-bottom: 1%;
+         margin-left: 1.5%;
+         margin-top: 0.9%;
+         margin-bottom: 1.5%;
          padding: auto;
          background-size: contain;
          word-wrap: inherit;
@@ -500,9 +506,10 @@
  }
 
 
- @media screen and (max-width:450px) {
+  @media screen and (max-width:450px) {
 
      /* Phones */
+
      .pageTitle {
          font-size: 27px;
      }
