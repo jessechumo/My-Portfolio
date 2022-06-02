@@ -297,7 +297,7 @@
  /*Page 4 - Experience & Footer*/
  #Experience {
      width: 100vw;
-     height: 70vh;
+     height: 160vh;
      
  }
 
@@ -305,19 +305,24 @@
      margin-bottom: 0%;
  }
 
+
+
  .company {
     width: 50vw;
     height:auto;
     float:left;
     color: rgba(0, 0, 0, 0.85);
     text-align: center;
+    margin:2% 0% 2% 0%;
 }
  
  .duties{
-     width: 50vw;
+     width: 48vw;
      height:auto;
      float:left;
      color: rgba(0, 0, 0, 0.85);
+     margin:2% 0% 2% 0%;
+     padding-right: 1px;
  }
 
  #footer {
@@ -499,6 +504,33 @@
         font-size: small;
      }
 
+     #Experience {
+        height: 90vh;
+    }
+
+    #footer{
+        height: 20vh;
+    }
+
+    #contacts{
+        width:27%;
+        height: 15vh;
+        float: left;
+        margin: 0% 3% 0% 3%;
+    }
+    #links{
+        width:27%;
+        height: 15vh;
+        float: left;
+        margin: 0% 0% 0% 0%;
+    }
+    #cv{
+        width:27%;
+        height: 15vh;
+        float: left;
+        margin: 0% 3% 0% 3%;
+    }
+
     
 
      
@@ -537,6 +569,37 @@
     .experience-paragraph{
         font-size: x-small;
      }
+
+     #Experience {
+        height: 130vh;
+    }
+
+    #footer{
+        height: 30vh;
+    }
+
+    #contacts{
+        width:27%;
+        height: 20vh;
+        float: left;
+        margin: 0% 3% 0% 3%;
+    }
+    #links{
+        width:27%;
+        height: 20vh;
+        float: left;
+        margin: 0% 0% 0% 0%;
+    }
+    #cv{
+        width:27%;
+        height: 20vh;
+        float: left;
+        margin: 0% 3% 0% 3%;
+    }
+
+    hr{
+        margin-left:3%;
+    }
 
 
 
