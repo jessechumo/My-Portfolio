@@ -1,4 +1,7 @@
 import './App.css';
+import {FaGithub, FaPhone, FaMapMarkerAlt, FaEnvelope, FaTwitter, FaLinkedin, FaCode, FaBuilding} from "react-icons/fa";
+import {BiArrowToBottom} from "react-icons/bi"; 
+import {IoSchoolSharp} from "react-icons/io5";
 
 
 function App() {
@@ -66,13 +69,13 @@ function App() {
         <section id="Education-Skills">
           <div className='float-page3-container'>
           <div id = 'Education'>
-            <h2>Education</h2>
-            <h3>BSc Information Technology </h3>
+            <h2> <IoSchoolSharp  size ="0.9em"/> Education</h2>
+            <h3> <FaBuilding/> BSc Information Technology </h3>
             <h4>Kabarak University</h4> <p>  May 2018 - Dec 2021</p>
           </div>
           
         <div id = 'Skills'>
-          <h2>Skills</h2>
+         <h2> <FaCode size ="0.8em"/>  Skills <FaCode size ="0.8em"/> </h2> 
           <h3>javaScript</h3>
           <h3>HTML5 & CSS3</h3>
           <h3>Reactjs</h3>
@@ -151,23 +154,23 @@ function App() {
           <div id = "contacts">
           <h2>Contact Me</h2>
           <p>
-          <a href='mailto:jessekip21@gmail.com' alt='website link' target="_blank" rel="noreferrer">jessekip21@gmail.com </a> <br/>
-          <a rel="noreferrer" >+254798790147 </a>  <br/>
-          <a href='https://www.google.com/maps/place/Nairobi/@-1.3031934,36.5672003,10z/data=!3m1!4b1!4m5!3m4!1s0x182f1172d84d49a7:0xf7cf0254b297924c!8m2!3d-1.2920659!4d36.8219462' alt='website link' target="_blank" rel="noreferrer" > Nairobi, Kenya </a> <br/>
+          <a href='mailto:jessekip21@gmail.com' alt='website link' target="_blank" rel="noreferrer"> <FaEnvelope/>  jessekip21@gmail.com </a> <br/>
+          <a rel="noreferrer" > <FaPhone /> +254798790147 </a>  <br/>
+          <a href='https://www.google.com/maps/place/Nairobi/@-1.3031934,36.5672003,10z/data=!3m1!4b1!4m5!3m4!1s0x182f1172d84d49a7:0xf7cf0254b297924c!8m2!3d-1.2920659!4d36.8219462' alt='website link' target="_blank" rel="noreferrer" > <FaMapMarkerAlt/> Nairobi, Kenya </a> <br/>
           </p>
           </div>
           <div id = "links">
           <h2>Links</h2>
             <p>
-            <a href='https://www.linkedin.com/in/jesse-bett-74b3411a7/' alt='website link' target="_blank" rel="noreferrer" >LinkedIn</a> <br/>
-            <a href='https://github.com/Jesse-Bett' alt='website link' target="_blank" rel="noreferrer" > GitHub</a> <br/>
-            <a href='https://twitter.com/@BettJesse' alt='website link' target="_blank" rel="noreferrer" > Twitter</a> <br/>
+            <a href='https://www.linkedin.com/in/jesse-bett-74b3411a7/' alt='website link' target="_blank" rel="noreferrer" > <FaLinkedin/> LinkedIn </a> <br/>
+            <a href='https://github.com/Jesse-Bett' alt='website link' target="_blank" rel="noreferrer" ><FaGithub/> GitHub</a> <br/>
+            <a href='https://twitter.com/@BettJesse' alt='website link' target="_blank" rel="noreferrer" > <FaTwitter/> Twitter </a> <br/>
             </p>
           </div>
 
           <div id = "cv">
           <a href ="https://drive.google.com/file/d/1KJu_fsjqY3AkbJuglQhzExPJMOpGc0Pk/view?usp=sharing" target="_blank" download>
-          <h2>Download CV</h2>
+          <h2>Download CV <br/> <BiArrowToBottom size ="1.5em"/></h2>
           </a>
           </div>
           <hr id ="footer-hr"/>
