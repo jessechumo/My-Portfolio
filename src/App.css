@@ -579,19 +579,16 @@
     }
 
     #contacts{
-        width:37%;
         height: 20vh;
         float: left;
         margin: 0% 3% 0% 3%;
     }
     #links{
-        width:20%;
         height: 20vh;
         float: left;
         margin: 0% 0% 0% 0%;
     }
     #cv{
-        width:27%;
         height: 20vh;
         float: left;
         margin: 0% 3% 0% 3%;
