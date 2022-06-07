@@ -2,6 +2,16 @@ import './App.css';
 import {FaGithub, FaPhone, FaMapMarkerAlt, FaEnvelope, FaTwitter, FaLinkedin, FaCode, FaBuilding} from "react-icons/fa";
 import {BiArrowToBottom} from "react-icons/bi"; 
 import {IoSchoolSharp} from "react-icons/io5";
+// import { bounce } from 'react-animations';
+// import Radium, {StyleRoot} from 'radium';
+
+
+// const styles = {
+//   bounce: {
+//     animation: 'x 1s',
+//     animationName: Radium.keyframes(bounce, 'bounce')
+//   }
+// }
 
 
 function App() {
@@ -12,7 +22,7 @@ function App() {
       <section id ="IntroPage"> 
         <div  className="float-container" >
         <div className="float-child" id = 'leftHalf'></div>
-        <div className="float-child" id = 'RightHalf'>
+        <div className="float-child" id = 'RightHalf' >
 
           <h1  id = 'intro' > Hello there, Welcome to my Portfolio ! </h1>
 
