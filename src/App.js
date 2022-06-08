@@ -12,7 +12,7 @@ import {
 import { BiArrowToBottom } from "react-icons/bi";
 import { IoSchoolSharp } from "react-icons/io5";
 import Typical from "react-typical";
-import { Wave1, Wave2, Random1, Random2 } from './examples.js';
+import { Wave1, Wave2, Random1, Random2 } from './TextAnimation';
 
 
 
@@ -194,16 +194,16 @@ function App() {
             </h2>
              
               
-              <h3>javaScript</h3>
-               <h3>HTML5 & CSS3</h3>
-               <h3>Reactjs</h3>
-               <h3>Nodejs</h3>
-               <h3>Expressjs</h3>
-              <h3>Ejs</h3>
-              <h3>SQL</h3>
-              <h3>Mongo DB</h3>
-              <h3>Heroku</h3>
-              <h3>Git & GitHub</h3>
+              <h3 class = "animated1">javaScript</h3>
+               <h3 class = "animated2">HTML5 & CSS3</h3>
+               <h3 class = "animated3">Reactjs</h3>
+               <h3 class = "animated4">Nodejs</h3>
+               <h3 class = "animated5">Expressjs</h3>
+              <h3 class = "animated6">Ejs</h3>
+              <h3 class = "animated7">SQL</h3>
+              <h3 class = "animated8">Mongo DB</h3>
+              <h3 class = "animated9">Heroku</h3>
+              <h3 class = "animated10">Git & GitHub</h3>
             
           </div>
         </div>
@@ -364,12 +364,13 @@ function App() {
             download
           >
             <h2>
-              Download CV <br /> <BiArrowToBottom size="1.5em" />
+             <Wave1 /> <BiArrowToBottom size="1.5em" />
             </h2>
           </a>
         </div>
         <hr id="footer-hr" />
-        <p id="bottom-text"> JesseBett © 2022</p>
+        
+        <p id="bottom-text"> JesseBett © 2022 </p>
       </div>
     </div>
   );
