@@ -12,7 +12,9 @@ import {
 import { BiArrowToBottom } from "react-icons/bi";
 import { IoSchoolSharp } from "react-icons/io5";
 import Typical from "react-typical";
-import { Wave1, Wave2, Random1, Random2 } from './TextAnimation';
+import { Wave1 } from './TextAnimation';
+// import ImageLoader from "./ImageLoader/index";
+
 
 
 
@@ -26,7 +28,6 @@ function App() {
           <div className="float-child" id="leftHalf"></div>
           <div className="float-child" id="RightHalf">
             <h1 id="intro">
-              {" "}
               Hello there,
               <Typical
                 loop={Infinity}
@@ -36,12 +37,12 @@ function App() {
                   4000,
                   "Happy to see you here 🎉",
                   2000,
-                  "I'm open to new empoyment opportunities . . . ",
-                  5500,
                   "I'm a Devero",
-                  1500,
+                  680,
                   "I'm a Developer",
                   5500,
+                  "I'm open to new empoyment opportunities . . . ",
+                  5500, 
                 ]}
               />
             </h1>
@@ -73,17 +74,18 @@ function App() {
       </section>
 
       <hr />
-
+      
       <section id="Projects">
         <h1 className="pageTitle"> My Projects</h1>
         <div className="project-div-container">
-          <div className="project-div" id="Treep">
+          
+          <div className="project-div" id="Treep">         
             <div className="screenshot"></div>
             <div className="project-details">
               <h2> Treep </h2>
               <p> A social media web app.</p>
               <button>
-                {" "}
+                
                 <a
                   href="http://treep-inc.herokuapp.com/"
                   alt="website link"
@@ -104,8 +106,10 @@ function App() {
                 </a>
               </button>
             </div>
-          </div>
+            </div>
+          
 
+          
           <div className="project-div" id="Todo-App">
             <div className="screenshot"></div>
             <div className="project-details">
@@ -137,12 +141,15 @@ function App() {
             </div>
           </div>
 
+
+
+          
           <div className="project-div" id="Mountaineer">
             <div className="screenshot"></div>
             <div className="project-details">
               <h2> Mountaineer </h2>
               <p>
-                {" "}
+                
                 An e-commerce web app on hiking and the hiking community. This
                 project is in it's design phase.
               </p>
@@ -168,29 +175,31 @@ function App() {
               </button>
             </div>
           </div>
+          
+
         </div>
       </section>
 
       <hr />
-
+     
       <section id="Education-Skills">
         <div className="float-page3-container">
           <div id="Education">
             <h2>
-              {" "}
+              
               <IoSchoolSharp size="0.9em" /> Education
             </h2>
             <h3>
-              {" "}
-              <FaBuilding /> BSc Information Technology{" "}
+              
+              <FaBuilding /> BSc Information Technology
             </h3>
             <h4>Kabarak University</h4> <p> May 2018 - Dec 2021</p>
           </div>
 
           <div id="Skills">
             <h2>
-              {" "}
-              <FaCode size="0.8em" /> Skills <FaCode size="0.8em" />{" "}
+              
+              <FaCode size="0.8em" /> Skills <FaCode size="0.8em" />
             </h2>
              
               
@@ -208,19 +217,19 @@ function App() {
           </div>
         </div>
       </section>
-
+      
       <hr />
 
       <section id="Experience">
         <h1 className="pageTitle">Experience</h1>
         <div id="Experience-Text">
           <div className="company">
-            {" "}
-            <h2>Company</h2>{" "}
+            
+            <h2>Company</h2>
           </div>
           <div className="duties">
-            {" "}
-            <h2>Duties</h2>{" "}
+            
+            <h2>Duties</h2>
           </div>
 
           <div className="company">
@@ -301,14 +310,15 @@ function App() {
               target="_blank"
               rel="noreferrer"
             >
-              {" "}
-              <FaEnvelope /> jessekip21@gmail.com{" "}
-            </a>{" "}
+              
+              <FaEnvelope /> jessekip21@gmail.com
+            </a>
             <br />
-            <a rel="noreferrer">
-              {" "}
-              <FaPhone /> +254798790147{" "}
-            </a>{" "}
+            <a
+               href="tel:0798790147" 
+               rel="noreferrer">
+              <FaPhone /> +254798790147
+            </a>
             <br />
             <a
               href="https://www.google.com/maps/place/Nairobi/@-1.3031934,36.5672003,10z/data=!3m1!4b1!4m5!3m4!1s0x182f1172d84d49a7:0xf7cf0254b297924c!8m2!3d-1.2920659!4d36.8219462"
@@ -316,9 +326,9 @@ function App() {
               target="_blank"
               rel="noreferrer"
             >
-              {" "}
-              <FaMapMarkerAlt /> Nairobi, Kenya{" "}
-            </a>{" "}
+              
+              <FaMapMarkerAlt /> Nairobi, Kenya
+            </a>
             <br />
           </p>
         </div>
@@ -331,9 +341,9 @@ function App() {
               target="_blank"
               rel="noreferrer"
             >
-              {" "}
-              <FaLinkedin /> LinkedIn{" "}
-            </a>{" "}
+              
+              <FaLinkedin /> LinkedIn
+            </a>
             <br />
             <a
               href="https://github.com/Jesse-Bett"
@@ -342,7 +352,7 @@ function App() {
               rel="noreferrer"
             >
               <FaGithub /> GitHub
-            </a>{" "}
+            </a>
             <br />
             <a
               href="https://twitter.com/@BettJesse"
@@ -350,9 +360,9 @@ function App() {
               target="_blank"
               rel="noreferrer"
             >
-              {" "}
-              <FaTwitter /> Twitter{" "}
-            </a>{" "}
+              
+              <FaTwitter /> Twitter
+            </a>
             <br />
           </p>
         </div>
@@ -362,6 +372,7 @@ function App() {
             href="https://drive.google.com/file/d/1KJu_fsjqY3AkbJuglQhzExPJMOpGc0Pk/view?usp=sharing"
             target="_blank"
             download
+            rel="noreferrer"
           >
             <h2>
              <Wave1 /> <BiArrowToBottom size="1.5em" />
