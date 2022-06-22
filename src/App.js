@@ -1,4 +1,5 @@
-import "./App.css";
+// import "./App.css";
+import "./index.css";
 import {
   FaGithub,
   FaPhone,
@@ -203,16 +204,16 @@ function App() {
             </h2>
              
               
-              <h3 class = "animated1">javaScript</h3>
-               <h3 class = "animated2">HTML5 & CSS3</h3>
-               <h3 class = "animated3">Reactjs</h3>
-               <h3 class = "animated4">Nodejs</h3>
-               <h3 class = "animated5">Expressjs</h3>
-              <h3 class = "animated6">Ejs</h3>
-              <h3 class = "animated7">SQL</h3>
-              <h3 class = "animated8">Mongo DB</h3>
-              <h3 class = "animated9">Heroku</h3>
-              <h3 class = "animated10">Git & GitHub</h3>
+              <h3>javaScript</h3>
+               <h3>HTML5 & CSS3</h3>
+               <h3>Reactjs</h3>
+               <h3>Nodejs</h3>
+               <h3>Expressjs</h3>
+              <h3>Ejs</h3>
+              <h3>SQL</h3>
+              <h3>Mongo DB</h3>
+              <h3>Heroku</h3>
+              <h3>Git & GitHub</h3>
             
           </div>
         </div>

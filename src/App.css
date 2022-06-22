@@ -3,7 +3,8 @@
     overflow-x: hidden;
   }
  
- body {
+ body {  
+     
      background-color: #E4E9E1;
      box-sizing: border-box;
      margin: 0px;
@@ -131,7 +132,7 @@
 
  /* Page 2  - projects */
  .project-div-container {
-     width: 100vw;
+     width: 100vw !important;
  }
 
 
@@ -263,97 +264,6 @@
      
      display: inline-block;
  }
-
- /* Text Animation for skills*/
- .animated {
-    overflow: hidden;
-    /* width: 11rem; */
-    white-space: nowrap;
-    animation: 5s linear 0s infinite alternate move;
-    position:inherit;
-  }
-
-  .animated1 {
-    overflow: hidden;
-    /* width: 11rem; */
-    white-space: nowrap;
-    animation: 4s linear 0s infinite alternate move;
-    position:inherit;
-  }
-
-  .animated2{
-    overflow: hidden;
-    /* width: 11rem; */
-    white-space: nowrap;
-    animation: 3s linear 0s infinite alternate move;
-    position:inherit;
-  }
-
-  .animated3{
-    overflow: hidden;
-    /* width: 11rem; */
-    white-space: nowrap;
-    animation: 7s linear 0s infinite alternate move;
-    position:inherit;
-  }
-  
-  .animated4{
-    overflow: hidden;
-    /* width: 11rem; */
-    white-space: nowrap;
-    animation: 5s linear 0s infinite alternate move;
-    position:inherit;
-  }
-  
-  .animated5{
-    overflow: hidden;
-    /* width: 11rem; */
-    white-space: nowrap;
-    animation: 4s linear 0s infinite alternate move;
-    position:inherit;
-  }
-  
-  .animated6{
-    overflow: hidden;
-    /* width: 11rem; */
-    white-space: nowrap;
-    animation: 6s linear 0s infinite alternate move;
-    position:inherit;
-  }
-  
-  .animated7{
-    overflow: hidden;
-    /* width: 11rem; */
-    white-space: nowrap;
-    animation: 3s linear 0s infinite alternate move; 
-    position:inherit;
-  }
-  
-  .animated8{
-    overflow: hidden;
-    /* width: 11rem; */
-    white-space: nowrap;
-    animation: 4s linear 0s infinite alternate move;
-    position:inherit;
-  }
-  
-
-  .animated9{
-    overflow: hidden;
-    /* width: 11rem; */
-    white-space: nowrap;
-    animation: 7s linear 0s infinite alternate move;
-    position:inherit;
-  }
-  
-  .animated10{
-    overflow: hidden;
-    /* width: 11rem; */
-    white-space: nowrap;
-    animation: 6s linear 0s infinite alternate move;
-    position:inherit;
-  }
-  
   
   
  
