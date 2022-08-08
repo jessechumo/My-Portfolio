@@ -1,3 +1,7 @@
 # My-Portfolio
-This is a portfolio that acts as a cv. <br/>
-You can visit it by clicking [here](https://jessebett.herokuapp.com/)
+ Portfolio 2.0 in progress !!!
+ Changes - All new hero section.
+         - Responsiveness across *all* devices.
+         - Overally improved ui conforming to modern design patterns.
+         - Animations with gsap.
+         
