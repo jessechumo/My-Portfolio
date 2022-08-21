@@ -1,0 +1,84 @@
+* {
+    margin: 0;
+    padding: 0;
+  }
+  body {
+    background-color: #5C7269;
+    overflow: hidden;
+    color: rgb(212, 211, 211);
+  }
+  .card-animation {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100%;
+    flex-direction: column;
+    font-family: "PP Neue Montreal";
+  }
+  .card-animation .img {
+    width: 450px;
+    height: 600px;
+    background: url(../public/image.jpg) center center no-repeat;
+    background-size: cover;
+  }
+  .card-animation .card-header {
+    font-size: 40px;
+    font-family: "Monument";
+    margin: 15px 0px;
+    color: rgb(212, 211, 211);
+  }
+  .card-animation .card-text-below {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .card-animation .card-side {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    margin-left: 450px;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: rgb(212, 211, 211);
+  }
+  .card-side h2 {
+    text-transform: uppercase;
+    font-size: 15px;
+    font-weight: 400;
+  }
+  .card-side .card-on {
+    width: 90px;
+    cursor: pointer;
+    margin: 20px 0px;
+    position: relative;
+    height: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #f0f0f0;
+    color: #f0f0f0;
+    font-size: 22px;
+    border-radius: 100%;
+    background: transparent;
+  }
+  .card-on #card-plus {
+    position: absolute;
+  }
+  .card-on #card-minus {
+    position: absolute;
+    display: none;
+  }
+  .card-animation .card-side-text {
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    margin-left: 320px;
+    color: rgb(212, 211, 211);
+  }
+  .card-side-text .card-paragraph {
+    font-size: 19px;
+  }
+  
