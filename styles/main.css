@@ -8,12 +8,7 @@
     color: rgb(212, 211, 211);
   }
 
-  /* #hero{
-     position: relative;
-     border-left: 20%; 
-    background-color: aliceblue;
-  } */
-  
+ 
   .card-animation {
     position: absolute;
     display: flex;
