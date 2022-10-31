@@ -2,11 +2,13 @@
     margin: 0;
     padding: 0;
   }
+
   body {
     background-color: #5C7269;
     overflow: hidden;
     color: rgb(212, 211, 211);
   }
+
 
  
   .card-animation {
@@ -14,7 +16,7 @@
     display: flex;
     align-items: left;
     justify-content: center;
-    margin-left: 15%;
+    margin-left: 20%;
     height: 100vh;
     width: 100%;
     flex-direction: column;
@@ -28,23 +30,27 @@
     background: url(../public/image.jpg) center center no-repeat;
     background-size: cover;
   }
+
   .card-animation .card-header {
     font-size: 40px;
     font-family: "Monument";
-    margin:0px 5%;
+    margin:0px 5%;   
     color: rgb(212, 211, 211);
   }
+
   .card-animation .card-text-below {
     display: flex;
     align-items: left;
     justify-content: left;
     margin-left:7%;
   }
+
   .card-animation .card-side {
     position: absolute;
     display: flex;
     align-items: center;
-    margin-left: 450px;
+    margin-top: 9%;
+    margin-left: 425px;
     justify-content: center;
     align-items: center;
     flex-direction: column;
@@ -53,7 +59,9 @@
   .card-side h2 {
     text-transform: uppercase;
     font-size: 15px;
-    font-weight: 400;
+    font-weight: 800;
+    /* color: whitesmoke; */
+    /* -webkit-text-stroke: 0.3px white; */
   }
   .card-side .card-on {
     width: 90px;
@@ -79,12 +87,19 @@
   }
   .card-animation .card-side-text {
     position: absolute;
-    top: 60%;
-    left: 50%;
-    margin-right: 30%;
+    top: 25%;  
+    left: 30%;
+    margin-right: 40%;
     color: rgb(212, 211, 211);
   }
   .card-side-text .card-paragraph {
-    font-size: 19px;
+    font-size: 21px;
   }
   
+  .card-side-header{
+    font-family: "Monument";
+    font-size:45px;
+    margin-bottom: 1%;
+    margin-left: -0.5%;
+    font-weight: 500px;
+  }

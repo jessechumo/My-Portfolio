@@ -42,7 +42,7 @@ card.fromTo(
   }
 );
 card.fromTo(
-  "#card-animation .card-paragraph, #card-animation .card-text-below",
+  "#card-animation .card-paragraph, #card-animation .card-text-below, .card-side-header",
   {
     opacity: 0,
     y: 20,
