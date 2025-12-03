@@ -9,9 +9,9 @@
   "homepage": "https://jessechumo.com",
   "main": "gulpfile.js",
   "scripts": {
-    "start": "gulp serve --watch",
+    "start": "gulp serve",
     "build": "gulp build",
-    "vercel-build": "npm run build && jekyll build"
+    "vercel-build": "npm run build"
   },
   "author": "Jesse Chumo",
   "license": "MIT",

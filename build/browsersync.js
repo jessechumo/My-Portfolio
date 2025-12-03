@@ -1,46 +1,22 @@
 const browserSync = require('browser-sync').create();
-const cp = require('child_process');
-
-const jekyll = process.platform === 'win32' ? 'jekyll.bat' : 'jekyll';
 
 const scssPath = '_scss/**/*.scss';
-const jsPath = '_scripts/*.js';
-const templatePath = [
-  '*.html',
-  '+(_includes|_layouts)/*.html',
-  '*.yml',
-  '_data/*.yml',
-  '_posts/*',
-];
+const jsPath = ['_scripts/*.js', 'js/*.js'];
+const htmlPath = ['index.html', '404.html'];
+const staticPath = ['js/data.js', 'js/render.js'];
 
 module.exports = gulp => {
   const reloadBrowser = done => {
     browserSync.reload();
     done();
   };
-  // run `jekyll build`
-  gulp.task('jekyll-build', done => {
-    const env = Object.assign({}, process.env, { JEKYLL_NO_BUNDLER_REQUIRE: '1' });
-    return cp.spawn(jekyll, ['build'], { stdio: 'inherit', env: env }).on('close', done);
-  });
 
-  // run `jekyll build` with _config_dev.yml
-  gulp.task('jekyll-dev', done => {
-    const env = Object.assign({}, process.env, { JEKYLL_NO_BUNDLER_REQUIRE: '1' });
-    return cp
-      .spawn(jekyll, ['build', '--config', '_config.yml,_config_dev.yml'], {
-        stdio: 'inherit',
-        env: env,
-      })
-      .on('close', done);
-  });
-
-  // Rebuild Jekyll then reload the page
-  gulp.task('jekyll-rebuild', gulp.series(['jekyll-dev', reloadBrowser]));
+  // Rebuild static files then reload the page
+  gulp.task('static-rebuild', gulp.series(['static-build', reloadBrowser]));
 
   gulp.task(
     'serve',
-    gulp.series('jekyll-dev', () => {
+    gulp.series('static-build', () => {
       browserSync.init({
         server: {
           baseDir: '_site',
@@ -49,7 +25,8 @@ module.exports = gulp => {
 
       gulp.watch(scssPath, gulp.series(['sass', reloadBrowser]));
       gulp.watch(jsPath, gulp.series(['scripts', reloadBrowser]));
-      gulp.watch(templatePath, gulp.task('jekyll-rebuild'));
+      gulp.watch(htmlPath, gulp.series(['copy-static', reloadBrowser]));
+      gulp.watch(staticPath, gulp.series(['copy-js', reloadBrowser]));
     })
   );
 };

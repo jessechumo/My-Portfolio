@@ -1,6 +1,6 @@
 $(function() {
-  // Experience Tabs functionality
-  $('.experience-tab').on('click', function() {
+  // Experience Tabs functionality - using event delegation for dynamically created tabs
+  $(document).on('click', '.experience-tab', function() {
     const jobIndex = $(this).data('job');
     
     // Remove active class from all tabs and panels
