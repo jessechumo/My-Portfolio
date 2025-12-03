@@ -1,33 +1,43 @@
 languages:
-  - item: JavaScript (ES6)
+  - item: JavaScript
   - item: TypeScript
-  - item: HTML
-  - item: CSS/Sass
   - item: Python
+  - item: Java
+  - item: C/C++
+  - item: PHP
+  - item: Perl
+  - item: HTML/CSS
   - item: SQL
-  - item: R
 
 frameworks:
-  - item: Ember & Glimmer
-  - item: React
-  - item: Jekyll
-  - item: Node
-  - item: D3
-  - item: Wordpress
-  - item: Timber
+  - item: React.js
+  - item: React Native
+  - item: Node.js
+  - item: Nest.js
+  - item: GraphQL
+  - item: TensorFlow
+  - item: PyTorch
 
 tools:
-  - item: Bash
-  - item: Git & Github
-  - item: Gulp & Grunt
-  - item: Chrome DevTools
-  - item: Postman
+  - item: Git & GitHub
+  - item: Docker
+  - item: Kubernetes
+  - item: AWS
+  - item: GCP
+  - item: Azure
   - item: MongoDB
+  - item: MySQL
+  - item: PostgreSQL
+  - item: Linux/Unix
+  - item: CI/CD
+  - item: GitHub Actions
 
-design:
-  - item: Sketch
-  - item: InDesign
-  - item: InVision
-  - item: Prototyping
-  - item: Wireframing
-  - item: User Testing
+other:
+  - item: Machine Learning
+  - item: Deep Learning
+  - item: GNN
+  - item: Secure Authentication
+  - item: Software Testing
+  - item: Automated Testing
+  - item: Code Reviews
+  - item: Agile Methodologies

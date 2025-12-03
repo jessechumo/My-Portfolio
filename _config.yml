@@ -1,26 +1,22 @@
 # Site settings
-name: Brittany Chiang
-title: Brittany Chiang | Front End Software Engineer
-description: Design-minded front-end software engineer focused on building beautiful interfaces and experiences
-url: https://bchiang7.github.io/
+name: Jesse Chumo
+title: 👨🏾‍💻 Jesse Chumo | Software Engineer
+description: Software Engineer skilled in full-stack development, CI/CD, secure authentication, and machine learning. Passionate about building high-quality software in fast-paced startup environments.
+url: https://jessechumo.com/
 baseurl: ''
-email: brittany.chiang@gmail.com
-cover: https://bchiang7.github.io/img/og.png
-logo: https://bchiang7.github.io/img/emojis/technologist.png
-resume: https://bchiang7.github.io/resume.pdf
+email: jessechumo@gmail.com
+cover: https://jessechumo.com/img/og.png
+logo: https://jessechumo.com/img/emojis/technologist.png
+resume: jessechumo - resume.pdf
 social:
   - title: email
-    url: mailto:brittany.chiang@gmail.com
-  - title: twitter
-    url: https://twitter.com/bchiang7
-  - title: instagram
-    url: https://instagram.com/bchiang7
-  - title: codepen
-    url: http://codepen.io/bchiang7
+    url: mailto:jessechumo@gmail.com
   - title: github
-    url: https://github.com/bchiang7
+    url: https://github.com/jessechumo
   - title: linkedin
-    url: https://www.linkedin.com/in/bchiang7
+    url: https://www.linkedin.com/in/jessechumo
+  - title: twitter
+    url: https://twitter.com/jessechumo
 
 # Build settings
 markdown: kramdown
