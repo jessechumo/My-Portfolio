@@ -1,6 +1,6 @@
 # Site settings
 name: Jesse Chumo
-title: 👨🏾‍💻 Jesse Chumo | Software Engineer
+title: Jesse Chumo | Software Engineer
 description: Software Engineer skilled in full-stack development, CI/CD, secure authentication, and machine learning. Passionate about building high-quality software in fast-paced startup environments.
 url: https://jessechumo.com/
 baseurl: ''
@@ -35,7 +35,9 @@ keep_files:
   - 'CNAME'
   - '.git'
   - '.gitignore'
+  - 'favicon.svg'
+  - 'jessechumo - resume.pdf'
 
-plugins_dir:
+plugins:
   - jekyll-minifier
   - jekyll-sitemap

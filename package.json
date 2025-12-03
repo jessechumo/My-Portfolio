@@ -1,19 +1,20 @@
 {
-  "name": "brittanychiang.com",
-  "version": "0.0.0",
-  "description": "Design-minded front-end software engineer focused on building beautiful interfaces and experiences",
+  "name": "jessechumo-portfolio",
+  "version": "1.0.0",
+  "description": "Modern portfolio website for Jesse Chumo - Software Engineer",
   "repository": {
     "type": "git",
-    "url": "https://github.com/bchiang7/bchiang7.github.io"
+    "url": "https://github.com/jessechumo/My-Portfolio"
   },
-  "homepage": "https://github.com/bchiang7/bchiang7.github.io",
+  "homepage": "https://jessechumo.com",
   "main": "gulpfile.js",
   "scripts": {
     "start": "gulp serve --watch",
-    "build": "gulp build"
+    "build": "gulp build",
+    "vercel-build": "npm run build && jekyll build"
   },
-  "author": "Brittany Chiang",
-  "license": "ISC",
+  "author": "Jesse Chumo",
+  "license": "MIT",
   "devDependencies": {
     "@nuscout/eslint-config": "^0.2.1",
     "browser-sync": "^2.29.0",
@@ -23,7 +24,8 @@
     "gulp-eslint": "^6.0.0",
     "gulp-imagemin": "^7.1.0",
     "gulp-sass": "^5.1.0",
-    "gulp-uglify": "^3.0.0"
+    "gulp-uglify": "^3.0.0",
+    "sass": "^1.94.2"
   },
   "engines": {
     "node": ">=22",

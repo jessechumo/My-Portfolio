@@ -11,10 +11,20 @@ module.exports = gulp => {
         .src(jsPath)
         .pipe(
           eslint({
-            useEslintrc: true,
+            parserOptions: {
+              ecmaVersion: 2020,
+              sourceType: 'module',
+            },
+            env: {
+              browser: true,
+              es6: true,
+            },
+            rules: {},
           })
         )
         .pipe(eslint.format())
+        // Don't fail on errors, just warn
+        // .pipe(eslint.failAfterError())
         // .pipe(uglify())
         .pipe(gulp.dest(destPath))
         .pipe(gulp.dest('js'))

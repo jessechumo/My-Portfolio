@@ -1,24 +1,88 @@
 .skills {
   .skillz {
-    display: flex;
-    justify-content: space-between;
-    @include weird-medium {
-      flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    
+    @include tablet {
+      grid-template-columns: repeat(2, 1fr);
     }
+    
+    @include mobile {
+      grid-template-columns: 1fr;
+    }
+    
     &__category {
-      @include weird-medium {
-        width: 47%;
-        margin-right: 5px;
-        margin-bottom: 25px;
+      background: rgba($navy-light, 0.6);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba($primary-blue, 0.2);
+      border-radius: 16px;
+      padding: 30px;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      
+      &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 100px;
+        height: 100px;
+        background: radial-gradient(circle, rgba($primary-blue, 0.1) 0%, transparent 70%);
+        border-radius: 50%;
+        transform: translate(30px, -30px);
       }
+      
+      &:hover {
+        border-color: rgba($primary-blue, 0.4);
+        transform: translateY(-5px);
+        box-shadow: 0 10px 40px rgba($primary-blue, 0.2);
+      }
+      
       &__label {
         font-weight: 700;
-        color: $black;
+        color: $white;
         text-transform: uppercase;
+        font-size: 0.875rem;
+        letter-spacing: 2px;
+        margin-bottom: 25px;
+        padding-bottom: 15px;
+        border-bottom: 2px solid rgba($primary-blue, 0.3);
+        position: relative;
+        z-index: 1;
       }
+      
+      ul {
+        position: relative;
+        z-index: 1;
+      }
+      
       &__item {
-        margin: 3px 0;
-        font-size: 0.9rem;
+        margin: 12px 0;
+        font-size: 1rem;
+        color: $slate;
+        padding-left: 25px;
+        position: relative;
+        transition: color 0.3s ease;
+        
+        &::before {
+          content: '▹';
+          position: absolute;
+          left: 0;
+          color: $blue-accent;
+          font-weight: bold;
+          font-size: 1.2em;
+          transition: transform 0.3s ease;
+        }
+        
+        &:hover {
+          color: $blue-accent;
+          
+          &::before {
+            transform: translateX(5px);
+          }
+        }
       }
     }
   }

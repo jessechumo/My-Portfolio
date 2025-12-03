@@ -1,22 +1,24 @@
-// Colors
-$night: #171c28;
-$black: #36363c;
-$dark-grey: #444452;
-$grey: #777777;
-$blue: #007bff;
-$slate: #afafbf;
-$off-white: #e7e7e7;
+// Modern Blue Color Palette
+$primary-blue: #0066ff;
+$blue-dark: #0052cc;
+$blue-light: #4d94ff;
+$blue-accent: #00d4ff;
+$blue-gradient-start: #0066ff;
+$blue-gradient-end: #00d4ff;
+$navy: #0a192f;
+$navy-light: #112240;
+$slate: #8892b0;
+$slate-light: #a8b2d1;
 $white: #ffffff;
-$green: #bae67e;
-$purple: #7d0ce8;
-$red: #ff0000;
-$orange: #e8850c;
-$yellow: #ffdc00;
-$accent: #ffcc66;
+$off-white: #f8f9fa;
+$grey: #6b7280;
+$dark-grey: #1e293b;
+
 // Fonts
-$font-stack: 'Source Sans Pro', system, system-ui, -apple-system,
-  BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif;
+$font-stack: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
 $Apercu: 'Apercu', $font-stack;
+$mono: 'Inconsolata', 'Fira Code', 'Courier New', monospace;
+
 // Media queries
 $fifteen-inch: 1440px;
 $thirteen-inch: 1280px;
@@ -30,7 +32,7 @@ $small-mobile-width: 360px;
 $tiny-mobile-width: 330px;
 
 @mixin transition {
-  transition: all 0.2s ease-in-out;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 @mixin thirteen {

@@ -20,14 +20,17 @@ module.exports = gulp => {
   };
   // run `jekyll build`
   gulp.task('jekyll-build', done => {
-    return cp.spawn(jekyll, ['build'], { stdio: 'inherit' }).on('close', done);
+    const env = Object.assign({}, process.env, { JEKYLL_NO_BUNDLER_REQUIRE: '1' });
+    return cp.spawn(jekyll, ['build'], { stdio: 'inherit', env: env }).on('close', done);
   });
 
   // run `jekyll build` with _config_dev.yml
   gulp.task('jekyll-dev', done => {
+    const env = Object.assign({}, process.env, { JEKYLL_NO_BUNDLER_REQUIRE: '1' });
     return cp
       .spawn(jekyll, ['build', '--config', '_config.yml,_config_dev.yml'], {
         stdio: 'inherit',
+        env: env,
       })
       .on('close', done);
   });
