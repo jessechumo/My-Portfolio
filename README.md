@@ -1,17 +1,24 @@
-# v3
+## Jesse Chumo – Portfolio
 
-Third iteration of my personal website built with Jekyll.
+Modern, blue‑themed portfolio, built as a static site with SCSS and a small Gulp build pipeline.
 
-> 📢 **PSA for those who want to fork or copy this repo and use it for their own site:**
->
-> Please be a decent person and give me proper credit by linking back to my website! Refer to this handy [quora post](https://www.quora.com/Is-it-bad-to-copy-other-peoples-code) if you're not sure.
+### Tech Stack
+- **HTML/CSS/SCSS**
+- **JavaScript**
+- **Gulp 4** (compile SCSS, bundle/minify assets, serve locally)
 
-## Dependencies
+### Local Development
+1. Install dependencies:
+   - `npm install`
+2. Start the dev server:
+   - `npm start`
 
-- [Gulp](https://gulpjs.com/)
+### Production Build
+- `npm run build`  
+Build output is generated in the `_site` directory.
 
-## Getting Started
+### Deployment
+You can deploy the contents of `_site` to any static host (e.g. Vercel, Netlify, GitHub Pages). On Vercel, set:
+- **Build command**: `npm run build`
+- **Output directory**: `_site`
 
-1.  `gem install jekyll sass bundler jekyll-minifier jekyll-sitemap`
-2.  `npm install`
-3.  `npm start`
