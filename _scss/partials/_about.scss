@@ -55,33 +55,10 @@
     
     @media (max-width: 968px) {
       order: -1;
-      max-width: 300px;
+      max-width: 100%;
       margin: 0 auto;
     }
   }
-}
-
-.image-wrapper {
-  position: relative;
-  border-radius: 8px;
-  background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(0, 102, 255, 0.1));
-  border: 2px solid rgba(0, 212, 255, 0.2);
-  padding: 40px;
-  text-align: center;
-  
-  &::before {
-    content: '';
-    position: absolute;
-    inset: -20px;
-    border: 2px solid rgba(0, 212, 255, 0.1);
-    border-radius: 8px;
-    z-index: -1;
-  }
-}
-
-.image-placeholder {
-  font-size: 120px;
-  line-height: 1;
 }
 
 .tech-list {
