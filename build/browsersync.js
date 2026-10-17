@@ -1,9 +1,11 @@
 const browserSync = require('browser-sync').create();
 
 const scssPath = '_scss/**/*.scss';
-const jsPath = ['_scripts/*.js', 'js/*.js'];
+// Only the sources: the 'scripts' task writes into js/, so watching js/*.js here would loop.
+const jsPath = ['_scripts/*.js'];
 const htmlPath = ['index.html', '404.html'];
 const staticPath = ['js/data.js', 'js/render.js'];
+const imgPath = ['img/**/*'];
 
 module.exports = gulp => {
   const reloadBrowser = done => {
@@ -27,6 +29,7 @@ module.exports = gulp => {
       gulp.watch(jsPath, gulp.series(['scripts', reloadBrowser]));
       gulp.watch(htmlPath, gulp.series(['copy-static', reloadBrowser]));
       gulp.watch(staticPath, gulp.series(['copy-js', reloadBrowser]));
+      gulp.watch(imgPath, gulp.series(['copy-images', reloadBrowser]));
     })
   );
 };

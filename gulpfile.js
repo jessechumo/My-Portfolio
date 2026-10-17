@@ -9,4 +9,5 @@ const sync = require('./build/browsersync');
   task(gulp);
 });
 
-gulp.task('build', gulp.series(['sass', 'scripts', 'images', 'static-build']));
+// Images run last so the optimised versions replace the raw copies from static-build.
+gulp.task('build', gulp.series(['sass', 'scripts', 'static-build', 'images']));
