@@ -12,6 +12,8 @@
   --fg-3: #8b8b8b;
   --accent: #f4a93b;
   --accent-ink: #161616;
+  // a muted take on the accent, for the few oversized words (the hero name, "Let's talk.", 404)
+  --sand: #d4b07a;
   --accent-soft: rgba(244, 169, 59, 0.12);
 
   --gutter: clamp(20px, 5vw, 72px);

@@ -91,11 +91,14 @@
 
   &__copy {
     min-width: 0;
+    // a soft halo in the page colour keeps the text legible where graph edges pass behind it
+    text-shadow: 0 0 6px var(--bg), 0 0 14px var(--bg);
   }
 
   &__name {
     margin-bottom: 30px;
     margin-left: -0.05em;
+    color: var(--sand);
     font-family: $display;
     font-size: clamp(72px, 11.2vw, 172px);
     font-weight: 600;

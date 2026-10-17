@@ -11,6 +11,7 @@
   padding: 100px var(--gutter) 60px;
 
   &__code {
+    color: var(--sand);
     font-family: $display;
     font-size: clamp(110px, 24vw, 300px);
     font-weight: 600;

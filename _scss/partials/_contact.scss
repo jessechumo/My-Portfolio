@@ -3,6 +3,7 @@
 .contact {
   &__title {
     margin-bottom: 34px;
+    color: var(--sand);
     font-family: $display;
     font-size: clamp(64px, 11vw, 168px);
     font-weight: 600;
