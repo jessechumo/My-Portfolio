@@ -1,34 +1,30 @@
 {
   "name": "jessechumo-portfolio",
-  "version": "1.0.0",
-  "description": "Modern portfolio website for Jesse Chumo - Software Engineer",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Portfolio of Jesse Chumo, software engineer and ML researcher",
+  "type": "module",
   "repository": {
     "type": "git",
     "url": "https://github.com/jessechumo/My-Portfolio"
   },
   "homepage": "https://jessechumo.com",
-  "main": "gulpfile.js",
   "scripts": {
-    "start": "gulp serve",
-    "build": "gulp build",
-    "vercel-build": "npm run build"
+    "dev": "vite",
+    "start": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
   },
   "author": "Jesse Chumo",
   "license": "MIT",
-  "devDependencies": {
-    "@nuscout/eslint-config": "^0.2.1",
-    "browser-sync": "^2.29.0",
-    "gulp": "^4.0.2",
-    "gulp-autoprefixer": "^8.0.0",
-    "gulp-clean-css": "^4.3.0",
-    "gulp-eslint": "^6.0.0",
-    "gulp-imagemin": "^7.1.0",
-    "gulp-sass": "^5.1.0",
-    "gulp-uglify": "^3.0.0",
-    "sass": "^1.94.2"
-  },
   "engines": {
-    "node": ">=22",
-    "npm": ">=10"
+    "node": ">=22"
+  },
+  "devDependencies": {
+    "vite": "^8.3.4"
+  },
+  "dependencies": {
+    "gsap": "^3.15.0",
+    "lenis": "^1.3.27"
   }
 }
