@@ -1,0 +1,285 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jesse Chumo — Software Engineer & ML Researcher</title>
+    <meta
+      name="description"
+      content="Jesse Chumo is a software engineer and ML researcher building scalable backends, resilient infrastructure, and machine learning systems that hold up under scrutiny."
+    />
+    <meta name="theme-color" content="#0a0907" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="canonical" href="https://jessechumo.com/" />
+
+    <meta property="og:title" content="Jesse Chumo — Software Engineer & ML Researcher" />
+    <meta
+      property="og:description"
+      content="Scalable backends, resilient infrastructure, and machine learning that holds up under scrutiny."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://jessechumo.com/" />
+    <meta property="og:site_name" content="Jesse Chumo" />
+    <meta property="og:image" content="https://jessechumo.com/og.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@jessechumo" />
+    <meta name="twitter:creator" content="@jessechumo" />
+    <meta name="twitter:title" content="Jesse Chumo — Software Engineer & ML Researcher" />
+    <meta name="twitter:image" content="https://jessechumo.com/og.png" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/src/styles/main.css" />
+  </head>
+  <body class="is-loading">
+    <!-- Preloader -->
+    <div class="loader" aria-hidden="true">
+      <div class="loader__inner">
+        <svg class="loader__laurel" viewBox="0 0 120 120" fill="none">
+          <circle cx="60" cy="60" r="56" class="loader__ring" />
+        </svg>
+        <span class="loader__mono">J<i>·</i>C</span>
+        <span class="loader__count"><span data-count>000</span></span>
+      </div>
+      <p class="loader__line">From chaos, <em>cosmos</em></p>
+    </div>
+
+    <div class="grain" aria-hidden="true"></div>
+    <div class="cursor" aria-hidden="true"><span class="cursor__ring"><span class="cursor__label"></span></span><span class="cursor__dot"></span></div>
+
+    <!-- Navigation -->
+    <header class="nav">
+      <a href="#top" class="nav__mark" aria-label="Back to top">
+        <svg viewBox="0 0 40 40" fill="none" aria-hidden="true">
+          <rect x="1" y="1" width="38" height="38" class="nav__mark-frame" />
+          <text x="20" y="26.5" text-anchor="middle">JC</text>
+        </svg>
+      </a>
+      <nav class="nav__links" aria-label="Primary">
+        <a href="#genesis"><span>I</span>Genesis</a>
+        <a href="#odyssey"><span>II</span>Odyssey</a>
+        <a href="#labours"><span>III</span>Labours</a>
+        <a href="#pantheon"><span>IV</span>Pantheon</a>
+        <a href="#oracle"><span>V</span>Oracle</a>
+      </nav>
+      <a href="/jessechumo.pdf" target="_blank" rel="noopener" class="nav__cta" data-magnetic>
+        <span>The Scroll</span><small>CV</small>
+      </a>
+      <button class="nav__burger" aria-label="Open menu" aria-expanded="false" aria-controls="menu">
+        <span></span><span></span>
+      </button>
+    </header>
+
+    <div class="menu" id="menu" aria-hidden="true">
+      <nav class="menu__links" aria-label="Mobile">
+        <a href="#genesis"><span>I</span>Genesis</a>
+        <a href="#odyssey"><span>II</span>Odyssey</a>
+        <a href="#labours"><span>III</span>Labours</a>
+        <a href="#pantheon"><span>IV</span>Pantheon</a>
+        <a href="#oracle"><span>V</span>Oracle</a>
+      </nav>
+      <div class="menu__foot">
+        <a href="/jessechumo.pdf" target="_blank" rel="noopener">Résumé ↗</a>
+        <a href="mailto:jessechumo@gmail.com">jessechumo@gmail.com</a>
+      </div>
+    </div>
+
+    <main id="top">
+      <!-- Hero -->
+      <section class="hero">
+        <canvas class="hero__sky" aria-hidden="true"></canvas>
+        <div class="hero__halo" aria-hidden="true"></div>
+
+        <div class="hero__grid">
+          <div class="hero__copy">
+            <p class="eyebrow hero__eyebrow">
+              <span class="eyebrow__rule"></span><span>Software Engineer <i>&amp;</i> ML Researcher</span>
+            </p>
+            <h1 class="hero__title" aria-label="Jesse Chumo">
+              <span class="hero__line"><span class="hero__word">Jesse</span></span>
+              <span class="hero__line hero__line--indent"><span class="hero__word hero__word--gold">Chumo</span></span>
+            </h1>
+            <p class="hero__lede">
+              I build systems that hold up the sky: scalable backends, resilient
+              infrastructure, and machine learning that stands up to scrutiny.
+            </p>
+            <div class="hero__actions">
+              <a href="#labours" class="btn btn--gold" data-magnetic><span>Behold the Labours</span></a>
+              <a href="#oracle" class="btn btn--ghost" data-magnetic><span>Send word</span></a>
+            </div>
+          </div>
+
+          <figure class="hero__portrait">
+            <div class="portrait">
+              <svg class="portrait__orbit" viewBox="0 0 400 400" aria-hidden="true">
+                <defs>
+                  <path id="orbit" d="M200,200 m-180,0 a180,180 0 1,1 360,0 a180,180 0 1,1 -360,0" />
+                </defs>
+                <text>
+                  <textPath href="#orbit">
+                    SOFTWARE ENGINEER ✦ MACHINE LEARNING ✦ INFRASTRUCTURE ✦ DALLAS · TEXAS ✦ MMXXVI ✦
+                  </textPath>
+                </text>
+              </svg>
+              <div class="portrait__arch">
+                <img src="/img/jesse.jpg" alt="Portrait of Jesse Chumo" width="878" height="1319" />
+              </div>
+              <span class="portrait__plaque">Kenya ✦ Texas</span>
+            </div>
+          </figure>
+        </div>
+
+        <div class="hero__foot">
+          <span class="mono">32.7767° N — 96.7970° W</span>
+          <a href="#genesis" class="hero__scroll" aria-label="Scroll to begin">
+            <span class="hero__scroll-line"></span>
+            <span class="mono">Begin the odyssey</span>
+          </a>
+          <span class="mono hero__status"><i class="pulse"></i>Open to new roles</span>
+        </div>
+      </section>
+
+      <!-- Marquee -->
+      <div class="marquee" aria-hidden="true">
+        <div class="marquee__track">
+          <span>Distributed Systems</span><b>✦</b><span>Machine Learning</span><b>✦</b><span>Kubernetes</span><b>✦</b><span>Graph Neural Networks</span><b>✦</b><span>Go</span><b>✦</b><span>TypeScript</span><b>✦</b><span>Python</span><b>✦</b><span>Observability</span><b>✦</b><span>Security Research</span><b>✦</b>
+        </div>
+      </div>
+
+      <!-- I. Genesis -->
+      <section class="section genesis" id="genesis">
+        <header class="section__head">
+          <span class="numeral">I</span>
+          <div>
+            <p class="eyebrow"><span class="eyebrow__rule"></span>Genesis</p>
+            <h2 class="section__title">Every legend <em>has an origin.</em></h2>
+          </div>
+        </header>
+
+        <div class="genesis__grid">
+          <p class="genesis__statement" data-scrub-text>
+            From the fintech rails of Nairobi to a research lab in Texas, I have spent my
+            career on the parts of software people only notice when they fail: the
+            pipelines, the servers, the auth, the models. I like hard problems, fast teams,
+            and shipping things that keep working long after launch.
+          </p>
+
+          <aside class="genesis__tablet">
+            <dl class="tablet">
+              <div class="tablet__row">
+                <dt>Master's</dt>
+                <dd>
+                  M.S. Computer Science<br /><span>University of Texas at Arlington · 2026</span>
+                </dd>
+              </div>
+              <div class="tablet__row">
+                <dt>Thesis</dt>
+                <dd>
+                  <em>Evaluating the Robustness of GNN Vulnerability Detectors Under Code Obfuscation</em>
+                  <span>Cyber-Physical Systems Security Lab</span>
+                </dd>
+              </div>
+              <div class="tablet__row">
+                <dt>Bachelor's</dt>
+                <dd>B.S. Information Technology<br /><span>Kabarak University · Kenya</span></dd>
+              </div>
+              <div class="tablet__row">
+                <dt>Realm</dt>
+                <dd>Dallas, Texas<br /><span>Open to onsite, hybrid &amp; remote</span></dd>
+              </div>
+            </dl>
+          </aside>
+        </div>
+
+        <ul class="feats">
+          <li class="feat"><strong data-countup="1000" data-suffix="+">0</strong><span>users served by the RHEL servers I keep alive</span></li>
+          <li class="feat"><strong data-countup="50" data-suffix="%">0</strong><span>faster deploys from the CI/CD pipelines I built</span></li>
+          <li class="feat"><strong data-countup="97.14" data-suffix="%" data-decimals="2">0</strong><span>validation accuracy in forgery detection</span></li>
+          <li class="feat"><strong data-countup="570" data-suffix="+">0</strong><span>companies watched over by Wera</span></li>
+        </ul>
+      </section>
+
+      <!-- II. Odyssey -->
+      <section class="section odyssey" id="odyssey">
+        <header class="section__head">
+          <span class="numeral">II</span>
+          <div>
+            <p class="eyebrow"><span class="eyebrow__rule"></span>The Odyssey</p>
+            <h2 class="section__title">The voyages <em>so far.</em></h2>
+          </div>
+        </header>
+        <ol class="voyages" data-voyages></ol>
+      </section>
+
+      <!-- III. Labours -->
+      <section class="labours" id="labours">
+        <div class="labours__pin">
+          <header class="section__head labours__head">
+            <span class="numeral">III</span>
+            <div>
+              <p class="eyebrow"><span class="eyebrow__rule"></span>The Labours</p>
+              <h2 class="section__title">Six labours, <em>each under a patron god.</em></h2>
+            </div>
+            <p class="labours__hint mono">Scroll to journey <span>→</span></p>
+          </header>
+          <div class="labours__track" data-labours></div>
+          <div class="labours__progress" aria-hidden="true"><span></span></div>
+        </div>
+      </section>
+
+      <!-- IV. Pantheon -->
+      <section class="section pantheon" id="pantheon">
+        <header class="section__head">
+          <span class="numeral">IV</span>
+          <div>
+            <p class="eyebrow"><span class="eyebrow__rule"></span>The Pantheon</p>
+            <h2 class="section__title">The tools <em>I call upon.</em></h2>
+          </div>
+        </header>
+        <div class="temple" data-pantheon></div>
+      </section>
+
+      <!-- V. Oracle -->
+      <section class="oracle" id="oracle">
+        <div class="oracle__rays" aria-hidden="true"></div>
+        <span class="numeral oracle__numeral">V</span>
+        <p class="eyebrow oracle__eyebrow"><span class="eyebrow__rule"></span>Consult the Oracle<span class="eyebrow__rule"></span></p>
+        <h2 class="oracle__title">
+          <span class="oracle__line">Let's build</span>
+          <span class="oracle__line"><em>something legendary.</em></span>
+        </h2>
+        <p class="oracle__text">
+          I'm currently looking for new opportunities. Whether it's a role, a
+          collaboration, or a hard problem, my inbox is open.
+        </p>
+        <a href="mailto:jessechumo@gmail.com" class="oracle__mail" data-magnetic data-cursor="Write">
+          <span>jessechumo@gmail.com</span>
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 19 19 5M9 5h10v10" /></svg>
+        </a>
+        <ul class="oracle__socials">
+          <li><a href="https://github.com/jessechumo" target="_blank" rel="noopener">GitHub</a></li>
+          <li><a href="https://linkedin.com/in/jessechumo" target="_blank" rel="noopener">LinkedIn</a></li>
+          <li><a href="https://twitter.com/jessechumo" target="_blank" rel="noopener">Twitter</a></li>
+          <li><a href="/jessechumo.pdf" target="_blank" rel="noopener">Résumé</a></li>
+        </ul>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="meander" aria-hidden="true"></div>
+      <div class="footer__row">
+        <span>Forged by Jesse Chumo</span>
+        <span class="footer__year" data-roman-year>MMXXVI</span>
+        <a href="#top" class="footer__top">Ascend ↑</a>
+      </div>
+    </footer>
+
+    <script type="module" src="/src/js/main.js"></script>
+  </body>
+</html>
