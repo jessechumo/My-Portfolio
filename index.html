@@ -1,181 +1,268 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
   <head>
     <meta charset="UTF-8" />
-    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
-    />
-    <title>Jesse Chumo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jesse Chumo | Software Engineer &amp; ML Researcher</title>
+    <script>
+      // Apply the saved theme before first paint to avoid a flash.
+      (function () {
+        var root = document.documentElement;
+        root.classList.add('js');
+        try {
+          var saved = localStorage.getItem('theme');
+          if (saved === 'light' || saved === 'dark') root.setAttribute('data-theme', saved);
+        } catch (e) {}
+        // If the main script never runs, show everything rather than leave sections hidden.
+        setTimeout(function () {
+          if (!window.__portfolioReady) root.classList.add('no-reveal');
+        }, 4000);
+      })();
+    </script>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="alternate icon" href="/favicon.ico" />
-    <meta property="og:title" content="Jesse Chumo | Software Engineer" />
+    <link rel="apple-touch-icon" href="/img/apple-touch-icon.png" />
+    <meta name="theme-color" content="#0a192f" />
+    <link rel="canonical" href="https://jessechumo.com/" />
+    <meta
+      name="description"
+      content="Jesse Chumo is a software engineer and ML researcher building scalable backends, cloud infrastructure, and machine learning systems."
+    />
+    <meta
+      name="keywords"
+      content="software engineer, jesse chumo, backend, go, python, typescript, kubernetes, machine learning, full-stack"
+    />
+    <meta property="og:title" content="Jesse Chumo | Software Engineer & ML Researcher" />
     <meta
       property="og:description"
-      content="Software Engineer skilled in full-stack development, CI/CD, secure authentication, and machine learning. Passionate about building high-quality software in fast-paced startup environments."
+      content="Building scalable systems, crafting secure authentication, and exploring the frontiers of machine learning."
     />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://jessechumo.com/" />
     <meta property="og:site_name" content="Jesse Chumo" />
     <meta property="og:image" content="https://jessechumo.com/img/og.png" />
-    <meta property="og:image:width" content="1280" />
-    <meta property="og:image:height" content="800" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
     <meta property="og:image:type" content="image/png" />
     <meta property="og:locale" content="en_US" />
-    <meta
-      name="description"
-      content="Software Engineer skilled in full-stack development, CI/CD, secure authentication, and machine learning. Passionate about building high-quality software in fast-paced startup environments."
-    />
-    <meta
-      name="keywords"
-      content="software engineer, development, web, jessechumo, jesse chumo, javascript, python, machine learning, full-stack"
-    />
-    <meta itemprop="name" content="Jesse Chumo | Software Engineer" />
-    <meta
-      itemprop="description"
-      content="Software Engineer skilled in full-stack development, CI/CD, secure authentication, and machine learning. Passionate about building high-quality software in fast-paced startup environments."
-    />
-    <meta itemprop="image" content="https://jessechumo.com/img/og.png" />
-    <meta name="twitter:card" content="summary" />
-    <meta name="twitter:url" content="https://jessechumo.com/" />
+    <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@jessechumo" />
     <meta name="twitter:creator" content="@jessechumo" />
-    <meta name="twitter:title" content="Jesse Chumo | Software Engineer" />
+    <meta name="twitter:title" content="Jesse Chumo | Software Engineer & ML Researcher" />
     <meta
       name="twitter:description"
-      content="Software Engineer skilled in full-stack development, CI/CD, secure authentication, and machine learning. Passionate about building high-quality software in fast-paced startup environments."
+      content="Building scalable systems, crafting secure authentication, and exploring the frontiers of machine learning."
     />
-    <meta
-      name="twitter:image:src"
-      content="https://jessechumo.com/img/og.png"
-    />
+    <meta name="twitter:image" content="https://jessechumo.com/img/og.png" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Jesse Chumo",
+        "url": "https://jessechumo.com/",
+        "image": "https://jessechumo.com/img/jesse.jpg",
+        "jobTitle": "Software Engineer",
+        "email": "mailto:jessechumo@gmail.com",
+        "address": { "@type": "PostalAddress", "addressLocality": "Dallas", "addressRegion": "TX", "addressCountry": "US" },
+        "alumniOf": [
+          { "@type": "CollegeOrUniversity", "name": "University of Texas at Arlington" },
+          { "@type": "CollegeOrUniversity", "name": "Kabarak University" }
+        ],
+        "sameAs": ["https://github.com/jessechumo", "https://linkedin.com/in/jessechumo", "https://twitter.com/jessechumo"]
+      }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Inconsolata:wght@400;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Inconsolata:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="/css/main.css" hreflang="en-us" />
+    <link rel="stylesheet" href="/css/main.css" />
   </head>
   <body>
-    <nav class="nav">
-      <div class="nav__container">
-        <div class="nav__logo">JC</div>
-        <ul class="nav__links">
-          <li><a href="#about">About</a></li>
-          <li><a href="#experience">Experience</a></li>
-          <li><a href="#projects">Projects</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-        <a href="/jessechumo.pdf" target="_blank" class="nav__resume">Resume</a>
-      </div>
-    </nav>
+    <a class="skip-link" href="#content">Skip to content</a>
+    <div class="scroll-progress" aria-hidden="true"></div>
+    <div class="spotlight" aria-hidden="true"></div>
 
-    <main class="main">
+    <header class="nav" data-nav>
+      <div class="nav__container">
+        <a href="#top" class="nav__logo" aria-label="Jesse Chumo, back to top">
+          <span aria-hidden="true">JC</span>
+        </a>
+
+        <nav class="nav__menu" aria-label="Primary">
+          <ol class="nav__links">
+            <li><a href="#about" data-nav-link><span>01.</span>About</a></li>
+            <li><a href="#experience" data-nav-link><span>02.</span>Experience</a></li>
+            <li><a href="#projects" data-nav-link><span>03.</span>Projects</a></li>
+            <li><a href="#contact" data-nav-link><span>04.</span>Contact</a></li>
+          </ol>
+        </nav>
+
+        <div class="nav__actions">
+          <button class="icon-btn nav__palette" type="button" data-palette-open aria-label="Open command palette">
+            <kbd data-mod-key>⌘</kbd><kbd>K</kbd>
+          </button>
+          <button class="icon-btn theme-toggle" type="button" data-theme-toggle aria-label="Switch to light theme">
+            <svg class="theme-toggle__sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="5" /><line x1="12" y1="1" x2="12" y2="3" /><line x1="12" y1="21" x2="12" y2="23" /><line x1="4.22" y1="4.22" x2="5.64" y2="5.64" /><line x1="18.36" y1="18.36" x2="19.78" y2="19.78" /><line x1="1" y1="12" x2="3" y2="12" /><line x1="21" y1="12" x2="23" y2="12" /><line x1="4.22" y1="19.78" x2="5.64" y2="18.36" /><line x1="18.36" y1="5.64" x2="19.78" y2="4.22" /></svg>
+            <svg class="theme-toggle__moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" /></svg>
+          </button>
+          <a href="/jessechumo.pdf" target="_blank" rel="noopener" class="nav__resume">Resume</a>
+          <button class="nav__burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu" data-menu-toggle>
+            <span class="nav__burger-box"><span class="nav__burger-inner"></span></span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <aside class="mobile-menu" id="mobile-menu" aria-label="Mobile menu" data-mobile-menu>
+      <nav>
+        <ol class="mobile-menu__links">
+          <li><a href="#about"><span>01.</span>About</a></li>
+          <li><a href="#experience"><span>02.</span>Experience</a></li>
+          <li><a href="#projects"><span>03.</span>Projects</a></li>
+          <li><a href="#contact"><span>04.</span>Contact</a></li>
+        </ol>
+      </nav>
+      <a href="/jessechumo.pdf" target="_blank" rel="noopener" class="btn btn--primary btn--large mobile-menu__resume">Resume</a>
+      <button class="mobile-menu__theme" type="button" data-theme-toggle>
+        <span class="mobile-menu__theme-label">Light theme</span>
+      </button>
+    </aside>
+
+    <aside class="rail rail--left" aria-label="Social links">
+      <ul class="rail__social">
+        <li>
+          <a href="https://github.com/jessechumo" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" /></svg>
+          </a>
+        </li>
+        <li>
+          <a href="https://linkedin.com/in/jessechumo" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" /><rect x="2" y="9" width="4" height="12" /><circle cx="4" cy="4" r="2" /></svg>
+          </a>
+        </li>
+        <li>
+          <a href="https://twitter.com/jessechumo" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z" /></svg>
+          </a>
+        </li>
+        <li>
+          <a href="mailto:jessechumo@gmail.com" aria-label="Email">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" /><polyline points="22,6 12,13 2,6" /></svg>
+          </a>
+        </li>
+      </ul>
+    </aside>
+
+    <aside class="rail rail--right" aria-label="Email">
+      <a href="mailto:jessechumo@gmail.com" class="rail__email">jessechumo@gmail.com</a>
+    </aside>
+
+    <main class="main" id="content">
       <!-- Hero Section -->
-      <section class="hero-section">
+      <section class="hero-section" id="top">
+        <canvas class="hero-section__canvas" aria-hidden="true"></canvas>
         <div class="hero-section__content">
           <div class="hero-section__text">
-            <p class="hero-section__greeting">Hi there! 👋🏾</p>
-            <h1 class="hero-section__name">I'm Jesse Chumo</h1>
-            <h2 class="hero-section__role">
-              Software Engineer & ML Researcher
+            <p class="hero-section__greeting" data-hero-item>Hi there! 👋🏾</p>
+            <h1 class="hero-section__name" data-hero-item>I'm Jesse Chumo</h1>
+            <h2 class="hero-section__role" data-hero-item>
+              Software Engineer &amp; <span class="text-gradient">ML Researcher</span>
             </h2>
-            <p class="hero-section__description">
+            <p class="hero-section__description" data-hero-item>
               Building scalable systems, crafting secure authentication, and
               exploring the frontiers of machine learning.
             </p>
-            <div class="hero-section__actions">
+            <div class="hero-section__actions" data-hero-item>
               <a href="#contact" class="btn btn--primary">Let's Connect</a>
               <a href="#projects" class="btn btn--outline">View Work</a>
             </div>
-            <div class="hero-section__social">
-              <a
-                href="https://github.com/jessechumo"
-                target="_blank"
-                aria-label="GitHub"
-                >GitHub</a
-              >
-              <span>•</span>
-              <a
-                href="https://linkedin.com/in/jessechumo"
-                target="_blank"
-                aria-label="LinkedIn"
-                >LinkedIn</a
-              >
-              <span>•</span>
-              <a
-                href="https://twitter.com/jessechumo"
-                target="_blank"
-                aria-label="Twitter"
-                >Twitter</a
-              >
+            <div class="hero-section__meta" data-hero-item>
+              <span class="status-pill"><span class="status-pill__dot" aria-hidden="true"></span>Open to new opportunities</span>
+              <span class="hero-section__location">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" /><circle cx="12" cy="10" r="3" /></svg>
+                Dallas, TX
+              </span>
+            </div>
+            <div class="hero-section__social" data-hero-item>
+              <a href="https://github.com/jessechumo" target="_blank" rel="noopener noreferrer">GitHub</a>
+              <span aria-hidden="true">•</span>
+              <a href="https://linkedin.com/in/jessechumo" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+              <span aria-hidden="true">•</span>
+              <a href="https://twitter.com/jessechumo" target="_blank" rel="noopener noreferrer">Twitter</a>
             </div>
           </div>
-          <div class="hero-section__visual">
-            <div class="hero-section__image-wrapper">
-              <div class="hero-section__image-mask">
-                <img
-                  src="/img/jesse.jpg"
-                  alt="Jesse Chumo"
-                  class="hero-section__image"
-                />
+
+          <div class="hero-section__visual" data-hero-item>
+            <div class="portrait">
+              <div class="portrait__ring" aria-hidden="true"></div>
+              <div class="portrait__mask">
+                <img src="/img/jesse.jpg" alt="Jesse Chumo" class="portrait__image" width="878" height="1319" fetchpriority="high" />
               </div>
+              <span class="portrait__chip portrait__chip--edu">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 10 12 5 2 10l10 5 10-5z" /><path d="M6 12v5c3 3 9 3 12 0v-5" /></svg>
+                M.S. CS · UT Arlington
+              </span>
+              <span class="portrait__chip portrait__chip--code">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="16 18 22 12 16 6" /><polyline points="8 6 2 12 8 18" /></svg>
+                Go · Python · TypeScript
+              </span>
+              <span class="portrait__chip portrait__chip--ml">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="3" /><circle cx="6" cy="12" r="3" /><circle cx="18" cy="19" r="3" /><line x1="8.59" y1="13.51" x2="15.42" y2="17.49" /><line x1="15.41" y1="6.51" x2="8.59" y2="10.49" /></svg>
+                GNN robustness research
+              </span>
             </div>
           </div>
         </div>
+        <a href="#about" class="scroll-cue" aria-label="Scroll to About">
+          <span class="scroll-cue__mouse" aria-hidden="true"></span>
+        </a>
       </section>
 
       <!-- About Section -->
-      <section id="about" class="about-section">
-        <div class="about-section__container">
-          <div class="about-section__header">
+      <section id="about" class="section about-section">
+        <div class="section__container">
+          <h2 class="section-heading" data-reveal>
             <span class="section-number">01.</span>
-            <h2 class="section-title">About Me</h2>
-            <div class="section-line"></div>
-          </div>
+            <span class="section-title">About Me</span>
+            <span class="section-line" aria-hidden="true"></span>
+          </h2>
           <div class="about-section__content">
-            <div class="about-section__text">
+            <div class="about-section__text" data-reveal>
               <p>
                 A software engineer passionate about building robust, scalable
                 systems. I thrive in fast-paced environments where I can solve
                 complex problems and deliver high-quality solutions.
               </p>
               <p>
-                I graduated with a
-                <strong>Master's in Computer Science</strong> from the University of Texas at Arlington
-                 with a thesis onMachine Learning at the Cyberphysical Systems Security Lab.
+                I graduated with a <strong>Master's in Computer Science</strong> from the
+                <strong>University of Texas at Arlington</strong>. My thesis, done in the
+                Cyber-Physical Systems Security Lab, evaluated how well GNN-based
+                vulnerability detectors hold up when code is deliberately obfuscated.
               </p>
               <p>
-                Here are a few technologies I've been working with recently:
+                Along the way I've shipped production healthcare and fintech platforms,
+                kept Linux infrastructure running for more than 1,000 users, and built
+                tools that sit where backend engineering, cloud infrastructure and
+                machine learning meet.
               </p>
+              <p>Here are a few technologies I've been working with recently:</p>
               <ul class="tech-list">
-                <li>JavaScript / TypeScript</li>
+                <li>Go</li>
                 <li>Python</li>
-                <li>React & Node.js</li>
-                <li>Docker</li>
-                <li>TensorFlow & PyTorch</li>
-                <li>AWS</li>
+                <li>TypeScript &amp; Node.js</li>
+                <li>React &amp; React Native</li>
+                <li>Kubernetes &amp; Docker</li>
+                <li>AWS &amp; Terraform</li>
+                <li>PyTorch &amp; TensorFlow</li>
+                <li>LangChain &amp; LangGraph</li>
               </ul>
             </div>
-            <div class="about-section__image">
-              <div class="code-window">
-                <div class="code-window__header">
-                  <span class="code-window__dot"></span>
-                  <span class="code-window__dot"></span>
-                  <span class="code-window__dot"></span>
-                </div>
-                <div class="code-window__content">
-                  <pre><code><span class="code-keyword">const</span> <span class="code-variable">jesse</span> = {
-  <span class="code-property">role</span>: <span class="code-string">'Software Engineer'</span>,
-  <span class="code-property">location</span>: <span class="code-string">'Dallas, TX'</span>,
-  <span class="code-property">skills</span>: [
-    <span class="code-string">'Full-Stack Dev'</span>,
-    <span class="code-string">'CI/CD'</span>,
-    <span class="code-string">'Machine Learning'</span>
-  ],
-  <span class="code-property">available</span>: <span class="code-boolean">true</span>
-};</code></pre>
-                </div>
+            <div class="about-section__visual" data-reveal style="--reveal-delay: 120ms">
+              <div class="window code-window" data-code-window>
+                <noscript>
+                  <pre class="code-window__fallback">const jesse = { role: 'Software Engineer', location: 'Dallas, TX' };</pre>
+                </noscript>
               </div>
             </div>
           </div>
@@ -183,137 +270,111 @@
       </section>
 
       <!-- Experience Section -->
-      <section id="experience" class="experience-section">
-        <div class="experience-section__container">
-          <div class="experience-section__header">
+      <section id="experience" class="section experience-section">
+        <div class="section__container">
+          <h2 class="section-heading" data-reveal>
             <span class="section-number">02.</span>
-            <h2 class="section-title">Work Experience</h2>
-            <div class="section-line"></div>
-          </div>
-          <div class="experience-section__content">
-            <div class="experience-tabs">
-              <!-- Tabs will be rendered dynamically by render.js -->
+            <span class="section-title">Work Experience</span>
+            <span class="section-line" aria-hidden="true"></span>
+          </h2>
+          <div class="experience-section__content" data-reveal>
+            <div class="experience-tabs" role="tablist" aria-label="Jobs">
+              <!-- Tabs are rendered by render.js -->
             </div>
             <div class="experience-panels">
-              <!-- Panels will be rendered dynamically by render.js -->
+              <!-- Panels are rendered by render.js -->
             </div>
           </div>
         </div>
       </section>
 
       <!-- Projects Section -->
-      <section id="projects" class="projects-section">
-        <div class="projects-section__container">
-          <div class="projects-section__header">
+      <section id="projects" class="section projects-section">
+        <div class="section__container">
+          <h2 class="section-heading" data-reveal>
             <span class="section-number">03.</span>
-            <h2 class="section-title">Some Things I've Built</h2>
-            <div class="section-line"></div>
+            <span class="section-title">Some Things I've Built</span>
+            <span class="section-line" aria-hidden="true"></span>
+          </h2>
+          <ul class="featured-list">
+            <!-- Featured projects are rendered by render.js -->
+          </ul>
+
+          <div class="projects-section__more" data-reveal>
+            <h3 class="projects-section__subtitle">Other Noteworthy Projects</h3>
+            <a class="inline-link" href="https://github.com/jessechumo?tab=repositories" target="_blank" rel="noopener noreferrer">
+              view all on GitHub
+            </a>
           </div>
-          <div class="projects-grid">
-            <!-- Projects will be rendered dynamically by render.js -->
-          </div>
+          <ul class="projects-grid">
+            <!-- Project cards are rendered by render.js -->
+          </ul>
         </div>
       </section>
 
       <!-- Contact Section -->
-      <section id="contact" class="contact-section">
-        <div class="contact-section__container">
-          <span class="section-number">04.</span>
-          <h2 class="section-title">Get In Touch</h2>
+      <section id="contact" class="section contact-section">
+        <div class="contact-section__container" data-reveal>
+          <p class="contact-section__overline"><span class="section-number">04.</span>What's Next?</p>
+          <h2 class="contact-section__title">Get In Touch</h2>
           <p class="contact-section__text">
-            I'm currently looking for new opportunities.
+            I'm currently looking for new opportunities. Whether you have a role
+            in mind, a question, or just want to say hi, my inbox is always open
+            and I'll get back to you.
           </p>
-          <a
-            href="mailto:jessechumo@gmail.com"
-            class="btn btn--primary btn--large"
-            >Say Hello</a
-          >
+          <div class="contact-section__actions">
+            <a href="mailto:jessechumo@gmail.com" class="btn btn--primary btn--large">Say Hello</a>
+            <button type="button" class="copy-email" data-copy-email aria-label="Copy email address">
+              <span class="copy-email__address">jessechumo@gmail.com</span>
+              <span class="copy-email__icon" aria-hidden="true">
+                <svg class="copy-email__copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2" /><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" /></svg>
+                <svg class="copy-email__check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12" /></svg>
+              </span>
+            </button>
+          </div>
         </div>
       </section>
     </main>
 
     <footer class="footer">
       <div class="footer__container">
-        <div class="footer__social">
-          <a
-            href="https://github.com/jessechumo"
-            target="_blank"
-            aria-label="GitHub"
-            class="footer__social-link"
-          >
-            <svg
-              width="20"
-              height="20"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-            >
-              <path
-                d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"
-              ></path>
-            </svg>
-          </a>
-          <a
-            href="https://linkedin.com/in/jessechumo"
-            target="_blank"
-            aria-label="LinkedIn"
-            class="footer__social-link"
-          >
-            <svg
-              width="20"
-              height="20"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-            >
-              <path
-                d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"
-              ></path>
-              <rect x="2" y="9" width="4" height="12"></rect>
-              <circle cx="4" cy="4" r="2"></circle>
-            </svg>
-          </a>
-          <a
-            href="https://twitter.com/jessechumo"
-            target="_blank"
-            aria-label="Twitter"
-            class="footer__social-link"
-          >
-            <svg
-              width="20"
-              height="20"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-            >
-              <path
-                d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"
-              ></path>
-            </svg>
-          </a>
-        </div>
-        <p>Designed & built by Jesse Chumo</p>
-        <p class="footer__year">&copy; <span id="current-year">2025</span></p>
+        <ul class="footer__social">
+          <li>
+            <a href="https://github.com/jessechumo" target="_blank" rel="noopener noreferrer" aria-label="GitHub" class="footer__social-link">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" /></svg>
+            </a>
+          </li>
+          <li>
+            <a href="https://linkedin.com/in/jessechumo" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="footer__social-link">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" /><rect x="2" y="9" width="4" height="12" /><circle cx="4" cy="4" r="2" /></svg>
+            </a>
+          </li>
+          <li>
+            <a href="https://twitter.com/jessechumo" target="_blank" rel="noopener noreferrer" aria-label="Twitter" class="footer__social-link">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z" /></svg>
+            </a>
+          </li>
+        </ul>
+        <a class="footer__credit" href="https://github.com/jessechumo/My-Portfolio" target="_blank" rel="noopener noreferrer">
+          <span>Designed &amp; built by Jesse Chumo</span>
+          <span class="footer__stars">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" /></svg>
+            <span data-stars="My-Portfolio">View source</span>
+          </span>
+        </a>
+        <p class="footer__meta">
+          &copy; <span data-year>2026</span>
+          <span class="footer__hint">· Press <kbd data-mod-key>⌘</kbd><kbd>K</kbd> to jump anywhere</span>
+        </p>
       </div>
     </footer>
 
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"
-      type="text/javascript"
-      charset="utf-8"
-    ></script>
-    <script src="https://unpkg.com/scrollreveal/dist/scrollreveal.min.js"></script>
-    <script src="js/data.js" type="text/javascript" charset="utf-8"></script>
-    <script src="js/render.js" type="text/javascript" charset="utf-8"></script>
-    <script src="js/main.js" type="text/javascript" charset="utf-8"></script>
-    <script>
-      // Set current year
-      document.getElementById(
-        "current-year"
-      ).textContent = new Date().getFullYear();
-    </script>
+    <div class="toast" role="status" aria-live="polite" data-toast></div>
+
+    <script src="/js/data.js" defer></script>
+    <script src="/js/render.js" defer></script>
+    <script src="/js/network.js" defer></script>
+    <script src="/js/palette.js" defer></script>
+    <script src="/js/main.js" defer></script>
   </body>
 </html>

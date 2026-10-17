@@ -1,71 +1,418 @@
+@use 'globals' as *;
+
 .nav {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
+  z-index: 100;
   height: var(--nav-height);
-  background: rgba(10, 25, 47, 0.85);
-  backdrop-filter: blur(10px);
-  z-index: 1000;
-  border-bottom: 1px solid rgba(0, 212, 255, 0.1);
-  
+  background: var(--nav-bg);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid transparent;
+  transition: transform 0.3s $ease, height 0.3s $ease, box-shadow 0.3s $ease, border-color 0.3s $ease;
+
+  &.is-scrolled {
+    height: var(--nav-height-scrolled);
+    border-bottom-color: var(--border);
+    box-shadow: var(--nav-shadow);
+  }
+
+  &.is-hidden {
+    transform: translateY(-100%);
+  }
+
   &__container {
     max-width: 1200px;
+    height: 100%;
     margin: 0 auto;
     padding: 0 50px;
-    height: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    
-    @media (max-width: 768px) {
+    gap: 24px;
+
+    @include tablet {
       padding: 0 25px;
     }
   }
-  
+
   &__logo {
-    font-size: 24px;
+    position: relative;
+    z-index: 2;
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    border: 2px solid var(--accent);
+    border-radius: 10px;
+    font-family: $mono;
+    font-size: 19px;
     font-weight: 700;
+    letter-spacing: -0.02em;
     color: var(--accent);
-    font-family: 'Inconsolata', monospace;
+
+    &::after {
+      content: '';
+      position: absolute;
+      inset: -2px;
+      border-radius: inherit;
+      background: rgba(var(--accent-rgb), 0.12);
+      transform: scale(0.6);
+      opacity: 0;
+      @include transition;
+    }
+
+    &:hover,
+    &:focus-visible {
+      transform: translate(-3px, -3px);
+      box-shadow: 3px 3px 0 0 var(--accent);
+
+      &::after {
+        transform: none;
+        opacity: 1;
+      }
+    }
   }
-  
+
   &__links {
     display: flex;
-    list-style: none;
-    gap: 40px;
-    
-    @media (max-width: 768px) {
+    gap: 6px;
+    counter-reset: none;
+
+    @include nav-collapse {
       display: none;
     }
-    
+
     a {
-      color: var(--text-secondary);
-      font-size: 16px;
-      font-family: 'Inconsolata', monospace;
-      
+      position: relative;
+      display: block;
+      padding: 10px 14px;
+      font-family: $mono;
+      font-size: 14px;
+      color: var(--text-primary);
+
+      span {
+        margin-right: 5px;
+        color: var(--accent);
+      }
+
+      &::after {
+        content: '';
+        position: absolute;
+        left: 14px;
+        right: 14px;
+        bottom: 4px;
+        height: 1px;
+        background: var(--accent);
+        transform: scaleX(0);
+        transform-origin: left;
+        @include transition(transform, 0.3s);
+      }
+
+      &:hover,
+      &.is-active {
+        color: var(--accent);
+      }
+
+      &.is-active::after {
+        transform: scaleX(1);
+      }
+    }
+  }
+
+  &__actions {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  &__palette {
+    gap: 2px;
+
+    kbd {
+      height: 22px;
+      min-width: 22px;
+      font-size: 12px;
+    }
+
+    @include nav-collapse {
+      display: none;
+    }
+  }
+
+  &__resume {
+    margin-left: 8px;
+    padding: 10px 18px;
+    border: 1px solid var(--accent);
+    border-radius: 4px;
+    font-family: $mono;
+    font-size: 13px;
+    color: var(--accent);
+
+    &:hover,
+    &:focus-visible {
+      outline: none;
+      box-shadow: 3px 3px 0 0 var(--accent);
+      transform: translate(-3px, -3px);
+    }
+
+    @include nav-collapse {
+      display: none;
+    }
+  }
+
+  &__burger {
+    display: none;
+    position: relative;
+    width: 44px;
+    height: 44px;
+    margin-right: -10px;
+    padding: 10px;
+    color: var(--accent);
+
+    @include nav-collapse {
+      display: block;
+    }
+  }
+
+  &__burger-box {
+    position: relative;
+    display: block;
+    width: 24px;
+    height: 18px;
+  }
+
+  // Three bars: the middle one is the element itself, the others are pseudo-elements.
+  &__burger-inner,
+  &__burger-inner::before,
+  &__burger-inner::after {
+    position: absolute;
+    right: 0;
+    height: 2px;
+    border-radius: 2px;
+    background: currentColor;
+    transition: transform 0.25s $ease, width 0.25s $ease, top 0.25s $ease 0.12s, opacity 0.2s ease;
+  }
+
+  &__burger-inner {
+    top: 8px;
+    width: 24px;
+
+    &::before,
+    &::after {
+      content: '';
+    }
+
+    &::before {
+      top: -8px;
+      width: 120%;
+    }
+
+    &::after {
+      top: 8px;
+      width: 80%;
+    }
+  }
+}
+
+.menu-open .nav__burger-inner {
+  transform: rotate(225deg);
+  transition-delay: 0.12s;
+
+  &::before {
+    top: 0;
+    width: 100%;
+    opacity: 0;
+    transition: top 0.25s $ease, opacity 0.1s ease 0.12s;
+  }
+
+  &::after {
+    top: 0;
+    width: 100%;
+    transform: rotate(-90deg);
+    transition: top 0.25s $ease, transform 0.25s $ease 0.12s;
+  }
+}
+
+/* ------------------------------------------------------------- theme icon */
+
+.theme-toggle {
+  &__moon {
+    display: none;
+  }
+
+  [data-theme='light'] & {
+    .theme-toggle__sun {
+      display: none;
+    }
+
+    .theme-toggle__moon {
+      display: block;
+    }
+  }
+}
+
+/* ------------------------------------------------------------- mobile menu */
+
+.mobile-menu {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 90;
+  width: min(78vw, 400px);
+  padding: 100px 40px 50px;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 36px;
+  background: var(--surface-2);
+  box-shadow: -10px 0 40px -15px rgba(2, 12, 27, 0.7);
+  transform: translateX(100%);
+  visibility: hidden;
+  transition: transform 0.35s $ease, visibility 0s linear 0.35s;
+
+  @include nav-collapse {
+    display: flex;
+  }
+
+  .menu-open & {
+    transform: none;
+    visibility: visible;
+    transition: transform 0.35s $ease, visibility 0s;
+  }
+
+  &__links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    text-align: center;
+
+    a {
+      display: block;
+      padding: 12px 20px;
+      font-family: $mono;
+      font-size: clamp(16px, 4vw, 19px);
+      color: var(--text-primary);
+
+      span {
+        display: block;
+        margin-bottom: 4px;
+        font-size: 14px;
+        color: var(--accent);
+      }
+
       &:hover {
         color: var(--accent);
       }
     }
   }
-  
+
   &__resume {
-    padding: 10px 20px;
-    border: 1px solid var(--accent);
-    border-radius: 4px;
-    color: var(--accent);
-    font-size: 13px;
-    font-family: 'Inconsolata', monospace;
-    transition: all 0.3s ease;
-    
+    width: 100%;
+    max-width: 240px;
+  }
+
+  &__theme {
+    font-family: $mono;
+    font-size: 14px;
+    color: var(--text-secondary);
+    padding: 8px 12px;
+
     &:hover {
-      background: rgba(0, 212, 255, 0.1);
+      color: var(--accent);
     }
   }
 }
 
-.main {
-  margin-top: var(--nav-height);
+// Dim and blur the page behind the open menu.
+.menu-open {
+  .main,
+  .footer {
+    filter: blur(5px) brightness(0.7);
+    pointer-events: none;
+    user-select: none;
+    transition: filter 0.3s ease;
+  }
 }
 
+/* ------------------------------------------------------------------- rails */
+
+.rail {
+  position: fixed;
+  bottom: 0;
+  z-index: 10;
+  width: 40px;
+  display: none;
+
+  @include rails {
+    display: block;
+  }
+
+  &--left {
+    left: 40px;
+  }
+
+  &--right {
+    right: 40px;
+  }
+
+  &::after {
+    content: '';
+    display: block;
+    width: 1px;
+    height: 90px;
+    margin: 0 auto;
+    background: var(--text-secondary);
+  }
+
+  &__social {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    li:last-of-type {
+      margin-bottom: 20px;
+    }
+
+    a {
+      display: block;
+      padding: 10px;
+      color: var(--text-secondary);
+
+      svg {
+        width: 20px;
+        height: 20px;
+      }
+
+      &:hover,
+      &:focus-visible {
+        color: var(--accent);
+        transform: translateY(-3px);
+      }
+    }
+  }
+
+  &__email {
+    display: block;
+    margin: 0 auto 20px;
+    padding: 10px;
+    writing-mode: vertical-rl;
+    font-family: $mono;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    line-height: 18px;
+    color: var(--text-secondary);
+
+    &:hover,
+    &:focus-visible {
+      color: var(--accent);
+      transform: translateY(-3px);
+    }
+  }
+}
