@@ -1,197 +1,105 @@
-@use 'globals' as *;
+@use 'tokens' as *;
 
-$tab-height: 44px;
-
-.experience-section {
-  &__content {
-    display: grid;
-    grid-template-columns: max-content minmax(0, 1fr);
-    gap: 50px;
-    align-items: start;
-    max-width: 960px;
-
-    @include tablet {
-      grid-template-columns: minmax(0, 1fr);
-      gap: 26px;
-    }
-  }
+.jobs {
+  border-top: 1px solid var(--line);
 }
 
-.experience-tabs {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  min-width: 160px;
-  border-left: 2px solid var(--text-faint);
+.job {
+  display: grid;
+  grid-template-columns: minmax(140px, 2fr) minmax(0, 7fr);
+  gap: 8px 28px;
+  padding: 38px 0;
+  border-bottom: 1px solid var(--line);
 
-  @include tablet {
-    flex-direction: row;
-    min-width: 0;
-    overflow-x: auto;
-    border-left: 0;
-    border-bottom: 2px solid var(--text-faint);
-    scrollbar-width: none;
+  @include below-phone {
+    grid-template-columns: minmax(0, 1fr);
+    padding: 30px 0;
+  }
 
-    &::-webkit-scrollbar {
-      display: none;
+  &__when {
+    padding-top: 9px;
+    white-space: nowrap;
+
+    @include below-phone {
+      padding-top: 0;
     }
   }
 
-  // Sliding highlight; JS sets the offset/size of the active tab.
-  &__indicator {
-    position: absolute;
-    top: 0;
-    left: -2px;
-    width: 2px;
-    height: var(--indicator-h, #{$tab-height});
-    background: var(--accent);
-    border-radius: 2px;
-    transform: translateY(var(--indicator-y, 0));
-    transition: transform 0.3s $ease, height 0.3s $ease, width 0.3s $ease;
+  &__role {
+    font-family: $display;
+    font-size: clamp(22px, 2.3vw, 28px);
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+  }
 
-    @include tablet {
-      top: auto;
-      bottom: -2px;
+  &__org {
+    margin: 6px 0 18px;
+    color: var(--fg-2);
+
+    .link {
+      color: var(--fg-2);
+      background-size: 100% 1px;
+    }
+
+    .meta {
+      margin-left: 10px;
+    }
+  }
+
+  &__points li {
+    position: relative;
+    max-width: 68ch;
+    margin: 9px 0;
+    padding-left: 22px;
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--fg-2);
+
+    &::before {
+      content: '–';
+      position: absolute;
       left: 0;
-      width: var(--indicator-w, 120px);
-      height: 2px;
-      transform: translateX(var(--indicator-x, 0));
+      color: var(--fg-3);
     }
   }
-}
 
-.experience-tab {
-  display: flex;
-  align-items: center;
-  height: $tab-height;
-  padding: 0 22px;
-  font-family: $mono;
-  font-size: 14px;
-  text-align: left;
-  white-space: nowrap;
-  color: var(--text-secondary);
-  @include transition(color background-color);
-
-  @include tablet {
-    flex-shrink: 0;
-    justify-content: center;
-    padding: 0 18px;
-  }
-
-  &:hover,
-  &:focus-visible {
-    color: var(--accent);
-    background: rgba(var(--accent-rgb), 0.06);
-    outline-offset: -2px;
-  }
-
-  &.active {
-    color: var(--accent);
-    background: rgba(var(--accent-rgb), 0.08);
+  &__stack {
+    margin-top: 16px;
   }
 }
 
-.experience-panels {
-  position: relative;
-  min-height: 380px;
-
-  @include tablet {
-    min-height: 0;
-  }
-}
-
-.experience-panel {
-  &.active {
-    animation: panelIn 0.45s $ease-out;
-  }
-
-  &[hidden] {
-    display: none;
-  }
-
-  &:focus-visible {
-    outline-offset: 8px;
-  }
+.education {
+  margin-top: 64px;
 
   &__title {
-    margin-bottom: 6px;
-    font-size: 22px;
-    font-weight: 600;
-    line-height: 1.35;
-    color: var(--text-primary);
+    margin-bottom: 12px;
   }
 
-  &__company {
-    color: var(--accent);
+  &__list {
+    border-top: 1px solid var(--line);
 
-    a {
-      position: relative;
-      color: var(--accent);
-
-      &::after {
-        content: '';
-        position: absolute;
-        left: 0;
-        bottom: 1px;
-        width: 0;
-        height: 1px;
-        background: currentColor;
-        @include transition(width);
-      }
-
-      &:hover::after,
-      &:focus-visible::after {
-        width: 100%;
-      }
-    }
-  }
-
-  &__meta {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 4px 10px;
-    margin-bottom: 24px;
-    font-family: $mono;
-    font-size: 13.5px;
-    color: var(--text-muted);
-  }
-
-  &__sep {
-    color: var(--text-faint);
-  }
-
-  &__description {
     li {
-      position: relative;
-      margin-bottom: 12px;
-      padding-left: 26px;
-      font-size: 16px;
-      line-height: 1.7;
-      color: var(--text-secondary);
+      display: grid;
+      grid-template-columns: minmax(140px, 2fr) minmax(0, 7fr);
+      gap: 4px 28px;
+      align-items: baseline;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--line);
+      color: var(--fg-2);
 
-      &::before {
-        content: '▹';
-        position: absolute;
-        left: 0;
-        color: var(--accent);
-        font-size: 17px;
-        line-height: 1.6;
+      @include below-phone {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .job__when {
+        padding-top: 0;
+      }
+
+      strong {
+        font-weight: 500;
+        color: var(--fg);
       }
     }
-  }
-
-  &__tech {
-    margin-top: 24px;
-  }
-}
-
-@keyframes panelIn {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: none;
   }
 }

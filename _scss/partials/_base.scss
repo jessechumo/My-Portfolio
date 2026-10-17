@@ -1,113 +1,61 @@
-@use 'globals' as *;
+@use 'tokens' as *;
 
-/* ------------------------------------------------------------------ tokens */
-
-:root,
-[data-theme='dark'] {
+:root {
   color-scheme: dark;
-  --nav-height: 76px;
-  --nav-height-scrolled: 64px;
+  --bg: #161616;
+  --bg-raise: #1c1c1c;
+  --bg-sunk: #111111;
+  --line: #2a2a2a;
+  --line-strong: #3a3a3a;
+  --fg: #ececec;
+  --fg-2: #a9a9a9;
+  --fg-3: #8b8b8b;
+  --accent: #f4a93b;
+  --accent-ink: #161616;
+  --accent-soft: rgba(244, 169, 59, 0.12);
 
-  --bg: #0a192f;
-  --surface: #020c1b;
-  --surface-2: #112240;
-  --surface-2-rgb: 17, 34, 64;
-  --surface-3: #1d2d50;
-  --text-primary: #ccd6f6;
-  --text-secondary: #8892b0;
-  --text-muted: #7d8cab;
-  --text-faint: #233554;
-  --accent: #00d4ff;
-  --accent-rgb: 0, 212, 255;
-  --primary: #0066ff;
-  --primary-rgb: 0, 102, 255;
-  --on-accent: #021226;
-  --green: #3fb950;
-  --border: rgba(0, 212, 255, 0.1);
-  --border-strong: rgba(0, 212, 255, 0.3);
-  --shadow: 0 20px 50px -20px rgba(2, 12, 27, 0.9);
-  --shadow-sm: 0 10px 30px -15px rgba(2, 12, 27, 0.7);
-  --nav-bg: rgba(10, 25, 47, 0.85);
-  --nav-shadow: 0 10px 30px -14px rgba(2, 12, 27, 0.7);
-  --gradient: linear-gradient(120deg, #0066ff 0%, #00d4ff 100%);
-  --spotlight: rgba(29, 78, 216, 0.15);
+  --gutter: clamp(20px, 5vw, 72px);
+  --max: 1360px;
+  --bar: 30px;
 }
-
-[data-theme='light'] {
-  color-scheme: light;
-  --bg: #f5f8fc;
-  --surface: #ffffff;
-  --surface-2: #ffffff;
-  --surface-2-rgb: 255, 255, 255;
-  --surface-3: #e8eef7;
-  --text-primary: #0a192f;
-  --text-secondary: #4a5a78;
-  --text-muted: #5b6a84;
-  --text-faint: #cfd8e6;
-  --accent: #005ae6;
-  --accent-rgb: 0, 90, 230;
-  --primary: #0052cc;
-  --primary-rgb: 0, 82, 204;
-  --on-accent: #ffffff;
-  --green: #1f9d3a;
-  --border: rgba(10, 25, 47, 0.09);
-  --border-strong: rgba(0, 102, 255, 0.35);
-  --shadow: 0 24px 50px -24px rgba(15, 40, 80, 0.3);
-  --shadow-sm: 0 12px 30px -18px rgba(15, 40, 80, 0.3);
-  --nav-bg: rgba(245, 248, 252, 0.85);
-  --nav-shadow: 0 10px 30px -18px rgba(15, 40, 80, 0.18);
-  --gradient: linear-gradient(120deg, #0052cc 0%, #00a3e0 100%);
-  --spotlight: rgba(0, 102, 255, 0.06);
-}
-
-/* ------------------------------------------------------------------- reset */
 
 *,
 *::before,
 *::after {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
 }
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: var(--nav-height-scrolled);
+  scroll-padding-top: 24px;
   -webkit-text-size-adjust: 100%;
 }
 
 body {
-  font-family: $font-stack;
-  background-color: var(--bg);
-  color: var(--text-primary);
-  line-height: 1.6;
-  overflow-x: hidden;
+  min-height: 100vh;
+  padding-bottom: var(--bar);
+  background: var(--bg);
+  color: var(--fg);
+  font-family: $text;
+  font-size: 17px;
+  line-height: 1.65;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-
-  &.menu-open,
-  &.palette-open {
-    overflow: hidden;
-  }
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
 }
 
-// Smoothly cross-fade colours when the theme is switched (class is added briefly by JS).
-.theme-transition,
-.theme-transition *,
-.theme-transition *::before,
-.theme-transition *::after {
-  transition: background-color 0.35s ease, border-color 0.35s ease, color 0.35s ease, fill 0.35s ease !important;
-}
-
-::selection {
-  background-color: rgba(var(--accent-rgb), 0.3);
-  color: var(--text-primary);
-}
-
-a {
-  text-decoration: none;
-  color: inherit;
-  @include transition;
+// Fine film grain, so flat areas feel like the textured backdrop in the photo.
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  pointer-events: none;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
 img,
@@ -117,8 +65,14 @@ canvas {
   max-width: 100%;
 }
 
-img {
-  height: auto;
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul,
+ol {
+  list-style: none;
 }
 
 button {
@@ -129,53 +83,40 @@ button {
   cursor: pointer;
 }
 
-ul,
-ol {
-  list-style: none;
+pre,
+code {
+  font-family: $mono;
 }
 
-// The UA stylesheet gives <code> its own monospace stack; inherit the window's font instead.
 pre code {
   font: inherit;
 }
 
+::selection {
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+
 :focus-visible {
-  outline: 2px dashed var(--accent);
+  outline: 2px solid var(--accent);
   outline-offset: 3px;
+  border-radius: 2px;
 }
 
-kbd {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 1.6em;
-  height: 1.6em;
-  padding: 0 0.35em;
-  border: 1px solid var(--border-strong);
-  border-bottom-width: 2px;
-  border-radius: 4px;
-  font-family: $mono;
-  font-size: 0.85em;
-  line-height: 1;
-  color: var(--text-secondary);
-  background: rgba(var(--accent-rgb), 0.05);
-
-  & + kbd {
-    margin-left: 3px;
-  }
+// Thin, quiet scrollbars for code panes and the page.
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #3a3a3a transparent;
 }
 
-/* --------------------------------------------------------------- utilities */
-
-.skip-link {
+.skip {
   position: fixed;
   top: 12px;
   left: 12px;
-  z-index: 1000;
-  padding: 12px 18px;
-  border-radius: 4px;
+  z-index: 200;
+  padding: 10px 14px;
   background: var(--accent);
-  color: var(--on-accent);
+  color: var(--accent-ink);
   font-family: $mono;
   font-size: 14px;
   transform: translateY(-200%);
@@ -185,337 +126,93 @@ kbd {
   }
 }
 
-.scroll-progress {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 1001;
-  width: 100%;
-  height: 2px;
-  background: var(--gradient);
-  transform: scaleX(var(--progress, 0));
-  transform-origin: left center;
-  pointer-events: none;
-}
-
-// Soft light that follows the pointer (fine pointers only).
-.spotlight {
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  pointer-events: none;
-  background: radial-gradient(600px circle at var(--spot-x, 50%) var(--spot-y, -20%), var(--spotlight), transparent 80%);
-  opacity: 0;
-  transition: opacity 0.6s ease;
-
-  .has-spotlight & {
-    opacity: 1;
-  }
-}
-
-.text-gradient {
-  background: var(--gradient);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-
-.inline-link {
-  position: relative;
-  display: inline-block;
-  color: var(--accent);
-  font-family: $mono;
-  font-size: 14px;
-
-  &::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: -2px;
-    width: 0;
-    height: 1px;
-    background: currentColor;
-    opacity: 0.6;
-    @include transition(width);
-  }
-
-  &:hover::after,
-  &:focus-visible::after {
-    width: 100%;
-  }
-}
-
-.tag-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-
-  li {
-    padding: 4px 11px;
-    border-radius: 999px;
-    border: 1px solid rgba(var(--accent-rgb), 0.25);
-    background: rgba(var(--accent-rgb), 0.08);
-    color: var(--accent);
-    font-family: $mono;
-    font-size: 12.5px;
-    line-height: 1.5;
-  }
-}
-
-.icon-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  height: 38px;
-  min-width: 38px;
-  padding: 0 9px;
-  border-radius: 6px;
-  color: var(--text-secondary);
-  @include transition;
-
-  svg {
-    width: 18px;
-    height: 18px;
-  }
-
-  &:hover {
-    color: var(--accent);
-    background: rgba(var(--accent-rgb), 0.08);
-  }
-}
-
-/* ----------------------------------------------------------------- buttons */
-
-.btn {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  padding: 14px 28px;
-  border-radius: 4px;
-  border: 1px solid transparent;
-  font-family: $mono;
-  font-size: 15px;
-  font-weight: 500;
-  line-height: 1;
-  cursor: pointer;
-  @include transition;
-
-  &--primary {
-    border-color: var(--accent);
-    color: var(--accent);
-
-    &:hover,
-    &:focus-visible {
-      outline: none;
-      box-shadow: 4px 4px 0 0 var(--accent);
-      transform: translate(-4px, -4px);
-    }
-  }
-
-  &--outline {
-    border-color: var(--text-muted);
-    color: var(--text-secondary);
-
-    &:hover,
-    &:focus-visible {
-      outline: none;
-      border-color: var(--accent);
-      color: var(--accent);
-      transform: translateY(-3px);
-    }
-  }
-
-  &--large {
-    padding: 20px 34px;
-    font-size: 16px;
-  }
-}
-
-/* ---------------------------------------------------------------- sections */
-
-.main {
-  position: relative;
-}
-
-.section {
-  padding: 110px 0;
-
-  @include tablet {
-    padding: 80px 0;
-  }
-
-  &__container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 50px;
-
-    @include tablet {
-      padding: 0 25px;
-    }
-  }
-}
-
-.section-heading {
-  display: flex;
-  align-items: center;
-  margin-bottom: 50px;
-  font-size: clamp(26px, 5vw, 32px);
-  font-weight: 600;
-  line-height: 1.2;
-  color: var(--text-primary);
-  white-space: nowrap;
-
-  @include mobile {
-    font-size: 24px;
-  }
-
-  @include small-mobile {
-    font-size: 21px;
-  }
-}
-
-.section-number {
-  position: relative;
-  bottom: 2px;
-  margin-right: 10px;
-  font-family: $mono;
-  font-size: clamp(16px, 3vw, 20px);
-  font-weight: 400;
-  color: var(--accent);
-}
-
-.section-line {
-  flex: 1;
-  max-width: 300px;
+.visually-hidden {
+  position: absolute;
+  width: 1px;
   height: 1px;
-  margin-left: 20px;
-  background: var(--text-faint);
-  transform-origin: left center;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
 
-  .js [data-reveal] & {
-    transform: scaleX(0);
-    transition: transform 1s $ease-out 0.25s;
-  }
+// Text link with an underline that draws in on hover.
+.link {
+  position: relative;
+  color: var(--fg);
+  background-image: linear-gradient(currentColor, currentColor);
+  background-size: 100% 1px;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  transition: color 0.2s ease, background-size 0.3s $ease;
 
-  .js [data-reveal].is-visible & {
-    transform: scaleX(1);
-  }
-
-  @include mobile {
-    margin-left: 14px;
+  @include hover {
+    &:hover {
+      color: var(--accent);
+    }
   }
 }
 
-/* ------------------------------------------------------------------ reveal */
+.arrow {
+  display: inline-block;
+  transition: transform 0.25s $ease;
+
+  a:hover &,
+  a:focus-visible & {
+    transform: translate(2px, -2px);
+  }
+}
+
+// Mono "label: value" lists, used for project meta and the stack lines.
+.meta {
+  @include meta;
+}
+
+.accent {
+  color: var(--accent);
+}
+
+/* -------------------------------------------------------------- reveal */
 
 .js [data-reveal] {
   opacity: 0;
-  transform: translateY(24px);
-  transition: opacity 0.7s $ease-out var(--reveal-delay, 0ms), transform 0.7s $ease-out var(--reveal-delay, 0ms);
+  transform: translateY(14px);
+  transition: opacity 0.8s $ease, transform 0.8s $ease;
+  transition-delay: var(--delay, 0s);
 
-  &.is-visible {
+  &.is-in {
     opacity: 1;
     transform: none;
   }
 }
 
-// Safety net: if scripts fail, never leave content hidden.
 .no-reveal [data-reveal] {
   opacity: 1 !important;
   transform: none !important;
 }
 
-/* ------------------------------------------------------------------- toast */
+/* --------------------------------------------------------------- toast */
 
 .toast {
   position: fixed;
   left: 50%;
-  bottom: 28px;
-  z-index: 300;
-  padding: 11px 20px;
-  border: 1px solid var(--border-strong);
-  border-radius: 999px;
-  background: var(--surface-2);
-  color: var(--text-primary);
+  bottom: calc(var(--bar) + 16px);
+  z-index: 60;
+  padding: 8px 14px;
+  border: 1px solid var(--line-strong);
+  background: var(--bg-raise);
   font-family: $mono;
-  font-size: 14px;
-  box-shadow: var(--shadow);
+  font-size: 13px;
+  color: var(--fg);
   opacity: 0;
-  visibility: hidden;
-  transform: translate(-50%, 16px);
-  transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s;
+  transform: translate(-50%, 8px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
   pointer-events: none;
 
-  &.is-visible {
+  &.is-on {
     opacity: 1;
-    visibility: visible;
     transform: translate(-50%, 0);
   }
 }
-
-/* ---------------------------------------------------------- shared windows */
-
-.window {
-  @include window-chrome;
-
-  &__bar {
-    position: relative;
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    height: 42px;
-    padding: 0 16px;
-    background: rgba(255, 255, 255, 0.03);
-    border-bottom: 1px solid rgba(0, 212, 255, 0.1);
-  }
-
-  &__title {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    font-family: $mono;
-    font-size: 12.5px;
-    color: #8892b0;
-    white-space: nowrap;
-  }
-}
-
-.window-dots {
-  display: inline-flex;
-  flex-shrink: 0;
-  gap: 8px;
-
-  i {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    background: #ff5f56;
-
-    &:nth-child(2) {
-      background: #ffbd2e;
-    }
-
-    &:nth-child(3) {
-      background: #27c93f;
-    }
-  }
-}
-
-// Syntax colours shared by every window (Material Palenight-ish, matching the original code window).
-.tok-keyword { color: #c792ea; }
-.tok-variable { color: #82aaff; }
-.tok-property { color: #7fdbca; }
-.tok-string { color: #c3e88d; }
-.tok-boolean { color: #ff5370; }
-.tok-number { color: #f78c6c; }
-.tok-punct { color: #89ddff; }
-.tok-value { color: #ecc48d; }
-.tok-comment { color: #637777; font-style: italic; }
-.tok-heading { color: #82aaff; font-weight: 700; }
-.tok-bold { color: #ffcb6b; font-weight: 600; }
-.tok-quote { color: #8892b0; font-style: italic; }
 
 @include reduced-motion {
   html {

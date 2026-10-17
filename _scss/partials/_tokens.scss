@@ -1,0 +1,59 @@
+// Design tokens. The background matches the studio backdrop in img/jesse.jpg (#161616 at the corners),
+// so the portrait can dissolve into the page.
+
+$display: 'Red Hat Display', 'Helvetica Neue', Arial, sans-serif;
+$text: 'Red Hat Text', 'Helvetica Neue', Arial, sans-serif;
+$mono: 'Red Hat Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+
+$ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+
+$wide: 1180px;
+$desktop: 1024px;
+$tablet: 860px;
+$phone: 560px;
+
+@mixin wide {
+  @media (min-width: #{$wide}) {
+    @content;
+  }
+}
+
+@mixin below-desktop {
+  @media (max-width: #{$desktop}) {
+    @content;
+  }
+}
+
+@mixin below-tablet {
+  @media (max-width: #{$tablet}) {
+    @content;
+  }
+}
+
+@mixin below-phone {
+  @media (max-width: #{$phone}) {
+    @content;
+  }
+}
+
+@mixin reduced-motion {
+  @media (prefers-reduced-motion: reduce) {
+    @content;
+  }
+}
+
+@mixin hover {
+  @media (hover: hover) {
+    @content;
+  }
+}
+
+// Small uppercase-free system label: the mono "path" style used for metadata.
+@mixin meta {
+  font-family: $mono;
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  line-height: 1.5;
+  color: var(--fg-3);
+}

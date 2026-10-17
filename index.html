@@ -1,57 +1,43 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Jesse Chumo | Software Engineer &amp; ML Researcher</title>
+    <title>Jesse Chumo — ML systems, AI infrastructure, Linux</title>
     <script>
-      // Apply the saved theme before first paint to avoid a flash.
       (function () {
         var root = document.documentElement;
         root.classList.add('js');
-        try {
-          var saved = localStorage.getItem('theme');
-          if (saved === 'light' || saved === 'dark') root.setAttribute('data-theme', saved);
-        } catch (e) {}
-        // If the main script never runs, show everything rather than leave sections hidden.
+        // never leave content hidden if the main script fails to load
         setTimeout(function () {
-          if (!window.__portfolioReady) root.classList.add('no-reveal');
+          if (!window.__ready) root.classList.add('no-reveal');
         }, 4000);
       })();
     </script>
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="apple-touch-icon" href="/img/apple-touch-icon.png" />
-    <meta name="theme-color" content="#0a192f" />
-    <link rel="canonical" href="https://jessechumo.com/" />
     <meta
       name="description"
-      content="Jesse Chumo is a software engineer and ML researcher building scalable backends, cloud infrastructure, and machine learning systems."
+      content="Jesse Chumo is a software engineer in Dallas building machine learning systems and the Linux infrastructure underneath them."
     />
-    <meta
-      name="keywords"
-      content="software engineer, jesse chumo, backend, go, python, typescript, kubernetes, machine learning, full-stack"
-    />
-    <meta property="og:title" content="Jesse Chumo | Software Engineer & ML Researcher" />
-    <meta
-      property="og:description"
-      content="Building scalable systems, crafting secure authentication, and exploring the frontiers of machine learning."
-    />
+    <meta name="theme-color" content="#161616" />
+    <link rel="canonical" href="https://jessechumo.com/" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/img/apple-touch-icon.png" />
+
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://jessechumo.com/" />
     <meta property="og:site_name" content="Jesse Chumo" />
+    <meta property="og:title" content="Jesse Chumo — ML systems, AI infrastructure, Linux" />
+    <meta
+      property="og:description"
+      content="Software engineer building machine learning systems and the Linux infrastructure underneath them."
+    />
     <meta property="og:image" content="https://jessechumo.com/img/og.png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:type" content="image/png" />
-    <meta property="og:locale" content="en_US" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@jessechumo" />
     <meta name="twitter:creator" content="@jessechumo" />
-    <meta name="twitter:title" content="Jesse Chumo | Software Engineer & ML Researcher" />
-    <meta
-      name="twitter:description"
-      content="Building scalable systems, crafting secure authentication, and exploring the frontiers of machine learning."
-    />
+    <meta name="twitter:title" content="Jesse Chumo — ML systems, AI infrastructure, Linux" />
     <meta name="twitter:image" content="https://jessechumo.com/img/og.png" />
     <script type="application/ld+json">
       {
@@ -67,314 +53,670 @@
           { "@type": "CollegeOrUniversity", "name": "University of Texas at Arlington" },
           { "@type": "CollegeOrUniversity", "name": "Kabarak University" }
         ],
+        "knowsAbout": ["Machine learning systems", "AI infrastructure", "Linux", "Kubernetes", "Graph neural networks"],
         "sameAs": ["https://github.com/jessechumo", "https://linkedin.com/in/jessechumo", "https://twitter.com/jessechumo"]
       }
     </script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Inconsolata:wght@400;500;600;700&display=swap"
       rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@500;600;700&family=Red+Hat+Mono:wght@400;500&family=Red+Hat+Text:ital,wght@0,400;0,500;1,400&display=swap"
     />
     <link rel="stylesheet" href="/css/main.css" />
   </head>
   <body>
-    <a class="skip-link" href="#content">Skip to content</a>
-    <div class="scroll-progress" aria-hidden="true"></div>
-    <div class="spotlight" aria-hidden="true"></div>
+    <a class="skip" href="#main">Skip to content</a>
 
-    <header class="nav" data-nav>
-      <div class="nav__container">
-        <a href="#top" class="nav__logo" aria-label="Jesse Chumo, back to top">
-          <span aria-hidden="true">JC</span>
-        </a>
-
-        <nav class="nav__menu" aria-label="Primary">
-          <ol class="nav__links">
-            <li><a href="#about" data-nav-link><span>01.</span>About</a></li>
-            <li><a href="#experience" data-nav-link><span>02.</span>Experience</a></li>
-            <li><a href="#projects" data-nav-link><span>03.</span>Projects</a></li>
-            <li><a href="#contact" data-nav-link><span>04.</span>Contact</a></li>
-          </ol>
-        </nav>
-
-        <div class="nav__actions">
-          <button class="icon-btn nav__palette" type="button" data-palette-open aria-label="Open command palette">
-            <kbd data-mod-key>⌘</kbd><kbd>K</kbd>
-          </button>
-          <button class="icon-btn theme-toggle" type="button" data-theme-toggle aria-label="Switch to light theme">
-            <svg class="theme-toggle__sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="5" /><line x1="12" y1="1" x2="12" y2="3" /><line x1="12" y1="21" x2="12" y2="23" /><line x1="4.22" y1="4.22" x2="5.64" y2="5.64" /><line x1="18.36" y1="18.36" x2="19.78" y2="19.78" /><line x1="1" y1="12" x2="3" y2="12" /><line x1="21" y1="12" x2="23" y2="12" /><line x1="4.22" y1="19.78" x2="5.64" y2="18.36" /><line x1="18.36" y1="5.64" x2="19.78" y2="4.22" /></svg>
-            <svg class="theme-toggle__moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" /></svg>
-          </button>
-          <a href="/jessechumo.pdf" target="_blank" rel="noopener" class="nav__resume">Resume</a>
-          <button class="nav__burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu" data-menu-toggle>
-            <span class="nav__burger-box"><span class="nav__burger-inner"></span></span>
-          </button>
-        </div>
-      </div>
+    <header class="topbar">
+      <a class="topbar__id" href="#top">jesse@chumo<span class="topbar__path">:~</span></a>
+      <nav class="topbar__links" aria-label="Quick links">
+        <a class="link" href="/jessechumo.pdf" target="_blank" rel="noopener">résumé.pdf</a>
+        <a class="link" href="mailto:jessechumo@gmail.com">email</a>
+      </nav>
     </header>
 
-    <aside class="mobile-menu" id="mobile-menu" aria-label="Mobile menu" data-mobile-menu>
-      <nav>
-        <ol class="mobile-menu__links">
-          <li><a href="#about"><span>01.</span>About</a></li>
-          <li><a href="#experience"><span>02.</span>Experience</a></li>
-          <li><a href="#projects"><span>03.</span>Projects</a></li>
-          <li><a href="#contact"><span>04.</span>Contact</a></li>
-        </ol>
-      </nav>
-      <a href="/jessechumo.pdf" target="_blank" rel="noopener" class="btn btn--primary btn--large mobile-menu__resume">Resume</a>
-      <button class="mobile-menu__theme" type="button" data-theme-toggle>
-        <span class="mobile-menu__theme-label">Light theme</span>
-      </button>
-    </aside>
-
-    <aside class="rail rail--left" aria-label="Social links">
-      <ul class="rail__social">
-        <li>
-          <a href="https://github.com/jessechumo" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" /></svg>
-          </a>
-        </li>
-        <li>
-          <a href="https://linkedin.com/in/jessechumo" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" /><rect x="2" y="9" width="4" height="12" /><circle cx="4" cy="4" r="2" /></svg>
-          </a>
-        </li>
-        <li>
-          <a href="https://twitter.com/jessechumo" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z" /></svg>
-          </a>
-        </li>
-        <li>
-          <a href="mailto:jessechumo@gmail.com" aria-label="Email">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" /><polyline points="22,6 12,13 2,6" /></svg>
-          </a>
-        </li>
-      </ul>
-    </aside>
-
-    <aside class="rail rail--right" aria-label="Email">
-      <a href="mailto:jessechumo@gmail.com" class="rail__email">jessechumo@gmail.com</a>
-    </aside>
-
-    <main class="main" id="content">
-      <!-- Hero Section -->
-      <section class="hero-section" id="top">
-        <canvas class="hero-section__canvas" aria-hidden="true"></canvas>
-        <div class="hero-section__content">
-          <div class="hero-section__text">
-            <p class="hero-section__greeting" data-hero-item>Hi there! 👋🏾</p>
-            <h1 class="hero-section__name" data-hero-item>I'm Jesse Chumo</h1>
-            <h2 class="hero-section__role" data-hero-item>
-              Software Engineer &amp; <span class="text-gradient">ML Researcher</span>
-            </h2>
-            <p class="hero-section__description" data-hero-item>
-              Building scalable systems, crafting secure authentication, and
-              exploring the frontiers of machine learning.
-            </p>
-            <div class="hero-section__actions" data-hero-item>
-              <a href="#contact" class="btn btn--primary">Let's Connect</a>
-              <a href="#projects" class="btn btn--outline">View Work</a>
-            </div>
-            <div class="hero-section__meta" data-hero-item>
-              <span class="status-pill"><span class="status-pill__dot" aria-hidden="true"></span>Open to new opportunities</span>
-              <span class="hero-section__location">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" /><circle cx="12" cy="10" r="3" /></svg>
-                Dallas, TX
-              </span>
-            </div>
-            <div class="hero-section__social" data-hero-item>
-              <a href="https://github.com/jessechumo" target="_blank" rel="noopener noreferrer">GitHub</a>
-              <span aria-hidden="true">•</span>
-              <a href="https://linkedin.com/in/jessechumo" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-              <span aria-hidden="true">•</span>
-              <a href="https://twitter.com/jessechumo" target="_blank" rel="noopener noreferrer">Twitter</a>
-            </div>
-          </div>
-
-          <div class="hero-section__visual" data-hero-item>
-            <div class="portrait">
-              <div class="portrait__ring" aria-hidden="true"></div>
-              <div class="portrait__mask">
-                <img src="/img/jesse.jpg" alt="Jesse Chumo" class="portrait__image" width="878" height="1319" fetchpriority="high" />
-              </div>
-              <span class="portrait__chip portrait__chip--edu">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 10 12 5 2 10l10 5 10-5z" /><path d="M6 12v5c3 3 9 3 12 0v-5" /></svg>
-                M.S. CS · UT Arlington
-              </span>
-              <span class="portrait__chip portrait__chip--code">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="16 18 22 12 16 6" /><polyline points="8 6 2 12 8 18" /></svg>
-                Go · Python · TypeScript
-              </span>
-              <span class="portrait__chip portrait__chip--ml">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="3" /><circle cx="6" cy="12" r="3" /><circle cx="18" cy="19" r="3" /><line x1="8.59" y1="13.51" x2="15.42" y2="17.49" /><line x1="15.41" y1="6.51" x2="8.59" y2="10.49" /></svg>
-                GNN robustness research
-              </span>
-            </div>
-          </div>
+    <main id="main">
+      <!-- ============================================================ hero -->
+      <section class="hero" id="top" aria-label="Introduction">
+        <canvas class="hero__net" aria-hidden="true"></canvas>
+        <div class="hero__portrait">
+          <img src="/img/jesse.jpg" alt="Portrait of Jesse Chumo" width="878" height="1319" fetchpriority="high" />
         </div>
-        <a href="#about" class="scroll-cue" aria-label="Scroll to About">
-          <span class="scroll-cue__mouse" aria-hidden="true"></span>
-        </a>
-      </section>
 
-      <!-- About Section -->
-      <section id="about" class="section about-section">
-        <div class="section__container">
-          <h2 class="section-heading" data-reveal>
-            <span class="section-number">01.</span>
-            <span class="section-title">About Me</span>
-            <span class="section-line" aria-hidden="true"></span>
-          </h2>
-          <div class="about-section__content">
-            <div class="about-section__text" data-reveal>
-              <p>
-                A software engineer passionate about building robust, scalable
-                systems. I thrive in fast-paced environments where I can solve
-                complex problems and deliver high-quality solutions.
-              </p>
-              <p>
-                I graduated with a <strong>Master's in Computer Science</strong> from the
-                <strong>University of Texas at Arlington</strong>. My thesis, done in the
-                Cyber-Physical Systems Security Lab, evaluated how well GNN-based
-                vulnerability detectors hold up when code is deliberately obfuscated.
-              </p>
-              <p>
-                Along the way I've shipped production healthcare and fintech platforms,
-                kept Linux infrastructure running for more than 1,000 users, and built
-                tools that sit where backend engineering, cloud infrastructure and
-                machine learning meet.
-              </p>
-              <p>Here are a few technologies I've been working with recently:</p>
-              <ul class="tech-list">
-                <li>Go</li>
-                <li>Python</li>
-                <li>TypeScript &amp; Node.js</li>
-                <li>React &amp; React Native</li>
-                <li>Kubernetes &amp; Docker</li>
-                <li>AWS &amp; Terraform</li>
-                <li>PyTorch &amp; TensorFlow</li>
-                <li>LangChain &amp; LangGraph</li>
-              </ul>
-            </div>
-            <div class="about-section__visual" data-reveal style="--reveal-delay: 120ms">
-              <div class="window code-window" data-code-window>
-                <noscript>
-                  <pre class="code-window__fallback">const jesse = { role: 'Software Engineer', location: 'Dallas, TX' };</pre>
-                </noscript>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Experience Section -->
-      <section id="experience" class="section experience-section">
-        <div class="section__container">
-          <h2 class="section-heading" data-reveal>
-            <span class="section-number">02.</span>
-            <span class="section-title">Work Experience</span>
-            <span class="section-line" aria-hidden="true"></span>
-          </h2>
-          <div class="experience-section__content" data-reveal>
-            <div class="experience-tabs" role="tablist" aria-label="Jobs">
-              <!-- Tabs are rendered by render.js -->
-            </div>
-            <div class="experience-panels">
-              <!-- Panels are rendered by render.js -->
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Projects Section -->
-      <section id="projects" class="section projects-section">
-        <div class="section__container">
-          <h2 class="section-heading" data-reveal>
-            <span class="section-number">03.</span>
-            <span class="section-title">Some Things I've Built</span>
-            <span class="section-line" aria-hidden="true"></span>
-          </h2>
-          <ul class="featured-list">
-            <!-- Featured projects are rendered by render.js -->
-          </ul>
-
-          <div class="projects-section__more" data-reveal>
-            <h3 class="projects-section__subtitle">Other Noteworthy Projects</h3>
-            <a class="inline-link" href="https://github.com/jessechumo?tab=repositories" target="_blank" rel="noopener noreferrer">
-              view all on GitHub
-            </a>
-          </div>
-          <ul class="projects-grid">
-            <!-- Project cards are rendered by render.js -->
-          </ul>
-        </div>
-      </section>
-
-      <!-- Contact Section -->
-      <section id="contact" class="section contact-section">
-        <div class="contact-section__container" data-reveal>
-          <p class="contact-section__overline"><span class="section-number">04.</span>What's Next?</p>
-          <h2 class="contact-section__title">Get In Touch</h2>
-          <p class="contact-section__text">
-            I'm currently looking for new opportunities. Whether you have a role
-            in mind, a question, or just want to say hi, my inbox is always open
-            and I'll get back to you.
+        <div class="hero__copy">
+          <h1 class="hero__name">Jesse<br />Chumo</h1>
+          <p class="hero__lead">
+            Software engineer building machine learning systems and the Linux
+            infrastructure underneath them.
           </p>
-          <div class="contact-section__actions">
-            <a href="mailto:jessechumo@gmail.com" class="btn btn--primary btn--large">Say Hello</a>
-            <button type="button" class="copy-email" data-copy-email aria-label="Copy email address">
-              <span class="copy-email__address">jessechumo@gmail.com</span>
-              <span class="copy-email__icon" aria-hidden="true">
-                <svg class="copy-email__copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2" /><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" /></svg>
-                <svg class="copy-email__check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12" /></svg>
+          <ul class="hero__facts meta">
+            <li>Dallas, TX</li>
+            <li>M.S. Computer Science, UT Arlington</li>
+            <li>Open to new roles</li>
+          </ul>
+          <p class="hero__actions">
+            <a class="link" href="#work">Selected work <span class="arrow" aria-hidden="true">↓</span></a>
+            <a class="link" href="#contact">Get in touch <span class="arrow" aria-hidden="true">→</span></a>
+          </p>
+        </div>
+      </section>
+
+      <!-- ============================================================ work -->
+      <section class="section" id="work" aria-labelledby="work-title">
+        <header class="section__side">
+          <p class="section__path">~/work</p>
+          <p class="section__note">Six repositories pinned on my GitHub. The first three in some depth.</p>
+        </header>
+
+        <div class="section__main">
+          <h2 class="section__title" id="work-title" data-reveal>Selected work</h2>
+
+          <!-- 01 Wera -->
+          <article class="project" id="wera" data-reveal>
+            <header class="project__head">
+              <span class="project__index">01</span>
+              <h3 class="project__name">Wera</h3>
+              <p class="project__meta meta">2026 / Go</p>
+            </header>
+            <p class="project__lead">
+              A self-hosted job radar. It watches the job boards of 570+ companies,
+              filters new postings with rules, and has an LLM score each one against a
+              resume.
+            </p>
+
+            <a class="shot" href="https://wera-frontend-five.vercel.app/" target="_blank" rel="noopener"
+              aria-label="Open the Wera website">
+              <span class="shot__frame">
+                <img src="/img/projects/wera.webp" alt="The Wera landing page" loading="lazy" decoding="async" width="1280" height="4641" />
               </span>
-            </button>
+              <span class="shot__caption meta"><span>wera-frontend-five.vercel.app</span><span>hover to scroll</span></span>
+            </a>
+
+            <div class="project__body">
+              <p>
+                The interesting problem is cost. Postings are fetched once for everyone,
+                unchanged boards cost nothing, and most jobs are ranked or ruled out locally
+                before a model gets involved, so the LLM reads each posting once rather than
+                once per user.
+              </p>
+            </div>
+
+            <figure class="figure">
+              <ol class="pipeline">
+                <li class="pipeline__stage">
+                  <span class="pipeline__step">01</span>
+                  <h4>Fetch boards</h4>
+                  <p>ETags on every request. An unchanged board answers 304.</p>
+                  <span class="pipeline__cost">0 bytes if unchanged</span>
+                </li>
+                <li class="pipeline__stage">
+                  <span class="pipeline__step">02</span>
+                  <h4>Store changes</h4>
+                  <p>Content hash per posting; only new or changed rows are written.</p>
+                  <span class="pipeline__cost">shared by all users</span>
+                </li>
+                <li class="pipeline__stage">
+                  <span class="pipeline__step">03</span>
+                  <h4>Rule filter</h4>
+                  <p>Role, seniority, location and sponsorship rules, per user.</p>
+                  <span class="pipeline__cost">40k jobs in 4 s</span>
+                </li>
+                <li class="pipeline__stage">
+                  <span class="pipeline__step">04</span>
+                  <h4>Local ranking</h4>
+                  <p>TF-IDF against the profile, so a new user sees ranked jobs in seconds.</p>
+                  <span class="pipeline__cost">no model</span>
+                </li>
+                <li class="pipeline__stage pipeline__stage--model">
+                  <span class="pipeline__step">05</span>
+                  <h4>Shared facts</h4>
+                  <p>One LLM call per posting version: seniority, years, sponsorship.</p>
+                  <span class="pipeline__cost">1 call, every user</span>
+                </li>
+                <li class="pipeline__stage">
+                  <span class="pipeline__step">06</span>
+                  <h4>Fact exclusions</h4>
+                  <p>Too senior, too many years, no sponsorship: dropped before scoring.</p>
+                  <span class="pipeline__cost">about half drop out</span>
+                </li>
+                <li class="pipeline__stage pipeline__stage--model">
+                  <span class="pipeline__step">07</span>
+                  <h4>Fit score</h4>
+                  <p>A compact job card and profile, with a cached prompt prefix.</p>
+                  <span class="pipeline__cost">≈ $0.0004 per job</span>
+                </li>
+                <li class="pipeline__stage pipeline__stage--out">
+                  <span class="pipeline__step">→</span>
+                  <h4>Ranked list</h4>
+                  <p>Today, jobs, industries and an application tracker.</p>
+                </li>
+              </ol>
+              <figcaption><span class="figure__no">Fig. 1</span> Wera's matching pipeline. Only the highlighted
+                steps call a model; the rest is shared across users or runs locally.</figcaption>
+            </figure>
+
+            <dl class="results">
+              <div class="results__row">
+                <dt>New user sees ranked jobs</dt>
+                <dd>~5 s</dd>
+                <dd class="results__was">was 5 min</dd>
+              </div>
+              <div class="results__row">
+                <dt>Cost of a fit call</dt>
+                <dd>$0.00038</dd>
+                <dd class="results__was">was $0.00075</dd>
+              </div>
+              <div class="results__row">
+                <dt>Re-filter 43,732 jobs</dt>
+                <dd>4.1 s</dd>
+                <dd class="results__was">was 9.3 s</dd>
+              </div>
+              <div class="results__row">
+                <dt>Ruled out before any fit call</dt>
+                <dd>22 of 46</dd>
+                <dd class="results__was">sample run</dd>
+              </div>
+            </dl>
+            <p class="results__note meta">Measured on development data.</p>
+
+            <footer class="project__foot">
+              <p class="meta">Go / PostgreSQL / Docker / nginx / LLM inference / Chrome extension</p>
+              <p class="project__links">
+                <a class="link" href="https://github.com/jessechumo/Wera" target="_blank" rel="noopener">Source <span class="arrow" aria-hidden="true">↗</span></a>
+                <a class="link" href="https://wera-frontend-five.vercel.app/" target="_blank" rel="noopener">Live <span class="arrow" aria-hidden="true">↗</span></a>
+              </p>
+            </footer>
+          </article>
+
+          <!-- 02 Pulse Platform -->
+          <article class="project" id="pulse" data-reveal>
+            <header class="project__head">
+              <span class="project__index">02</span>
+              <h3 class="project__name">Pulse Platform</h3>
+              <p class="project__meta meta">2026 / Python</p>
+            </header>
+            <p class="project__lead">
+              A deliberately boring FastAPI service, run like production. The app is not
+              the point; everything around it is.
+            </p>
+            <div class="project__body">
+              <p>
+                Kubernetes manifests and a Helm chart, Terraform for the same setup on AWS
+                (VPC, EKS, RDS), CI that tests against real Postgres and Redis and scans
+                images with Trivy, Prometheus and Grafana with two SLO alerts, and Locust
+                load tests next to chaos scripts that kill app pods and the database.
+              </p>
+            </div>
+
+            <figure class="figure figure--scroll">
+              <div class="figure__canvas" tabindex="0" role="region" aria-label="Figure 2: pulse-platform architecture">
+                <svg class="diagram" viewBox="0 0 940 384" role="img" aria-labelledby="fig2-title">
+                  <title id="fig2-title">pulse-platform architecture on Kubernetes</title>
+                  <defs>
+                    <marker id="arw" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                      <path d="M0 0L10 5L0 10z" class="diagram__head" />
+                    </marker>
+                  </defs>
+                  <rect class="diagram__zone" x="158" y="18" width="774" height="334" />
+                  <text class="diagram__zone-label" x="172" y="40">kubernetes / namespace pulse</text>
+
+                  <path class="diagram__edge" d="M130 186H180" marker-end="url(#arw)" />
+                  <path class="diagram__edge" d="M300 186H350" marker-end="url(#arw)" />
+                  <path class="diagram__edge" d="M490 186H570" marker-end="url(#arw)" />
+                  <path class="diagram__edge" d="M700 186H770" marker-end="url(#arw)" />
+                  <path class="diagram__edge" d="M420 160V84H570" marker-end="url(#arw)" />
+                  <path class="diagram__edge" d="M845 160V84H700" marker-end="url(#arw)" />
+                  <path class="diagram__edge" d="M420 212V290" marker-end="url(#arw)" />
+                  <path class="diagram__edge" d="M490 316H570" marker-end="url(#arw)" />
+                  <path class="diagram__edge" d="M455 342V368H845V342" marker-end="url(#arw)" />
+
+                  <text class="diagram__label" x="530" y="176" text-anchor="middle">enqueue</text>
+                  <text class="diagram__label" x="735" y="176" text-anchor="middle">consume</text>
+                  <text class="diagram__label" x="495" y="76" text-anchor="middle">read / write</text>
+                  <text class="diagram__label" x="772" y="76" text-anchor="middle">write</text>
+                  <text class="diagram__label" x="430" y="256">scrape</text>
+                  <text class="diagram__label" x="650" y="362" text-anchor="middle">alert when an SLO breaks</text>
+
+                  <g class="diagram__node"><rect x="20" y="160" width="110" height="52" /><text x="34" y="183">client</text><text class="diagram__sub" x="34" y="200">https</text></g>
+                  <g class="diagram__node"><rect x="180" y="160" width="120" height="52" /><text x="194" y="183">ingress</text><text class="diagram__sub" x="194" y="200">nginx</text></g>
+                  <g class="diagram__node diagram__node--hot"><rect x="350" y="160" width="140" height="52" /><text x="364" y="183">pulse-app</text><text class="diagram__sub" x="364" y="200">fastapi / hpa ×2</text></g>
+                  <g class="diagram__node"><rect x="570" y="160" width="130" height="52" /><text x="584" y="183">redis</text><text class="diagram__sub" x="584" y="200">arq job queue</text></g>
+                  <g class="diagram__node diagram__node--hot"><rect x="770" y="160" width="150" height="52" /><text x="784" y="183">pulse-worker</text><text class="diagram__sub" x="784" y="200">hpa ×2</text></g>
+                  <g class="diagram__node"><rect x="570" y="58" width="130" height="52" /><text x="584" y="81">postgres</text><text class="diagram__sub" x="584" y="98">alembic / jsonb</text></g>
+                  <g class="diagram__node"><rect x="350" y="290" width="140" height="52" /><text x="364" y="313">prometheus</text><text class="diagram__sub" x="364" y="330">/metrics</text></g>
+                  <g class="diagram__node"><rect x="570" y="290" width="130" height="52" /><text x="584" y="313">grafana</text><text class="diagram__sub" x="584" y="330">dashboard</text></g>
+                  <g class="diagram__node"><rect x="770" y="290" width="150" height="52" /><text x="784" y="313">alertmanager</text><text class="diagram__sub" x="784" y="330">2 slo alerts</text></g>
+
+                  <text class="diagram__note" x="20" y="250">terraform:</text>
+                  <text class="diagram__note" x="20" y="266">vpc / eks / rds</text>
+
+                  <!-- negative begin times start each signal mid-flight, so none waits at the origin -->
+                  <g class="diagram__signals" aria-hidden="true">
+                    <circle r="3.5"><animateMotion dur="2.6s" repeatCount="indefinite" path="M130 186H350" /></circle>
+                    <circle r="3.5"><animateMotion dur="2.6s" begin="-1.3s" repeatCount="indefinite" path="M490 186H770" /></circle>
+                    <circle r="3.5"><animateMotion dur="3.2s" begin="-0.6s" repeatCount="indefinite" path="M845 160V84H700" /></circle>
+                    <circle r="3.5"><animateMotion dur="3.4s" begin="-1.8s" repeatCount="indefinite" path="M420 160V84H570" /></circle>
+                    <circle r="3.5"><animateMotion dur="2.2s" begin="-0.9s" repeatCount="indefinite" path="M420 212V290" /></circle>
+                  </g>
+                </svg>
+              </div>
+              <p class="figure__pan meta" aria-hidden="true">swipe to pan the diagram →</p>
+              <figcaption><span class="figure__no">Fig. 2</span> Requests reach pulse-app through the ingress;
+                background work is queued in Redis for pulse-worker. Prometheus scrapes the app and
+                Alertmanager fires when either SLO is breached.</figcaption>
+            </figure>
+
+            <dl class="facts">
+              <div><dt>SLOs</dt><dd>99.5% availability, p95 under 300 ms</dd></div>
+              <div><dt>Chaos</dt><dd>kill an app pod, kill Postgres, watch it recover</dd></div>
+              <div><dt>IaC</dt><dd>Terraform for VPC, EKS and RDS; raw manifests and Helm</dd></div>
+            </dl>
+
+            <footer class="project__foot">
+              <p class="meta">Python / FastAPI / Kubernetes / Helm / Terraform / Prometheus / Grafana</p>
+              <p class="project__links">
+                <a class="link" href="https://github.com/jessechumo/pulse-platform" target="_blank" rel="noopener">Source <span class="arrow" aria-hidden="true">↗</span></a>
+              </p>
+            </footer>
+          </article>
+
+          <!-- 03 GraphSentinel -->
+          <article class="project" id="graphsentinel" data-reveal>
+            <header class="project__head">
+              <span class="project__index">03</span>
+              <h3 class="project__name">GraphSentinel</h3>
+              <p class="project__meta meta">2026 / Go</p>
+            </header>
+            <p class="project__lead">
+              Research tooling from my thesis: a Go service that flags
+              semantics-preserving obfuscation in source code.
+            </p>
+            <div class="project__body">
+              <p>
+                Submit code and get back a machine-readable report: does it look like
+                identifiers were renamed, dead code was inserted, or control flow was
+                reshaped, with a score for each. Jobs run asynchronously on a worker pool, so
+                it can sit inside larger evaluation pipelines.
+              </p>
+            </div>
+
+            <figure class="figure figure--scroll">
+              <div class="figure__canvas" tabindex="0" role="region" aria-label="Figure 3: GraphSentinel request lifecycle">
+                <svg class="diagram" viewBox="0 0 1010 268" role="img" aria-labelledby="fig3-title">
+                  <title id="fig3-title">GraphSentinel request lifecycle</title>
+                  <defs>
+                    <marker id="arw3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                      <path d="M0 0L10 5L0 10z" class="diagram__head" />
+                    </marker>
+                  </defs>
+                  <path class="diagram__edge" d="M140 120H270" marker-end="url(#arw3)" />
+                  <path class="diagram__edge" d="M270 146H140" marker-end="url(#arw3)" />
+                  <path class="diagram__edge" d="M410 133H480" marker-end="url(#arw3)" />
+                  <path class="diagram__edge" d="M630 133C665 133 665 46 700 46" marker-end="url(#arw3)" />
+                  <path class="diagram__edge" d="M630 133H700" marker-end="url(#arw3)" />
+                  <path class="diagram__edge" d="M630 133C665 133 665 220 700 220" marker-end="url(#arw3)" />
+                  <path class="diagram__edge" d="M870 46C885 46 885 133 900 133" marker-end="url(#arw3)" />
+                  <path class="diagram__edge" d="M870 133H900" marker-end="url(#arw3)" />
+                  <path class="diagram__edge" d="M870 220C885 220 885 133 900 133" marker-end="url(#arw3)" />
+
+                  <text class="diagram__label" x="205" y="110" text-anchor="middle">POST /analyze</text>
+                  <text class="diagram__label" x="205" y="166" text-anchor="middle">202, then 200</text>
+                  <text class="diagram__label" x="445" y="123" text-anchor="middle">enqueue</text>
+
+                  <g class="diagram__node"><rect x="10" y="105" width="130" height="56" /><text x="24" y="129">client</text><text class="diagram__sub" x="24" y="147">polls /analysis</text></g>
+                  <g class="diagram__node"><rect x="270" y="105" width="140" height="56" /><text x="284" y="129">http api</text><text class="diagram__sub" x="284" y="147">chi / slog</text></g>
+                  <g class="diagram__node diagram__node--hot"><rect x="480" y="105" width="150" height="56" /><text x="494" y="129">worker pool</text><text class="diagram__sub" x="494" y="147">queued → done</text></g>
+                  <g class="diagram__node"><rect x="700" y="22" width="170" height="48" /><text x="714" y="43">identifier renaming</text><text class="diagram__sub" x="714" y="59">signal + score</text></g>
+                  <g class="diagram__node"><rect x="700" y="109" width="170" height="48" /><text x="714" y="130">dead code</text><text class="diagram__sub" x="714" y="146">signal + score</text></g>
+                  <g class="diagram__node"><rect x="700" y="196" width="170" height="48" /><text x="714" y="217">control-flow drift</text><text class="diagram__sub" x="714" y="233">signal + score</text></g>
+                  <g class="diagram__node diagram__node--hot"><rect x="900" y="105" width="100" height="56" /><text x="914" y="129">report</text><text class="diagram__sub" x="914" y="147">json</text></g>
+
+                  <g class="diagram__signals" aria-hidden="true">
+                    <circle r="3.5"><animateMotion dur="3s" repeatCount="indefinite" path="M140 120H270M410 133H480" /></circle>
+                    <circle r="3.5"><animateMotion dur="3s" begin="-1s" repeatCount="indefinite" path="M630 133C665 133 665 46 700 46M870 46C885 46 885 133 900 133" /></circle>
+                    <circle r="3.5"><animateMotion dur="3s" begin="-1.6s" repeatCount="indefinite" path="M630 133H700M870 133H900" /></circle>
+                    <circle r="3.5"><animateMotion dur="3s" begin="-2.2s" repeatCount="indefinite" path="M630 133C665 133 665 220 700 220M870 220C885 220 885 133 900 133" /></circle>
+                  </g>
+                </svg>
+              </div>
+              <p class="figure__pan meta" aria-hidden="true">swipe to pan the diagram →</p>
+              <figcaption><span class="figure__no">Fig. 3</span> A submission is accepted with
+                <code>202</code>, analysed by three detectors on the worker pool, and polled for its
+                report.</figcaption>
+            </figure>
+
+            <footer class="project__foot">
+              <p class="meta">Go / chi / slog / worker pools / Docker</p>
+              <p class="project__links">
+                <a class="link" href="https://github.com/jessechumo/GraphSentinel" target="_blank" rel="noopener">Source <span class="arrow" aria-hidden="true">↗</span></a>
+                <a class="link" href="#research">The research <span class="arrow" aria-hidden="true">↓</span></a>
+              </p>
+            </footer>
+          </article>
+
+          <!-- 04-06 -->
+          <div class="more" data-reveal>
+            <h3 class="more__title meta">Also pinned</h3>
+            <ul class="more__list">
+              <li>
+                <a class="more__row" href="https://github.com/jessechumo/InkSpector" target="_blank" rel="noopener">
+                  <span class="more__index">04</span>
+                  <span class="more__name">InkSpector</span>
+                  <span class="more__desc">Siamese CNN that tells genuine signatures from forgeries by comparing pairs. 97.14% validation accuracy.</span>
+                  <span class="more__stack">Python / TensorFlow</span>
+                  <span class="more__year">2025 <span class="arrow" aria-hidden="true">↗</span></span>
+                </a>
+              </li>
+              <li>
+                <a class="more__row" href="https://github.com/jessechumo/RescueBites" target="_blank" rel="noopener">
+                  <span class="more__index">05</span>
+                  <span class="more__name">RescueBites</span>
+                  <span class="more__desc">React Native app that routes surplus food from donors to people who need it, with QR-confirmed pickups.</span>
+                  <span class="more__stack">React Native / Firebase</span>
+                  <span class="more__year">2025 <span class="arrow" aria-hidden="true">↗</span></span>
+                </a>
+              </li>
+              <li>
+                <a class="more__row" href="https://github.com/jessechumo/Treep" target="_blank" rel="noopener">
+                  <span class="more__index">06</span>
+                  <span class="more__name">Treep</span>
+                  <span class="more__desc">Travel. Eat. Repeat. A social network for travellers, with real-time chat.</span>
+                  <span class="more__stack">Node / MongoDB / Socket.io</span>
+                  <span class="more__year">2020 <span class="arrow" aria-hidden="true">↗</span></span>
+                </a>
+              </li>
+            </ul>
           </div>
+        </div>
+      </section>
+
+      <!-- ======================================================== research -->
+      <section class="section" id="research" aria-labelledby="research-title">
+        <header class="section__side">
+          <p class="section__path">~/research</p>
+          <p class="section__note">M.S. thesis, Cyber-Physical Systems Security Lab, UT Arlington, 2026.</p>
+        </header>
+
+        <div class="section__main">
+          <h2 class="section__title" id="research-title" data-reveal>Do vulnerability detectors survive obfuscation?</h2>
+          <p class="research__thesis" data-reveal>
+            <span class="meta">Thesis</span>
+            Evaluating the Robustness of GNN Vulnerability Detectors Under Code Obfuscation
+          </p>
+          <div class="research__body" data-reveal>
+            <p>
+              Graph neural networks can look very good at spotting vulnerable code on clean
+              benchmarks. Real code is messier, and sometimes deliberately disguised. My
+              thesis evaluates how these detectors behave when code is transformed in ways
+              that keep its behaviour identical: renamed identifiers, dead branches,
+              reshaped control flow.
+            </p>
+          </div>
+
+          <figure class="figure diff" data-reveal>
+            <div class="diff__tabs" role="tablist" aria-label="Obfuscation">
+              <button class="diff__tab" role="tab" aria-selected="false" data-variant="rename">rename identifiers</button>
+              <button class="diff__tab" role="tab" aria-selected="false" data-variant="dead">insert dead code</button>
+              <button class="diff__tab" role="tab" aria-selected="false" data-variant="flow">reshape control flow</button>
+              <button class="diff__tab" role="tab" aria-selected="true" data-variant="all">all three</button>
+            </div>
+            <div class="diff__panes">
+              <div class="diff__pane">
+                <p class="diff__file meta">original.c</p>
+<pre class="diff__code"><code><span class="diff__line">int sum(int n) {</span><span class="diff__line">    int total = 0;</span><span class="diff__line">    for (int i = 0; i &lt; n; i++)</span><span class="diff__line">        total += i;</span><span class="diff__line">    return total;</span><span class="diff__line">}</span></code></pre>
+              </div>
+              <div class="diff__pane" role="tabpanel" aria-live="polite">
+                <p class="diff__file meta">obfuscated.c</p>
+<pre class="diff__code" data-diff-out><code><span class="diff__line is-changed">int f_3a(int v_1) {</span><span class="diff__line is-changed">    int v_9 = 0, v_2 = 0;</span><span class="diff__line is-changed">    if (v_1 &lt; 0 &amp;&amp; v_1 &gt; 0)</span><span class="diff__line is-changed">        v_9 = v_1 * 7;</span><span class="diff__line is-changed">    while (1) {</span><span class="diff__line is-changed">        if (v_2 &gt;= v_1) break;</span><span class="diff__line is-changed">        v_9 += v_2;</span><span class="diff__line is-changed">        v_2++;</span><span class="diff__line">    }</span><span class="diff__line is-changed">    return v_9;</span><span class="diff__line">}</span></code></pre>
+              </div>
+            </div>
+            <figcaption><span class="figure__no">Fig. 4</span> <span data-diff-caption>All three
+              transformations at once. The function still returns the same value for every input; the
+              question is whether a detector's prediction moves.</span></figcaption>
+          </figure>
+
+          <p class="research__more" data-reveal>
+            <a class="link" href="#graphsentinel">GraphSentinel</a> is the service I built to flag these
+            transformations automatically, so experiments can run over whole datasets.
+          </p>
+        </div>
+      </section>
+
+      <!-- ====================================================== experience -->
+      <section class="section" id="experience" aria-labelledby="experience-title">
+        <header class="section__side">
+          <p class="section__path">~/experience</p>
+          <p class="section__note">Since 2022: fintech, healthcare, e-commerce, and university infrastructure.</p>
+        </header>
+
+        <div class="section__main">
+          <h2 class="section__title" id="experience-title" data-reveal>Experience</h2>
+
+          <ol class="jobs">
+            <li class="job" data-reveal>
+              <p class="job__when meta">Aug 2025 — present</p>
+              <div class="job__body">
+                <h3 class="job__role">Systems Administrator</h3>
+                <p class="job__org"><a class="link" href="https://www.uta.edu/" target="_blank" rel="noopener">University of Texas at Arlington</a> <span class="meta">Arlington, TX</span></p>
+                <ul class="job__points">
+                  <li>Managed VirtualBox lab environments on RHEL hosts supporting Windows, Fedora, and Kali Linux VMs and their snapshots for hands-on cybersecurity instruction, enabling reliable and repeatable student security experiments.</li>
+                  <li>Owned and maintained Linux-based lab infrastructure and two department RHEL production servers supporting 1,000+ users, diagnosing virtualization and software issues to ensure stable service delivery for students, faculty, and researchers.</li>
+                  <li>Designed and deployed an AI experimentation lab using RAG, LangChain, and LangGraph, enabling students and researchers to run LLM experiments on applied AI workflows.</li>
+                  <li>Built Python tooling to automate software provisioning and installation workflows across lab machines, eliminating repetitive manual setup and improving consistency across environments.</li>
+                </ul>
+                <p class="job__stack meta">RHEL / Linux / VirtualBox / Python / RAG / LangChain / LangGraph</p>
+              </div>
+            </li>
+            <li class="job" data-reveal>
+              <p class="job__when meta">Jan 2025 — Aug 2025</p>
+              <div class="job__body">
+                <h3 class="job__role">Graduate Teaching Assistant</h3>
+                <p class="job__org"><a class="link" href="https://www.uta.edu/" target="_blank" rel="noopener">University of Texas at Arlington</a> <span class="meta">Arlington, TX</span></p>
+                <ul class="job__points">
+                  <li>Achieved a 15% improvement in average student performance for the Algorithms course by providing tutoring and office hours focused on core concepts.</li>
+                  <li>Reduced recurring coding errors and improved code quality by 20% by delivering detailed feedback on C programming assignments and reinforcing best practices.</li>
+                  <li>Elevated student satisfaction to 90% by facilitating collaborative debugging sessions and structured code reviews.</li>
+                </ul>
+                <p class="job__stack meta">Algorithms / C / Code review</p>
+              </div>
+            </li>
+            <li class="job" data-reveal>
+              <p class="job__when meta">Aug 2023 — Aug 2024</p>
+              <div class="job__body">
+                <h3 class="job__role">Full Stack Developer</h3>
+                <p class="job__org"><a class="link" href="https://fasihealth.com/" target="_blank" rel="noopener">Fasi Health</a> <span class="meta">Remote</span></p>
+                <ul class="job__points">
+                  <li>Built and maintained full-stack features across patient, driver, and admin workflows using NestJS, TypeScript, React, GraphQL, and PostgreSQL, supporting core business operations in a production healthcare platform.</li>
+                  <li>Developed a React Native/Expo mobile app for a ride-hailing service, translating UI designs into functional screens and integrating REST and GraphQL APIs for real-time data flow.</li>
+                  <li>Engineered backend infrastructure including NestJS services, GraphQL resolvers, Prisma migrations on a Dockerized PostgreSQL database, AWS Cognito for authentication, S3 for document and media storage, and payment platform integrations.</li>
+                  <li>Built CI/CD pipelines with GitHub Actions and AWS Elastic Beanstalk, reducing deployment time by 50% and improving release reliability.</li>
+                  <li>Contributed to Agile delivery through sprint planning, code reviews, and merge request approvals, supporting consistent and reliable feature releases.</li>
+                </ul>
+                <p class="job__stack meta">NestJS / TypeScript / React / React Native / GraphQL / PostgreSQL / Prisma / Docker / AWS / GitHub Actions</p>
+              </div>
+            </li>
+            <li class="job" data-reveal>
+              <p class="job__when meta">Nov 2022 — Jul 2023</p>
+              <div class="job__body">
+                <h3 class="job__role">Front End Web Developer</h3>
+                <p class="job__org"><a class="link" href="https://fameve.com/" target="_blank" rel="noopener">Fameve</a> <span class="meta">Remote</span></p>
+                <ul class="job__points">
+                  <li>Reduced production issues by 60% by implementing automated testing and improving code quality in an Angular-based e-commerce platform.</li>
+                  <li>Developed modular React and Angular components for core e-commerce workflows, consuming REST APIs for data rendering and collaborating with backend engineers to ensure reliable end-to-end feature delivery.</li>
+                </ul>
+                <p class="job__stack meta">Angular / React / REST / Automated testing</p>
+              </div>
+            </li>
+            <li class="job" data-reveal>
+              <p class="job__when meta">May 2022 — Nov 2022</p>
+              <div class="job__body">
+                <h3 class="job__role">Software Development Intern</h3>
+                <p class="job__org"><a class="link" href="https://jambopay.com/" target="_blank" rel="noopener">JamboPay</a> <span class="meta">Nairobi, Kenya</span></p>
+                <ul class="job__points">
+                  <li>Built REST API endpoints for a fintech payment platform using NestJS, supporting transaction processing workflows in a production environment.</li>
+                  <li>Designed and optimized SQL queries to surface transaction data for admin reporting, improving operational visibility into payment workflows.</li>
+                </ul>
+                <p class="job__stack meta">NestJS / REST / SQL</p>
+              </div>
+            </li>
+          </ol>
+
+          <div class="education" data-reveal>
+            <h3 class="education__title meta">Education</h3>
+            <ol class="education__list">
+              <li>
+                <p class="job__when meta">2024 — 2026</p>
+                <p><strong>M.S. Computer Science</strong>, University of Texas at Arlington</p>
+              </li>
+              <li>
+                <p class="job__when meta">2018 — 2021</p>
+                <p><strong>B.S. Information Technology</strong>, Kabarak University, Nakuru, Kenya</p>
+              </li>
+            </ol>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================== about -->
+      <section class="section" id="about" aria-labelledby="about-title">
+        <header class="section__side">
+          <p class="section__path">~/about</p>
+          <p class="section__note">Who's at the keyboard.</p>
+        </header>
+
+        <div class="section__main">
+          <h2 class="section__title" id="about-title" data-reveal>About</h2>
+
+          <div class="neofetch" data-reveal>
+            <p class="neofetch__prompt" aria-hidden="true"><span class="accent">jesse@chumo</span>:~$ neofetch</p>
+            <div class="neofetch__out">
+<pre class="neofetch__art" aria-hidden="true">                       :::::::::
+                   ::.......:::::...
+                  .........,::;--===-;.
+                :..,;-=+=+++++===++++**=.
+               :..:;:::;----====++====+**.
+               ...;::;;-=++++#%##@@@@@%##*,
+              :..,:;;-=++*###%@@%@@@@@@@%%*
+              :.,::;:;=++*#%%%%%%@@@@@@@%#%:
+               ..:;::;=*##%%%@@@%@@@@@#***#:
+               ..:-;:;=;,...,;+**#+;,.;+###,
+               ..;=-:..;.:#...;+@@*=:.. :+@#-
+             ,,+.;-==;.;,-@+;=*#@@@@@+*%@@@#-
+             .,+.;;=#@@#***@@**#@@@@@@@@@@@%
+              -,:,;-+%@@@@@@==*@@@@@@@@@@@@=
+               +*.,;-+#@@@#,,;:,;%*%@%*#@@@;
+                ;.,;;;;-+**#%*-=*+@@@@@#+#*
+                 ;.:::::-+*+++**#%%#*+@@@%
+                  :.,::;-;,.,:=+%%@@%*#@%;
+                ,.,,..,,::,:::;*@#%##@@#
+               .  .-;,...,;-;,..:=+%@@*
+             ;... :++-;.....-+%%#*#+-+.,
+            ;...,..:=+=-::..........=@..+
+        ::..........,;-----;:,.,+@@@@@..+=-
+    ::::,,,,,........,:;=*##++*#@@@@%..++==++--
+ ;:;;;;;----;::,........,-=*%%#%@@@+,;*=-===++==+=-
+;;;---=-:;--=;;-;;;,...... ..+@#*-;,..+=;-======+=+==-;
+;;;--;-=-,,;-=-----=-. ,,....,%;..-. .-=;:======+-;-===+-:
+::;-;-;--::;:;;;;;;-===;-;----:.+++=-:;-=-======+;;==--===
+,:,;-;;;=-;::;;--;;;;-==-;;;;=;,*==--+-=========-;--=;----
+,;..:=-::;--;;--==-;;;;;-=----.;*=-;-============--------:
+,;,..:=-;;;--=======----;--==-.-;=--===========---------:,
+:,,...;-;;;;;;;;-=========--=-.-:;=---========----------,;
+::....,::,....,..:--;--===--=+.;*==-=----====----------;;;
+,,....,,...,:;;;;,:-;:;------=,,+=---------------------;;;
+,.. .,,,.,,:::;;;-;;-;;------=:.=--;------------;------;;:</pre>
+              <div class="neofetch__info">
+                <p class="neofetch__title"><span class="accent">jesse</span>@<span class="accent">chumo</span></p>
+                <p class="neofetch__rule" aria-hidden="true">-----------</p>
+                <dl class="neofetch__list">
+                  <div><dt>OS</dt><dd>Linux (RHEL, Fedora, Kali)</dd></div>
+                  <div><dt>Host</dt><dd>Dallas, Texas</dd></div>
+                  <div><dt>Kernel</dt><dd>M.S. Computer Science, UTA 2026</dd></div>
+                  <div><dt>Uptime</dt><dd><span data-uptime="2022-05-01">4 years, 5 months</span> <span class="neofetch__dim">since first job</span></dd></div>
+                  <div><dt>Packages</dt><dd>python, go, typescript, c/c++, sql</dd></div>
+                  <div><dt>ML</dt><dd>pytorch, tensorflow, gnns, langchain, langgraph, rag</dd></div>
+                  <div><dt>Infra</dt><dd>kubernetes, docker, terraform, aws, github actions</dd></div>
+                  <div><dt>Data</dt><dd>postgresql, redis, mongodb, mysql</dd></div>
+                  <div><dt>Research</dt><dd>gnn robustness under code obfuscation</dd></div>
+                </dl>
+                <p class="neofetch__colors" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></p>
+              </div>
+            </div>
+          </div>
+
+          <div class="about__bio" data-reveal>
+            <p>
+              I started out writing payment APIs at JamboPay in Nairobi, then spent almost two
+              years building healthcare and e-commerce products for remote teams before a
+              master's in computer science at UT Arlington.
+            </p>
+            <p>
+              At UTA my thesis looked at graph neural networks for vulnerability detection, and I
+              look after the department's Linux lab infrastructure: RHEL servers used by more than
+              a thousand people, VM labs for security classes, and an AI lab built on RAG,
+              LangChain and LangGraph.
+            </p>
+            <p>
+              The work I enjoy most is where models meet machines: making LLM pipelines cheap
+              enough to run on everything, keeping a cluster healthy while pods die, and writing
+              the scripts that make a room full of Linux machines behave the same.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========================================================= contact -->
+      <section class="section contact" id="contact" aria-labelledby="contact-title">
+        <header class="section__side">
+          <p class="section__path">~/contact</p>
+          <p class="section__note">Dallas, Texas. US Central time.</p>
+        </header>
+
+        <div class="section__main">
+          <h2 class="contact__title" id="contact-title" data-reveal>Let's talk.</h2>
+          <p class="contact__text" data-reveal>
+            I'm looking for new opportunities, especially in ML systems, AI infrastructure and
+            platform engineering. Email is the fastest way to reach me.
+          </p>
+          <p class="contact__mail" data-reveal>
+            <a class="contact__address" href="mailto:jessechumo@gmail.com">jessechumo@gmail.com</a>
+            <button class="contact__copy meta" type="button" data-copy="jessechumo@gmail.com">copy</button>
+          </p>
+          <ul class="contact__links" data-reveal>
+            <li><a class="link" href="https://github.com/jessechumo" target="_blank" rel="noopener">GitHub <span class="arrow" aria-hidden="true">↗</span></a></li>
+            <li><a class="link" href="https://linkedin.com/in/jessechumo" target="_blank" rel="noopener">LinkedIn <span class="arrow" aria-hidden="true">↗</span></a></li>
+            <li><a class="link" href="https://twitter.com/jessechumo" target="_blank" rel="noopener">Twitter <span class="arrow" aria-hidden="true">↗</span></a></li>
+            <li><a class="link" href="/jessechumo.pdf" target="_blank" rel="noopener">Résumé <span class="arrow" aria-hidden="true">↗</span></a></li>
+          </ul>
         </div>
       </section>
     </main>
 
     <footer class="footer">
-      <div class="footer__container">
-        <ul class="footer__social">
-          <li>
-            <a href="https://github.com/jessechumo" target="_blank" rel="noopener noreferrer" aria-label="GitHub" class="footer__social-link">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" /></svg>
-            </a>
-          </li>
-          <li>
-            <a href="https://linkedin.com/in/jessechumo" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="footer__social-link">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" /><rect x="2" y="9" width="4" height="12" /><circle cx="4" cy="4" r="2" /></svg>
-            </a>
-          </li>
-          <li>
-            <a href="https://twitter.com/jessechumo" target="_blank" rel="noopener noreferrer" aria-label="Twitter" class="footer__social-link">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z" /></svg>
-            </a>
-          </li>
-        </ul>
-        <a class="footer__credit" href="https://github.com/jessechumo/My-Portfolio" target="_blank" rel="noopener noreferrer">
-          <span>Designed &amp; built by Jesse Chumo</span>
-          <span class="footer__stars">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" /></svg>
-            <span data-stars="My-Portfolio">View source</span>
-          </span>
-        </a>
-        <p class="footer__meta">
-          &copy; <span data-year>2026</span>
-          <span class="footer__hint">· Press <kbd data-mod-key>⌘</kbd><kbd>K</kbd> to jump anywhere</span>
-        </p>
-      </div>
+      <p>© <span data-year>2026</span> Jesse Chumo</p>
+      <p>Hand-built with HTML, SCSS and a little JavaScript. <a class="link" href="https://github.com/jessechumo/My-Portfolio" target="_blank" rel="noopener">Source</a></p>
+      <p class="footer__keys"><kbd>ctrl</kbd>+<kbd>b</kbd> then <kbd>0</kbd>–<kbd>5</kbd> switches windows</p>
     </footer>
 
-    <div class="toast" role="status" aria-live="polite" data-toast></div>
+    <!-- tmux-style status line doubles as the site navigation -->
+    <nav class="tmux" aria-label="Sections">
+      <span class="tmux__session" data-tmux-session>jesse</span>
+      <ol class="tmux__windows">
+        <li><a href="#top" data-window="top"><span class="tmux__n">0</span><span class="tmux__name">:home</span></a></li>
+        <li><a href="#work" data-window="work"><span class="tmux__n">1</span><span class="tmux__name">:work</span></a></li>
+        <li><a href="#research" data-window="research"><span class="tmux__n">2</span><span class="tmux__name">:research</span></a></li>
+        <li><a href="#experience" data-window="experience"><span class="tmux__n">3</span><span class="tmux__name">:experience</span></a></li>
+        <li><a href="#about" data-window="about"><span class="tmux__n">4</span><span class="tmux__name">:about</span></a></li>
+        <li><a href="#contact" data-window="contact"><span class="tmux__n">5</span><span class="tmux__name">:contact</span></a></li>
+      </ol>
+      <span class="tmux__status" aria-hidden="true"><span class="tmux__host">dallas</span> <time data-clock>--:--</time></span>
+    </nav>
 
-    <script src="/js/data.js" defer></script>
-    <script src="/js/render.js" defer></script>
+    <p class="toast" role="status" aria-live="polite" data-toast></p>
+
     <script src="/js/network.js" defer></script>
-    <script src="/js/palette.js" defer></script>
     <script src="/js/main.js" defer></script>
   </body>
 </html>

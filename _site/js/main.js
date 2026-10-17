@@ -1,478 +1,356 @@
-// Site behaviour: theme, navigation, reveals, tabs, typing effects and live GitHub stats.
+// Behaviour for jessechumo.com: the tmux status line, scroll reveals, the obfuscation
+// diff, the neofetch print-out, a live clock and copy-to-clipboard.
 (function () {
-  window.__portfolioReady = true;
+  window.__ready = true;
 
-  const root = document.documentElement;
-  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
-  const data = typeof portfolioData !== 'undefined' ? portfolioData : { email: 'jessechumo@gmail.com', github: 'jessechumo' };
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const $ = (selector, scope) => (scope || document).querySelector(selector);
   const $$ = (selector, scope) => Array.prototype.slice.call((scope || document).querySelectorAll(selector));
 
-  /* ------------------------------------------------------------------ misc */
+  /* ----------------------------------------------------------- small bits */
 
   $$('[data-year]').forEach(el => (el.textContent = new Date().getFullYear()));
+
+  // "Uptime": time since the first engineering job.
+  $$('[data-uptime]').forEach(el => {
+    const since = new Date(el.getAttribute('data-uptime'));
+    const now = new Date();
+    let months = (now.getFullYear() - since.getFullYear()) * 12 + (now.getMonth() - since.getMonth());
+    if (now.getDate() < since.getDate()) months -= 1;
+    const years = Math.floor(months / 12);
+    const rest = months % 12;
+    const plural = (n, word) => n + ' ' + word + (n === 1 ? '' : 's');
+    el.textContent = rest ? plural(years, 'year') + ', ' + plural(rest, 'month') : plural(years, 'year');
+  });
+
+  // Local time in Dallas, formatted the way tmux prints it: 21:52 16-Oct-26
+  const clock = $('[data-clock]');
+  if (clock && window.Intl) {
+    const parts = new Intl.DateTimeFormat('en-GB', {
+      timeZone: 'America/Chicago',
+      hour: '2-digit',
+      minute: '2-digit',
+      day: '2-digit',
+      month: 'short',
+      year: '2-digit',
+      hour12: false,
+    });
+    const tick = () => {
+      const p = {};
+      parts.formatToParts(new Date()).forEach(part => (p[part.type] = part.value));
+      clock.textContent = p.hour + ':' + p.minute + ' ' + p.day + '-' + p.month + '-' + p.year;
+      clock.setAttribute('datetime', new Date().toISOString());
+    };
+    tick();
+    setInterval(tick, 15000);
+  }
 
   const toastEl = $('[data-toast]');
   let toastTimer = 0;
   function toast(message) {
     if (!toastEl) return;
     toastEl.textContent = message;
-    toastEl.classList.add('is-visible');
+    toastEl.classList.add('is-on');
     clearTimeout(toastTimer);
-    toastTimer = setTimeout(() => toastEl.classList.remove('is-visible'), 2400);
+    toastTimer = setTimeout(() => toastEl.classList.remove('is-on'), 2200);
   }
 
-  /* ----------------------------------------------------------------- theme */
+  /* --------------------------------------------------------------- reveal */
 
-  const themeMeta = $('meta[name="theme-color"]');
+  function onceVisible(el, callback, options) {
+    if (!('IntersectionObserver' in window)) return callback(el);
+    const io = new IntersectionObserver(
+      entries =>
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+          io.unobserve(entry.target);
+          callback(entry.target);
+        }),
+      options || { rootMargin: '0px 0px -10% 0px', threshold: 0.12 }
+    );
+    io.observe(el);
+  }
 
-  function syncThemeUi() {
-    const light = root.getAttribute('data-theme') === 'light';
-    $$('[data-theme-toggle]').forEach(button => {
-      button.setAttribute('aria-label', light ? 'Switch to dark theme' : 'Switch to light theme');
-      const label = $('.mobile-menu__theme-label', button);
-      if (label) label.textContent = light ? 'Dark theme' : 'Light theme';
+  $$('[data-reveal]').forEach(el => onceVisible(el, target => target.classList.add('is-in')));
+
+  /* --------------------------------------------------- tmux status line */
+
+  const windows = $$('.tmux__windows a');
+  const sections = windows.map(a => document.getElementById(a.getAttribute('data-window')));
+  const session = $('[data-tmux-session]');
+  let current = 0;
+  let lastWindow = -1;
+  // While a jump scrolls past other sections, remember where it started so that,
+  // like tmux, the "last window" is the one you jumped from.
+  let jump = null;
+  let jumpTimer = 0;
+
+  function setWindow(index) {
+    if (index === current || index < 0) return;
+    lastWindow = jump ? jump.from : current;
+    current = index;
+    if (jump && index === jump.to) jump = null;
+    windows.forEach((a, i) => {
+      a.classList.toggle('is-current', i === current);
+      a.classList.toggle('is-last', i === lastWindow);
+      if (i === current) a.setAttribute('aria-current', 'location');
+      else a.removeAttribute('aria-current');
     });
-    if (themeMeta) themeMeta.setAttribute('content', light ? '#f5f8fc' : '#0a192f');
+    // keep the current window visible when the bar scrolls sideways on phones
+    const a = windows[current];
+    const bar = a.parentNode.parentNode;
+    if (bar.scrollWidth > bar.clientWidth) bar.scrollLeft = a.parentNode.offsetLeft - 40;
   }
 
-  function toggleTheme() {
-    const next = root.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
-    root.classList.add('theme-transition');
-    root.setAttribute('data-theme', next);
-    try {
-      localStorage.setItem('theme', next);
-    } catch (e) {
-      /* storage can be unavailable (private mode); the theme still applies for this visit */
-    }
-    syncThemeUi();
-    document.dispatchEvent(new CustomEvent('themechange', { detail: next }));
-    setTimeout(() => root.classList.remove('theme-transition'), 400);
+  windows[0].classList.add('is-current');
+  windows[0].setAttribute('aria-current', 'location');
+
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver(
+      entries =>
+        entries.forEach(entry => {
+          if (entry.isIntersecting) setWindow(sections.indexOf(entry.target));
+        }),
+      { rootMargin: '-45% 0px -50% 0px' }
+    );
+    sections.forEach(section => section && io.observe(section));
   }
 
-  $$('[data-theme-toggle]').forEach(button => button.addEventListener('click', toggleTheme));
-  syncThemeUi();
-
-  /* ------------------------------------------------------------ navigation */
-
-  const nav = $('[data-nav]');
-  const progress = $('.scroll-progress');
-  let lastY = window.scrollY;
+  // The contact section is short; when the page bottoms out, it is the current window.
   let ticking = false;
-
-  function onScroll() {
-    const y = window.scrollY;
-    const max = document.documentElement.scrollHeight - window.innerHeight;
-    const menuOpen = document.body.classList.contains('menu-open');
-
-    nav.classList.toggle('is-scrolled', y > 20);
-    if (!menuOpen && Math.abs(y - lastY) > 6) {
-      nav.classList.toggle('is-hidden', y > lastY && y > 300);
-    }
-    if (progress) progress.style.setProperty('--progress', max > 0 ? (y / max).toFixed(4) : 0);
-    lastY = y;
-    ticking = false;
-  }
-
   window.addEventListener(
     'scroll',
     () => {
-      if (!ticking) {
-        ticking = true;
-        requestAnimationFrame(onScroll);
-      }
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        ticking = false;
+        const atBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4;
+        if (atBottom) setWindow(windows.length - 1);
+      });
     },
     { passive: true }
   );
-  onScroll();
 
-  // Highlight the nav link of the section currently in view.
-  const navLinks = $$('[data-nav-link]');
-  if ('IntersectionObserver' in window && navLinks.length) {
-    const sectionObserver = new IntersectionObserver(
-      entries => {
-        entries.forEach(entry => {
-          if (!entry.isIntersecting) return;
-          const id = '#' + entry.target.id;
-          navLinks.forEach(link => link.classList.toggle('is-active', link.getAttribute('href') === id));
-        });
-      },
-      { rootMargin: '-45% 0px -50% 0px' }
-    );
-    $$('main section[id]').forEach(section => sectionObserver.observe(section));
+  function goTo(index) {
+    if (index < 0 || index >= sections.length || index === current) return;
+    const target = sections[index];
+    if (!target) return;
+    jump = { from: current, to: index };
+    clearTimeout(jumpTimer);
+    jumpTimer = setTimeout(() => (jump = null), 2500);
+    if (index === 0) window.scrollTo({ top: 0, behavior: reduced ? 'auto' : 'smooth' });
+    else target.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'start' });
+    history.replaceState(null, '', index === 0 ? location.pathname : '#' + target.id);
   }
 
-  /* ----------------------------------------------------------- mobile menu */
+  windows.forEach((a, i) =>
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      goTo(i);
+    })
+  );
 
-  const burger = $('[data-menu-toggle]');
-  const menu = $('[data-mobile-menu]');
-
-  function setMenu(open) {
-    if (!burger || !menu) return;
-    document.body.classList.toggle('menu-open', open);
-    burger.setAttribute('aria-expanded', String(open));
-    burger.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
-    $$('.main, .footer').forEach(el => {
-      if (open) el.setAttribute('inert', '');
-      else el.removeAttribute('inert');
-    });
-    if (open) {
-      nav.classList.remove('is-hidden');
-      // give the drawer a moment to become focusable before moving focus into it
-      const first = $('a', menu);
-      if (first) setTimeout(() => first.focus({ preventScroll: true }), 80);
-    }
+  // tmux key bindings: ctrl-b, then a window number, n/p for next/previous, l for the last window.
+  let prefixTimer = 0;
+  let prefix = false;
+  function armPrefix(on) {
+    prefix = on;
+    if (session) session.classList.toggle('is-prefix', on);
+    clearTimeout(prefixTimer);
+    if (on) prefixTimer = setTimeout(() => armPrefix(false), 2000);
   }
 
-  if (burger && menu) {
-    burger.addEventListener('click', () => setMenu(!document.body.classList.contains('menu-open')));
-    $$('a', menu).forEach(link => link.addEventListener('click', () => setMenu(false)));
-    document.addEventListener('keydown', e => {
-      if (e.key === 'Escape' && document.body.classList.contains('menu-open')) {
-        setMenu(false);
-        burger.focus();
-      }
-    });
-    window.addEventListener('resize', () => {
-      if (window.innerWidth > 900 && document.body.classList.contains('menu-open')) setMenu(false);
-    });
-  }
-
-  /* ------------------------------------------------------------- spotlight */
-
-  if (finePointer && !reducedMotion) {
-    const spotlight = $('.spotlight');
-    let pending = false;
-    let px = 0;
-    let py = 0;
-    window.addEventListener(
-      'pointermove',
-      e => {
-        px = e.clientX;
-        py = e.clientY;
-        if (pending) return;
-        pending = true;
-        requestAnimationFrame(() => {
-          spotlight.style.setProperty('--spot-x', px + 'px');
-          spotlight.style.setProperty('--spot-y', py + 'px');
-          pending = false;
-        });
-      },
-      { passive: true }
-    );
-    document.body.classList.add('has-spotlight');
-  }
-
-  /* ---------------------------------------------------------------- reveal */
-
-  // Calls `callback` once when `el` scrolls into view.
-  function whenVisible(el, callback, options) {
-    if (!el) return;
-    if (!('IntersectionObserver' in window)) {
-      callback(el);
+  document.addEventListener('keydown', e => {
+    const typing = /^(INPUT|TEXTAREA|SELECT)$/.test(e.target.tagName) || e.target.isContentEditable;
+    if (typing) return;
+    if (e.ctrlKey && !e.metaKey && !e.altKey && e.key.toLowerCase() === 'b') {
+      e.preventDefault();
+      armPrefix(true);
       return;
     }
-    const observer = new IntersectionObserver(
-      entries => {
-        entries.forEach(entry => {
-          if (!entry.isIntersecting) return;
-          observer.unobserve(entry.target);
-          callback(entry.target);
-        });
-      },
-      options || { threshold: 0.15, rootMargin: '0px 0px -8% 0px' }
-    );
-    observer.observe(el);
-  }
-
-  $$('[data-reveal]').forEach(el => whenVisible(el, target => target.classList.add('is-visible')));
-
-  /* ------------------------------------------------------- experience tabs */
-
-  const jobTabs = $$('.experience-tab');
-  const tabList = $('.experience-tabs');
-  const indicator = $('.experience-tabs__indicator');
-  let activeJob = 0;
-
-  function placeIndicator() {
-    const tab = jobTabs[activeJob];
-    if (!tab || !indicator) return;
-    indicator.style.setProperty('--indicator-y', tab.offsetTop + 'px');
-    indicator.style.setProperty('--indicator-h', tab.offsetHeight + 'px');
-    indicator.style.setProperty('--indicator-x', tab.offsetLeft + 'px');
-    indicator.style.setProperty('--indicator-w', tab.offsetWidth + 'px');
-  }
-
-  function selectJob(index, focus) {
-    activeJob = (index + jobTabs.length) % jobTabs.length;
-    jobTabs.forEach((tab, i) => {
-      const selected = i === activeJob;
-      const panel = document.getElementById(tab.getAttribute('aria-controls'));
-      tab.classList.toggle('active', selected);
-      tab.setAttribute('aria-selected', String(selected));
-      tab.tabIndex = selected ? 0 : -1;
-      if (panel) {
-        panel.hidden = !selected;
-        panel.classList.toggle('active', selected);
-      }
-    });
-    const tab = jobTabs[activeJob];
-    if (focus) tab.focus({ preventScroll: true });
-    // keep the active tab visible when the list scrolls sideways on small screens
-    if (tabList.scrollWidth > tabList.clientWidth) {
-      tabList.scrollTo({ left: tab.offsetLeft - (tabList.clientWidth - tab.offsetWidth) / 2, behavior: reducedMotion ? 'auto' : 'smooth' });
-    }
-    placeIndicator();
-  }
-
-  if (jobTabs.length) {
-    jobTabs.forEach((tab, i) => {
-      tab.addEventListener('click', () => selectJob(i));
-      tab.addEventListener('keydown', e => {
-        const keys = { ArrowDown: 1, ArrowRight: 1, ArrowUp: -1, ArrowLeft: -1 };
-        if (keys[e.key]) {
-          e.preventDefault();
-          selectJob(activeJob + keys[e.key], true);
-        } else if (e.key === 'Home') {
-          e.preventDefault();
-          selectJob(0, true);
-        } else if (e.key === 'End') {
-          e.preventDefault();
-          selectJob(jobTabs.length - 1, true);
-        }
-      });
-    });
-    placeIndicator();
-    window.addEventListener('resize', placeIndicator);
-    if (document.fonts && document.fonts.ready) document.fonts.ready.then(placeIndicator);
-  }
-
-  /* ----------------------------------------------------------- code window */
-
-  const codeWindow = $('[data-code-window]');
-  const files = window.portfolioCodeFiles || [];
-  const renderLines = window.portfolioRender && window.portfolioRender.renderCodeLines;
-
-  if (codeWindow && files.length && renderLines) {
-    const codeEl = $('[data-code]', codeWindow);
-    const langEl = $('[data-code-lang]', codeWindow);
-    const body = $('.code-window__body', codeWindow);
-    const fileTabs = $$('.code-window__tab', codeWindow);
-    let typingFrame = 0;
-    let currentFile = 0;
-
-    const caretLine = lines => lines.concat([]).map((line, i, all) => (i === all.length - 1 ? line.concat([['caret', '']]) : line));
-
-    // Returns the first `count` characters of a file, keeping the token structure.
-    function slice(lines, count) {
-      const out = [];
-      let left = count;
-      for (let i = 0; i < lines.length && left > 0; i++) {
-        const line = [];
-        for (let j = 0; j < lines[i].length && left > 0; j++) {
-          const token = lines[i][j];
-          const text = token[1].slice(0, left);
-          left -= text.length;
-          line.push([token[0], text]);
-        }
-        out.push(line);
-        left -= 1; // newline
-      }
-      return out;
-    }
-
-    function totalChars(lines) {
-      return lines.reduce((sum, line) => sum + line.reduce((s, token) => s + token[1].length, 0) + 1, 0);
-    }
-
-    function showFile(index, focus) {
-      cancelAnimationFrame(typingFrame);
-      body.removeAttribute('aria-busy');
-      currentFile = (index + files.length) % files.length;
-      fileTabs.forEach((tab, i) => {
-        const selected = i === currentFile;
-        tab.classList.toggle('active', selected);
-        tab.setAttribute('aria-selected', String(selected));
-        tab.tabIndex = selected ? 0 : -1;
-      });
-      body.setAttribute('aria-labelledby', fileTabs[currentFile].id);
-      codeEl.innerHTML = renderLines(caretLine(files[currentFile].lines));
-      langEl.textContent = files[currentFile].lang;
-      body.scrollTop = 0;
-      if (focus) fileTabs[currentFile].focus();
-    }
-
-    function typeFile(index) {
-      const lines = files[index].lines;
-      const total = totalChars(lines);
-      const started = performance.now();
-      const charsPerMs = 0.11;
-      body.setAttribute('aria-busy', 'true');
-
-      function tick(now) {
-        const count = Math.min(total, Math.floor((now - started) * charsPerMs));
-        codeEl.innerHTML = renderLines(caretLine(slice(lines, count)));
-        if (count < total) typingFrame = requestAnimationFrame(tick);
-        else body.removeAttribute('aria-busy');
-      }
-      typingFrame = requestAnimationFrame(tick);
-    }
-
-    fileTabs.forEach((tab, i) => {
-      tab.addEventListener('click', () => showFile(i));
-      tab.addEventListener('keydown', e => {
-        if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
-          e.preventDefault();
-          showFile(currentFile + (e.key === 'ArrowRight' ? 1 : -1), true);
-        }
-      });
-    });
-
-    if (reducedMotion) {
-      showFile(0);
-    } else {
-      codeEl.innerHTML = renderLines([[['caret', '']]]);
-      whenVisible(codeWindow, () => setTimeout(() => currentFile === 0 && typeFile(0), 350), { threshold: 0.4 });
-    }
-  }
-
-  /* -------------------------------------------------------------- terminal */
-
-  const wait = ms => new Promise(resolve => setTimeout(resolve, ms));
-
-  $$('[data-terminal]').forEach(terminal => {
-    if (reducedMotion) return;
-    const body = $('.terminal__body', terminal);
-    const lines = $$('.term-line', terminal);
-
-    // Reserve the final height up front so the layout doesn't jump while typing.
-    body.style.minHeight = body.offsetHeight + 30 + 'px';
-    lines.forEach(line => {
-      line.classList.add('is-pending');
-      const cmd = $('.term-cmd', line);
-      if (cmd) {
-        line.setAttribute('data-cmd', cmd.textContent);
-        cmd.textContent = '';
-      }
-    });
-
-    const cursor = document.createElement('span');
-    cursor.className = 'term-cursor';
-    cursor.setAttribute('aria-hidden', 'true');
-
-    async function play() {
-      for (const line of lines) {
-        const cmdText = line.getAttribute('data-cmd');
-        line.classList.remove('is-pending');
-        if (cmdText !== null) {
-          const cmd = $('.term-cmd', line);
-          line.appendChild(cursor);
-          await wait(320);
-          for (let i = 1; i <= cmdText.length; i++) {
-            cmd.textContent = cmdText.slice(0, i);
-            await wait(22 + Math.random() * 38);
-          }
-          await wait(260);
-        } else {
-          await wait(70);
-        }
-      }
-      const prompt = document.createElement('span');
-      prompt.className = 'term-line term-line--cmd';
-      prompt.innerHTML = '<span class="term-prompt" aria-hidden="true">$</span> ';
-      prompt.appendChild(cursor);
-      $('code', body).appendChild(prompt);
-    }
-
-    whenVisible(terminal, play, { threshold: 0.45 });
+    if (!prefix) return;
+    let handled = true;
+    if (/^[0-9]$/.test(e.key)) goTo(Number(e.key));
+    else if (e.key === 'n') goTo((current + 1) % sections.length);
+    else if (e.key === 'p') goTo((current - 1 + sections.length) % sections.length);
+    else if (e.key === 'l') goTo(lastWindow);
+    else if (e.key !== 'Control' && e.key !== 'Shift') handled = e.key === 'Escape';
+    else return;
+    if (handled) e.preventDefault();
+    armPrefix(false);
   });
 
-  /* ---------------------------------------------------------- analysis view */
+  /* ---------------------------------------------------- obfuscation diff */
 
-  $$('[data-analysis]').forEach(el => whenVisible(el, target => target.classList.add('is-active'), { threshold: 0.4 }));
+  const variants = {
+    rename: {
+      caption: 'Every identifier renamed. Nothing about what the function does has changed.',
+      lines: [
+        ['int f_3a(int v_1) {', 1],
+        ['    int v_9 = 0;', 1],
+        ['    for (int v_2 = 0; v_2 < v_1; v_2++)', 1],
+        ['        v_9 += v_2;', 1],
+        ['    return v_9;', 1],
+        ['}', 0],
+      ],
+    },
+    dead: {
+      caption: 'An opaque predicate: n < 0 && n > 0 is never true, so the new branch never runs.',
+      lines: [
+        ['int sum(int n) {', 0],
+        ['    int total = 0;', 0],
+        ['    if (n < 0 && n > 0)', 1],
+        ['        total = n * 7;', 1],
+        ['    for (int i = 0; i < n; i++)', 0],
+        ['        total += i;', 0],
+        ['    return total;', 0],
+        ['}', 0],
+      ],
+    },
+    flow: {
+      caption: 'The for loop becomes while (1) with an explicit exit: the same iterations, a different control-flow graph.',
+      lines: [
+        ['int sum(int n) {', 0],
+        ['    int total = 0, i = 0;', 1],
+        ['    while (1) {', 1],
+        ['        if (i >= n) break;', 1],
+        ['        total += i;', 0],
+        ['        i++;', 1],
+        ['    }', 1],
+        ['    return total;', 0],
+        ['}', 0],
+      ],
+    },
+    all: {
+      caption:
+        "All three transformations at once. The function still returns the same value for every input; the question is whether a detector's prediction moves.",
+      lines: [
+        ['int f_3a(int v_1) {', 1],
+        ['    int v_9 = 0, v_2 = 0;', 1],
+        ['    if (v_1 < 0 && v_1 > 0)', 1],
+        ['        v_9 = v_1 * 7;', 1],
+        ['    while (1) {', 1],
+        ['        if (v_2 >= v_1) break;', 1],
+        ['        v_9 += v_2;', 1],
+        ['        v_2++;', 1],
+        ['    }', 0],
+        ['    return v_9;', 1],
+        ['}', 0],
+      ],
+    },
+  };
 
-  /* ------------------------------------------------------------ copy email */
+  const diffOut = $('[data-diff-out] code');
+  const diffCaption = $('[data-diff-caption]');
+  const diffTabs = $$('.diff__tab');
+  const escapeHtml = s => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 
-  function copyEmail(button) {
-    const email = data.email;
-    const done = () => {
-      toast('Email copied to clipboard');
-      $$('[data-copy-email]').forEach(b => b.classList.add('is-copied'));
-      setTimeout(() => $$('[data-copy-email]').forEach(b => b.classList.remove('is-copied')), 2000);
-    };
-    const fallback = () => {
-      const area = document.createElement('textarea');
-      area.value = email;
-      area.setAttribute('readonly', '');
-      area.style.position = 'fixed';
-      area.style.opacity = '0';
-      document.body.appendChild(area);
-      area.select();
-      try {
-        document.execCommand('copy');
-        done();
-      } catch (e) {
-        toast(email);
-      }
-      document.body.removeChild(area);
-      if (button) button.focus();
-    };
-    if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(email).then(done, fallback);
-    else fallback();
-  }
-
-  $$('[data-copy-email]').forEach(button => button.addEventListener('click', () => copyEmail(button)));
-
-  /* ---------------------------------------------------- live GitHub stars */
-
-  const STATS_KEY = 'github-stats-v1';
-  const STATS_TTL = 6 * 60 * 60 * 1000;
-
-  // Zero counts stay hidden; the footer keeps its "View source" label until there is a star to show.
-  function applyStats(stars) {
-    $$('[data-stars]').forEach(el => {
-      const count = stars[el.getAttribute('data-stars')];
-      if (typeof count !== 'number') return;
-      const wrapper = el.closest('[data-stars-wrapper]');
-      if (count > 0) el.textContent = count;
-      if (wrapper) wrapper.hidden = count === 0;
+  function showVariant(name, focus) {
+    const variant = variants[name];
+    if (!variant || !diffOut) return;
+    diffTabs.forEach(tab => {
+      const on = tab.getAttribute('data-variant') === name;
+      tab.setAttribute('aria-selected', String(on));
+      tab.tabIndex = on ? 0 : -1;
+      if (on && focus) tab.focus();
     });
+    diffOut.innerHTML = variant.lines
+      .map(
+        (line, i) =>
+          '<span class="diff__line' +
+          (line[1] ? ' is-changed' + (reduced ? '' : ' is-new') : '') +
+          '" style="animation-delay:' +
+          i * 30 +
+          'ms">' +
+          escapeHtml(line[0]) +
+          '</span>'
+      )
+      .join('');
+    if (diffCaption) diffCaption.textContent = variant.caption;
   }
 
-  function loadStats() {
-    try {
-      const cached = JSON.parse(localStorage.getItem(STATS_KEY) || 'null');
-      if (cached && Date.now() - cached.time < STATS_TTL) {
-        applyStats(cached.stars);
-        return;
-      }
-    } catch (e) {
-      /* ignore unreadable cache */
+  diffTabs.forEach((tab, i) => {
+    tab.tabIndex = tab.getAttribute('aria-selected') === 'true' ? 0 : -1;
+    tab.addEventListener('click', () => showVariant(tab.getAttribute('data-variant')));
+    tab.addEventListener('keydown', e => {
+      if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+      e.preventDefault();
+      const next = diffTabs[(i + (e.key === 'ArrowRight' ? 1 : diffTabs.length - 1)) % diffTabs.length];
+      showVariant(next.getAttribute('data-variant'), true);
+    });
+  });
+
+  /* ------------------------------------------------- neofetch print-out */
+
+  const art = $('.neofetch__art');
+  if (art && !reduced) {
+    const lines = art.textContent.split('\n');
+    art.innerHTML = lines.map(line => '<span class="art-line">' + escapeHtml(line) + '</span>').join('\n');
+    art.classList.add('is-printing');
+    const rows = $$('.art-line', art);
+    onceVisible(
+      art,
+      () => {
+        let i = 0;
+        const timer = setInterval(() => {
+          if (i >= rows.length) {
+            clearInterval(timer);
+            art.classList.remove('is-printing');
+            return;
+          }
+          rows[i++].classList.add('is-shown');
+        }, 22);
+      },
+      { threshold: 0.3 }
+    );
+  }
+
+  /* ------------------------------------------------------ svg diagrams */
+
+  // SMIL animations keep running offscreen; pause them when they can't be seen.
+  $$('svg.diagram').forEach(svg => {
+    if (!svg.pauseAnimations) return;
+    if (reduced) {
+      svg.pauseAnimations();
+      return;
     }
-    if (!window.fetch) return;
-    fetch('https://api.github.com/users/' + data.github + '/repos?per_page=100', {
-      headers: { Accept: 'application/vnd.github+json' },
-    })
-      .then(response => (response.ok ? response.json() : Promise.reject(response.status)))
-      .then(repos => {
-        const stars = {};
-        repos.forEach(repo => (stars[repo.name] = repo.stargazers_count));
-        applyStats(stars);
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(entries => {
+        if (entries[0].isIntersecting) svg.unpauseAnimations();
+        else svg.pauseAnimations();
+      }).observe(svg);
+    }
+  });
+
+  /* ------------------------------------------------------------ copying */
+
+  $$('[data-copy]').forEach(button => {
+    button.addEventListener('click', () => {
+      const text = button.getAttribute('data-copy');
+      const done = () => {
+        button.textContent = 'copied';
+        toast('copied ' + text);
+        setTimeout(() => (button.textContent = 'copy'), 2000);
+      };
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(text).then(done, () => toast(text));
+      } else {
+        const area = document.createElement('textarea');
+        area.value = text;
+        area.style.position = 'fixed';
+        area.style.opacity = '0';
+        document.body.appendChild(area);
+        area.select();
         try {
-          localStorage.setItem(STATS_KEY, JSON.stringify({ time: Date.now(), stars: stars }));
-        } catch (e) {
-          /* storage full or disabled */
+          document.execCommand('copy');
+          done();
+        } catch (err) {
+          toast(text);
         }
-      })
-      .catch(() => {
-        /* offline or rate limited: the counts from data.js stay in place */
-      });
-  }
-
-  // Wait until the browser is idle so the API call never competes with first paint.
-  if ('requestIdleCallback' in window) window.requestIdleCallback(loadStats, { timeout: 3000 });
-  else setTimeout(loadStats, 1200);
-
-  window.portfolio = { toggleTheme: toggleTheme, copyEmail: copyEmail, toast: toast };
+        document.body.removeChild(area);
+        button.focus();
+      }
+    });
+  });
 })();

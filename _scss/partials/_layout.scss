@@ -1,0 +1,129 @@
+@use 'tokens' as *;
+
+/* ------------------------------------------------------------ top bar */
+
+.topbar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 20px;
+  padding: 22px var(--gutter);
+  font-family: $mono;
+  font-size: 13px;
+  color: var(--fg-2);
+
+  &__id {
+    color: var(--fg);
+  }
+
+  &__path {
+    color: var(--fg-3);
+  }
+
+  &__links {
+    display: flex;
+    gap: 22px;
+  }
+}
+
+/* ----------------------------------------------------------- sections */
+
+// Every section: a narrow sticky label column (the "path") and a wide content column.
+.section {
+  display: grid;
+  grid-template-columns: minmax(0, 3fr) minmax(0, 9fr);
+  column-gap: clamp(24px, 4vw, 64px);
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: clamp(110px, 14vw, 190px) var(--gutter) 0;
+
+  @include below-tablet {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  &__side {
+    position: sticky;
+    top: 36px;
+    align-self: start;
+    padding-top: 12px;
+
+    @include below-tablet {
+      position: static;
+      padding-top: 0;
+      margin-bottom: 18px;
+    }
+  }
+
+  &__path {
+    font-family: $mono;
+    font-size: 14px;
+    color: var(--accent);
+  }
+
+  &__note {
+    @include meta;
+    max-width: 230px;
+    margin-top: 10px;
+
+    @include below-tablet {
+      max-width: 40ch;
+      margin-top: 4px;
+    }
+  }
+
+  &__main {
+    min-width: 0;
+  }
+
+  &__title {
+    max-width: 18ch;
+    margin-bottom: clamp(44px, 6vw, 80px);
+    font-family: $display;
+    font-size: clamp(40px, 5.6vw, 76px);
+    font-weight: 600;
+    line-height: 1;
+    letter-spacing: -0.035em;
+  }
+}
+
+/* ------------------------------------------------------------- footer */
+
+.footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 10px 32px;
+  max-width: var(--max);
+  margin: clamp(140px, 18vw, 220px) auto 0;
+  padding: 22px var(--gutter) 30px;
+  border-top: 1px solid var(--line);
+  @include meta;
+
+  a {
+    color: var(--fg-2);
+  }
+
+  kbd {
+    display: inline-block;
+    min-width: 1.6em;
+    padding: 0 5px;
+    border: 1px solid var(--line-strong);
+    border-radius: 3px;
+    font-family: $mono;
+    font-size: 12px;
+    line-height: 1.6;
+    text-align: center;
+    color: var(--fg-2);
+  }
+
+  &__keys {
+    @media (hover: none) {
+      display: none;
+    }
+  }
+}

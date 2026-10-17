@@ -1,246 +1,127 @@
-@use 'globals' as *;
+@use 'sass:color';
+@use 'tokens' as *;
 
-.about-section {
-  &__content {
-    display: grid;
-    grid-template-columns: 3fr 2.3fr;
-    gap: 60px;
-    align-items: start;
+// `neofetch`, with an ASCII rendering of the portrait as the distro logo
+.neofetch {
+  padding: clamp(20px, 3vw, 34px);
+  border: 1px solid var(--line);
+  background: var(--bg-sunk);
+  font-family: $mono;
 
-    @media (max-width: 968px) {
-      grid-template-columns: 1fr;
-      gap: 50px;
-    }
+  &__prompt {
+    margin-bottom: 22px;
+    font-size: 13.5px;
+    color: var(--fg-2);
   }
 
-  &__text {
-    p {
-      margin-bottom: 18px;
-      font-size: 17px;
-      line-height: 1.7;
-      color: var(--text-secondary);
-
-      strong {
-        font-weight: 600;
-        color: var(--text-primary);
-      }
-    }
-  }
-
-  &__visual {
-    position: relative;
-    min-width: 0;
-  }
-}
-
-.tech-list {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(140px, 220px));
-  gap: 8px 14px;
-  margin-top: 22px;
-
-  li {
-    position: relative;
-    padding-left: 20px;
-    font-family: $mono;
-    font-size: 14px;
-    color: var(--text-secondary);
-
-    &::before {
-      content: '▹';
-      position: absolute;
-      left: 0;
-      color: var(--accent);
-    }
-  }
-}
-
-/* ------------------------------------------------------------- code window */
-
-.code-window {
-  @include transition(transform box-shadow border-color, 0.4s);
-
-  &:hover {
-    border-color: rgba(0, 212, 255, 0.32);
-    transform: translateY(-4px);
-  }
-
-  .window__bar {
-    padding-right: 0;
-    gap: 18px;
-
-    @include mobile {
-      gap: 12px;
-      padding-left: 12px;
-    }
-  }
-
-  &__tabs {
+  &__out {
     display: flex;
-    align-self: stretch;
-    min-width: 0;
-    overflow-x: auto;
-    scrollbar-width: none;
+    align-items: flex-start;
+    gap: clamp(22px, 3.4vw, 48px);
 
-    &::-webkit-scrollbar {
-      display: none;
+    @include below-desktop {
+      flex-direction: column;
     }
   }
 
-  &__tab {
-    position: relative;
-    display: inline-flex;
-    align-items: center;
-    gap: 7px;
-    padding: 0 14px;
-    font-family: $mono;
-    font-size: 13px;
-    color: #7d8cab;
-    white-space: nowrap;
-    border-left: 1px solid rgba(0, 212, 255, 0.08);
-    @include transition(color background-color);
-
-    &:last-child {
-      border-right: 1px solid rgba(0, 212, 255, 0.08);
-    }
-
-    @include mobile {
-      padding: 0 10px;
-      font-size: 12px;
-    }
-
-    &:hover {
-      color: #ccd6f6;
-    }
-
-    &.active {
-      color: #ccd6f6;
-      background: #020c1b;
-
-      &::after {
-        content: '';
-        position: absolute;
-        left: 0;
-        right: 0;
-        top: 0;
-        height: 2px;
-        background: #00d4ff;
-      }
-    }
-  }
-
-  &__body {
-    height: 352px;
-    padding: 18px 20px 18px 8px;
-    overflow: auto;
-    scrollbar-width: thin;
-    scrollbar-color: #233554 transparent;
-
-    pre {
-      margin: 0;
-      font-family: $mono;
-      font-size: 14px;
-      line-height: 1.75;
-      color: #ccd6f6;
-    }
-
-    code {
-      display: block;
-      counter-reset: line;
-    }
-
-    @include mobile {
-      height: 320px;
-
-      pre {
-        font-size: 13px;
-      }
-    }
-  }
-
-  &__status {
-    display: flex;
-    gap: 16px;
-    height: 26px;
-    padding: 0 12px;
-    align-items: center;
-    background: #0052cc;
-    font-family: $mono;
-    font-size: 12px;
-    color: rgba(255, 255, 255, 0.92);
-
-    span:nth-child(2) {
-      margin-left: auto;
-    }
-  }
-
-  &__branch {
-    display: inline-block;
-    width: 8px;
-    height: 8px;
-    margin-right: 6px;
-    border: 2px solid currentColor;
-    border-radius: 50%;
-    vertical-align: -0.5px;
-  }
-
-  &__fallback {
-    padding: 20px;
-    font-family: $mono;
-    font-size: 14px;
-    white-space: pre-wrap;
-  }
-}
-
-.code-line {
-  position: relative;
-  display: block;
-  min-height: 1.75em;
-  padding-left: 3em;
-  white-space: pre;
-  counter-increment: line;
-
-  &::before {
-    content: counter(line);
-    position: absolute;
-    left: 0;
-    width: 2em;
-    text-align: right;
-    color: #3b4a66;
+  &__art {
+    flex-shrink: 0;
+    margin: 0;
+    font-size: clamp(6px, 0.8vw, 11px);
+    line-height: 1.15;
+    color: #c4c4c4;
     user-select: none;
+
+    @include below-desktop {
+      font-size: clamp(5.4px, 1.55vw, 10px);
+      align-self: center;
+    }
+
+    // printed out line by line when it scrolls into view
+    &.is-printing {
+      .art-line {
+        visibility: hidden;
+      }
+
+      .art-line.is-shown {
+        visibility: visible;
+      }
+    }
+  }
+
+  &__info {
+    min-width: 0;
+    font-size: 14px;
+    line-height: 1.8;
+  }
+
+  &__title {
+    font-weight: 500;
+  }
+
+  &__rule {
+    color: var(--fg-3);
+  }
+
+  // label and value flow inline, so long values wrap under themselves like real neofetch output
+  &__list dt,
+  &__list dd {
+    display: inline;
+  }
+
+  &__list dt {
+    font-weight: 500;
+    color: var(--accent);
+
+    &::after {
+      content: ':';
+      margin-right: 1ch;
+      color: var(--fg);
+    }
+  }
+
+  &__list dd {
+    color: var(--fg-2);
+  }
+
+  &__dim {
+    color: var(--fg-3);
+  }
+
+  &__colors {
+    display: flex;
+    margin-top: 18px;
+
+    i {
+      width: 24px;
+      height: 14px;
+
+      // a greyscale ramp from just above the panel colour up to white, then the accent
+      @for $i from 1 through 7 {
+        &:nth-child(#{$i}) {
+          background: color.mix(#ececec, #2a2a2a, ($i - 1) * 16.6%);
+        }
+      }
+
+      &:nth-child(8) {
+        background: var(--accent);
+      }
+    }
   }
 }
 
-.typing-caret {
-  display: inline-block;
-  width: 0.55em;
-  height: 1.15em;
-  margin-left: 1px;
-  vertical-align: text-bottom;
-  background: #00d4ff;
-  animation: blink 1s steps(1) infinite;
-}
+.about__bio {
+  max-width: 64ch;
+  margin-top: 48px;
 
-@keyframes blink {
-  50% {
-    opacity: 0;
-  }
-}
-
-.file-icon {
-  width: 9px;
-  height: 9px;
-  border-radius: 2px;
-
-  &--ts {
-    background: #3178c6;
+  p {
+    margin-bottom: 20px;
+    color: var(--fg-2);
   }
 
-  &--yml {
-    background: #cb171e;
-  }
-
-  &--md {
-    background: #ccd6f6;
+  p:first-child {
+    font-size: clamp(19px, 1.7vw, 22px);
+    line-height: 1.5;
+    color: var(--fg);
   }
 }

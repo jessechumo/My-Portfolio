@@ -1,0 +1,102 @@
+@use 'tokens' as *;
+
+// A tmux status line, pinned to the bottom of the screen. It is the site navigation:
+// each section is a "window", the current one is marked with * and the previous one with -.
+.tmux {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 50;
+  display: flex;
+  align-items: stretch;
+  height: var(--bar);
+  background: #1f1f1f;
+  border-top: 1px solid #2c2c2c;
+  font-family: $mono;
+  font-size: 13px;
+  line-height: var(--bar);
+  color: #9d9d9d;
+
+  &__session {
+    flex-shrink: 0;
+    padding: 0 12px;
+    background: var(--accent);
+    color: var(--accent-ink);
+    font-weight: 500;
+    transition: background-color 0.15s ease;
+
+    // shown while the ctrl-b prefix is armed
+    &.is-prefix {
+      background: var(--fg);
+    }
+  }
+
+  &__windows {
+    display: flex;
+    min-width: 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    a {
+      display: block;
+      padding: 0 9px;
+      white-space: nowrap;
+      transition: color 0.15s ease;
+
+      &::after {
+        display: inline-block;
+        width: 1ch;
+        content: '';
+      }
+
+      &:hover {
+        color: var(--fg);
+      }
+
+      &.is-last::after {
+        content: '-';
+      }
+
+      &.is-current {
+        color: var(--fg);
+
+        &::after {
+          content: '*';
+          color: var(--accent);
+        }
+      }
+    }
+  }
+
+  &__status {
+    flex-shrink: 0;
+    margin-left: auto;
+    padding: 0 12px;
+    white-space: nowrap;
+  }
+
+  &__host {
+    color: var(--fg-2);
+  }
+
+  @include below-phone {
+    font-size: 12px;
+
+    &__windows a {
+      padding: 0 6px;
+
+      &:not(.is-current) .tmux__name {
+        display: none;
+      }
+    }
+
+    &__host {
+      display: none;
+    }
+  }
+}
